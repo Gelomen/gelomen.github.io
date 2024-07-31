@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>使用 Ubuntu18.04 和 WordPress 搭建博客</title>
+    <title>使用 Ubuntu-18.04 和 WordPress 搭建博客</title>
     <url>/posts/ubuntu-1804-wordpress/</url>
-    <content><![CDATA[<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
+    <content><![CDATA[<p>WordPress 有很优秀的博客文章管理, 也有很多的主题和插件可以制作各种各样的网站, 甚至购物网站, 这篇文章将帮助你基于 Ubuntu-18.04 部署 WordPress 搭建博客</p>
+<span id="more"></span>
+
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
 <li>系统: Ubuntu 18.04 ×64</li>
 <li>服务: Apache 2</li>
 <li>语言: PHP 7.4</li>
