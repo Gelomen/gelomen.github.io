@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>使用 Ubuntu18.04 和 WordPress 搭建博客</title>
+    <url>/posts/ubuntu-1804-wordpress/</url>
+    <content><![CDATA[<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
+<li>系统: Ubuntu 18.04 ×64</li>
+<li>服务: Apache 2</li>
+<li>语言: PHP 7.4</li>
+<li>数据库: MySQL 5.7</li>
+<li>网站框架: WordPress 5.4.2–zh_CN</li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="更新系统"><a href="#更新系统" class="headerlink" title="更新系统"></a>更新系统</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"><span class="built_in">sudo</span> apt upgrade</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="添加-ppa-源"><a href="#添加-ppa-源" class="headerlink" title="添加 ppa 源"></a>添加 ppa 源</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install software-properties-common -y</span><br><span class="line"><span class="built_in">sudo</span> add-apt-repository ppa:ondrej/php</span><br><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"><span class="built_in">sudo</span> apt upgrade</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="安装所需要的软件"><a href="#安装所需要的软件" class="headerlink" title="安装所需要的软件"></a>安装所需要的软件</h2><h3 id="Apache"><a href="#Apache" class="headerlink" title="Apache"></a>Apache</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install apache2 -y</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install php7.4 -y</span><br><span class="line"><span class="built_in">sudo</span> apt install libapache2-mod-php7.4 -y</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install php7.4-mysql -y</span><br><span class="line"><span class="built_in">sudo</span> apt install mysql-server -y</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="WordPress"><a href="#WordPress" class="headerlink" title="WordPress"></a>WordPress</h3><p>到官方简体中文网手动下载: <a class="link"   href="https://cn.wordpress.org/download/" >cn.wordpress.org&#x2F;download <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 或者执行: </p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://cn.wordpress.org/latest-zh_CN.tar.gz</span><br></pre></td></tr></table></figure></div>
+
+<p>下载后解压并拷贝到目录 <code>/var/www/html/</code> 下</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">tar zxf latest-zh_CN.tar.gz</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">mv</span> -f wordpress/ /var/www/html/</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="修改-wordpress-文件夹的所有者和读写属性"><a href="#修改-wordpress-文件夹的所有者和读写属性" class="headerlink" title="修改 wordpress 文件夹的所有者和读写属性"></a>修改 wordpress 文件夹的所有者和读写属性</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/html/</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="将-wp-替换为你的用户名"><a href="#将-wp-替换为你的用户名" class="headerlink" title="将 wp 替换为你的用户名"></a>将 wp 替换为你的用户名</h3><p><code>www-data</code> 是服务器的默认组</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">chown</span> -R wp:www-data wordpress</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="修改读写属性"><a href="#修改读写属性" class="headerlink" title="修改读写属性"></a>修改读写属性</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> 777 -R wordpress</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="启用-Apache-Rewrite-操作"><a href="#启用-Apache-Rewrite-操作" class="headerlink" title="启用 Apache Rewrite 操作"></a>启用 Apache Rewrite 操作</h3><p>让其能够重定向你的访问链接</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> a2enmod rewrite</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="配置-MySQL-数据库"><a href="#配置-MySQL-数据库" class="headerlink" title="配置 MySQL 数据库"></a>配置 MySQL 数据库</h3><p>用于后面的网站数据存储, 先给 <code>MySQL</code> 控制台 <code>root</code> 用户添加免密登录</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/mysql/mysql.conf.d/mysqld.cnf</span><br></pre></td></tr></table></figure></div>
+
+<p>在最后一行添加: <code>skip-grant-tables</code>, 重启服务后进入 <code>MySQL</code> 控制台</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> service mysql restart  <span class="comment">#  重启服务</span></span><br><span class="line">mysql -u root -p            <span class="comment"># 直接回车进入</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="修改-MySQL-root-用户的密码"><a href="#修改-MySQL-root-用户的密码" class="headerlink" title="修改 MySQL root 用户的密码"></a>修改 MySQL root 用户的密码</h3><p>将 <code>xxxxxx</code> 替换为你自己的密码</p>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">update</span> mysql.user <span class="keyword">set</span> authentication_string<span class="operator">=</span>PASSWORD(<span class="string">&#x27;xxxxxx&#x27;</span>), plugin<span class="operator">=</span><span class="string">&#x27;mysql_native_password&#x27;</span> <span class="keyword">where</span> <span class="keyword">user</span><span class="operator">=</span><span class="string">&#x27;root&#x27;</span>;</span><br><span class="line">flush privileges;</span><br><span class="line">exit</span><br></pre></td></tr></table></figure></div>
+
+<p>这样下次进入时就使用自己定义的密码登录 <code>MySQL</code> 控制台了, 然后记得回到 <code>mysqld.cnf</code> 把刚刚添加的 <code>skip-grant-tables</code> 删除, 否则不安全</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/mysql/mysql.conf.d/mysqld.cnf      <span class="comment"># 删除 skip-grant-tables</span></span><br><span class="line"><span class="built_in">sudo</span> service mysql restart                      <span class="comment">#  重启服务</span></span><br></pre></td></tr></table></figure></div>
+
+<h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><p>将 <code>xxxxxx</code> 替换为你自己的密码</p>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> database wordpressdb;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> wordpress<span class="variable">@localhost</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;xxxxxx&#x27;</span>;</span><br><span class="line"><span class="keyword">GRANT</span> <span class="keyword">ALL</span> PRIVILEGES <span class="keyword">ON</span> wordpressdb.<span class="operator">*</span> <span class="keyword">TO</span> wordpress<span class="variable">@localhost</span>;</span><br><span class="line">FLUSH PRIVILEGES;</span><br><span class="line">exit</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="配置-Apache-主页"><a href="#配置-Apache-主页" class="headerlink" title="配置 Apache 主页"></a>配置 Apache 主页</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/apache2/sites-enabled/000-default.conf</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="修改主页在-wordpress-目录下"><a href="#修改主页在-wordpress-目录下" class="headerlink" title="修改主页在 wordpress 目录下"></a>修改主页在 wordpress 目录下</h3><p>将原来的 </p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">DocumentRoot /var/www/html</span><br></pre></td></tr></table></figure></div>
+
+<p>修改为</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">DocumentRoot /var/www/html/wordpress</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="修改-Apache-服务器对文件夹的读写限制"><a href="#修改-Apache-服务器对文件夹的读写限制" class="headerlink" title="修改 Apache 服务器对文件夹的读写限制"></a>修改 Apache 服务器对文件夹的读写限制</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/apache2/apache2.conf</span><br></pre></td></tr></table></figure></div>
+
+<p>将原来的</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;Directory /var/www/&gt;</span><br><span class="line">Options Indexes FollowSymLinks</span><br><span class="line">AllowOverride None</span><br><span class="line">Require all granted</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure></div>
+
+<p>修改为</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;Directory /var/www/&gt;</span><br><span class="line">Options FollowSymLinks</span><br><span class="line">AllowOverride All</span><br><span class="line">Require all granted</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure></div>
+
+<p>并在最后添加一行域名地址, 否则重启服务会报错</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">ServerName www.domain.com</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="修改-WordPress-数据库配置"><a href="#修改-WordPress-数据库配置" class="headerlink" title="修改 WordPress 数据库配置"></a>修改 WordPress 数据库配置</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/html/wordpress/</span><br><span class="line"><span class="built_in">cp</span> wp-config-sample.php wp-config.php</span><br><span class="line"><span class="built_in">sudo</span> vi wp-config.php</span><br></pre></td></tr></table></figure></div>
+
+<p>将要连接的数据库设置为前面 <code>MySQL</code> 控制台所配置的</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ** MySQL 设置 - 具体信息来自您正在使用的主机 ** //</span></span><br><span class="line"><span class="comment">/** WordPress数据库的名称 */</span></span><br><span class="line"><span class="title function_ invoke__">define</span>( <span class="string">&#x27;DB_NAME&#x27;</span>, <span class="string">&#x27;wordpressdb&#x27;</span> );</span><br><span class="line"><span class="comment">/** MySQL数据库用户名 */</span></span><br><span class="line"><span class="title function_ invoke__">define</span>( <span class="string">&#x27;DB_USER&#x27;</span>, <span class="string">&#x27;wordpress&#x27;</span> );</span><br><span class="line"><span class="comment">/** MySQL数据库密码 */</span></span><br><span class="line"><span class="comment">// 将 xxxxxx 替换为前面配置数据的密码</span></span><br><span class="line"><span class="title function_ invoke__">define</span>( <span class="string">&#x27;DB_PASSWORD&#x27;</span>, <span class="string">&#x27;xxxxxx&#x27;</span> );</span><br></pre></td></tr></table></figure></div>
+
+<p>并在最后面添加 <code>WordPress</code> 进行更新时免登录的配置</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">define</span>(<span class="string">&quot;FS_METHOD&quot;</span>, <span class="string">&quot;direct&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">define</span>(<span class="string">&quot;FS_CHMOD_DIR&quot;</span>, <span class="number">0777</span>);</span><br><span class="line"><span class="title function_ invoke__">define</span>(<span class="string">&quot;FS_CHMOD_FILE&quot;</span>, <span class="number">0777</span>);</span><br></pre></td></tr></table></figure></div>
+
+<p>重启服务</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> service mysql restart</span><br><span class="line"><span class="built_in">sudo</span> apache2ctl restart</span><br></pre></td></tr></table></figure></div>
+
+<p>到这里已经可以用你的域名访问 <code>WordPress</code> 进行网站的初始化配置了~</p>
+<h2 id="ssl-配置"><a href="#ssl-配置" class="headerlink" title="ssl 配置"></a>ssl 配置</h2><p>若你的域名是 <code>http</code> 类型的, 可以在阿里云申请免费 <code>ssl</code> 证书, 将 <code>http</code> 升级为 <code>https</code>, 申请比较简单这里就不说了</p>
+<p>选择 <code>Apache</code> 服务器类型的证书下载, 并上传到 <code>/etc/apache2/xxx</code> 目录下, 如 <code>/etc/apache2/cert</code></p>
+<h3 id="启用-SSL-模块"><a href="#启用-SSL-模块" class="headerlink" title="启用 SSL 模块"></a>启用 SSL 模块</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> a2enmod ssl</span><br></pre></td></tr></table></figure></div>
+
+<p>可以执行命令查看是否自动生成 <code>default-ssl.conf</code> 文件</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">ll /etc/apache2/sites-available/</span><br><span class="line">total 20</span><br><span class="line">drwxr-xr-x 2 root root 4096 Jun 22 12:26 ./</span><br><span class="line">drwxr-xr-x 9 root root 4096 Jun 22 12:27 ../</span><br><span class="line">-rw-r--r-- 1 root root 1342 Jun 22 10:28 000-default.conf</span><br><span class="line">-rw-r--r-- 1 root root 6308 Jun 22 10:47 default-ssl.conf</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="修改-SSL-配置文件"><a href="#修改-SSL-配置文件" class="headerlink" title="修改 SSL 配置文件"></a>修改 SSL 配置文件</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/apache2/sites-available/default-ssl.conf</span><br></pre></td></tr></table></figure></div>
+
+<p>将对应的参数修改为你自己的内容</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;IfModule mod_ssl.c&gt;</span><br><span class="line">    &lt;VirtualHost *:443&gt;</span><br><span class="line">        # 添加ServerName, 域名替换为你自己的</span><br><span class="line">        ServerName www.domain.com</span><br><span class="line">        DocumentRoot /var/www/html/wordpress</span><br><span class="line">        ...</span><br><span class="line">        SSLCertificateFile /etc/apache2/cert/cert.crt</span><br><span class="line">        SSLCertificateKeyFile /etc/apache2/cert/cert.key</span><br><span class="line">        ...</span><br><span class="line">        SSLCertificateChainFile /etc/apache2/cert/chain.crt</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="创建软连接进行关联"><a href="#创建软连接进行关联" class="headerlink" title="创建软连接进行关联"></a>创建软连接进行关联</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">ln</span> -s /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-enabled/001-ssl.conf</span><br></pre></td></tr></table></figure></div>
+
+<p>重新加载 Apache 配置文件</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> /etc/init.d/apache2 force-reload</span><br></pre></td></tr></table></figure></div>
+
+<p>重启 Apache 服务</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> /etc/init.d/apache2 restart</span><br></pre></td></tr></table></figure></div>
+
+<p>然后使用 <code>https://www.domain.com</code> 访问你的域名, 看是否能正常访问并且域名左边有个小锁头, 说明成功~</p>
+<h2 id="强制-https-访问"><a href="#强制-https-访问" class="headerlink" title="强制 https 访问"></a>强制 https 访问</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/html/wordpress/</span><br><span class="line"><span class="built_in">sudo</span> vi .htaccess</span><br></pre></td></tr></table></figure></div>
+
+<p>在配置里最后增加两行, 必须在 <code>&lt;IfModule&gt;</code> 以外, 否则会被自动重写从而丢失</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;/IfModule&gt;</span><br><span class="line"></span><br><span class="line">## END WordPress</span><br><span class="line">## 强制 HTTPS 访问</span><br><span class="line">RewriteCond %&#123;SERVER_PORT&#125; !^443$</span><br><span class="line">RewriteRule ^(.*)$ https://%&#123;HTTP_HOST&#125;%&#123;REQUEST_URI&#125; [L,R=301]</span><br></pre></td></tr></table></figure></div>
+
+<p>这样用 <code>http</code> 访问也会自动跳转到 <code>https</code>, 同时最好也在 <code>WordPress</code> 后台管理的 个人资料 和 设置 里面的把 站点&#x2F;域名 都改为 <code>https</code> 类型的</p>
+<h2 id="美化-WordPress-搜索-url"><a href="#美化-WordPress-搜索-url" class="headerlink" title="美化 WordPress 搜索 url"></a>美化 WordPress 搜索 url</h2><p>将搜索后的 url 从 <code>https://www.domain.com/?s=搜索词</code> 变为 <code>https://www.domain.com/search/搜索词</code></p>
+<p>在主题函数模板 <code>functions.php</code> 最后添加即可</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">//搜索美化伪静态</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">change_search_url_rewrite</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ( <span class="title function_ invoke__">is_search</span>() &amp;&amp; ! <span class="keyword">empty</span>( <span class="variable">$_GET</span>[<span class="string">&#x27;s&#x27;</span>] ) ) &#123;</span><br><span class="line">        <span class="title function_ invoke__">wp_redirect</span>( <span class="title function_ invoke__">home_url</span>( <span class="string">&#x27;/search/&#x27;</span> ) . <span class="title function_ invoke__">urlencode</span>( <span class="title function_ invoke__">get_query_var</span>( <span class="string">&#x27;s&#x27;</span> ) ) );</span><br><span class="line">        <span class="keyword">exit</span>();</span><br><span class="line">    &#125; <span class="keyword">elseif</span> ( <span class="title function_ invoke__">is_search</span>() &amp;&amp; <span class="keyword">empty</span>( <span class="title function_ invoke__">get_query_var</span>( <span class="string">&#x27;s&#x27;</span> ) ) ) &#123;</span><br><span class="line">        <span class="title function_ invoke__">wp_redirect</span>( <span class="title function_ invoke__">home_url</span>( <span class="string">&#x27;/search&#x27;</span> ) );</span><br><span class="line">        <span class="keyword">exit</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_ invoke__">add_action</span>( <span class="string">&#x27;template_redirect&#x27;</span>, <span class="string">&#x27;change_search_url_rewrite&#x27;</span> );</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="安装-PHP-模组"><a href="#安装-PHP-模组" class="headerlink" title="安装 PHP 模组"></a>安装 PHP 模组</h2><p>安装完后在 <code>管理后台</code> – <code>工具</code> – <code>站点健康</code> 会看到 <code>WordPress</code> 检测到 <code>PHP</code> 缺失的模组, 根据提示的模组名字一个个安装即可, 比如 <code>curl</code></p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt-cache search curl | grep php</span><br><span class="line">php7.2-curl - CURL module <span class="keyword">for</span> PHP</span><br><span class="line">php-http-request2 - Provides an easy way to perform HTTP requests</span><br><span class="line">php-curl - CURL module <span class="keyword">for</span> PHP [default]</span><br><span class="line">php5.6-curl - CURL module <span class="keyword">for</span> PHP</span><br><span class="line">php7.0-curl - CURL module <span class="keyword">for</span> PHP</span><br><span class="line">php7.1-curl - CURL module <span class="keyword">for</span> PHP</span><br><span class="line">php7.3-curl - CURL module <span class="keyword">for</span> PHP</span><br><span class="line">php7.4-curl - CURL module <span class="keyword">for</span> PHP</span><br></pre></td></tr></table></figure></div>
+
+<p>根据搜索结果安装与当前 php 版本相同的模组</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install php7.4-curl -y</span><br></pre></td></tr></table></figure></div>
+
+<p>提示缺失的模组全部安装完后重启 <code>Apache2</code> 服务即可</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> /etc/init.d/apache2 restart</span><br></pre></td></tr></table></figure></div>
+
+<p>又或者直接执行下面命令, 全部一次性安装</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install php-curl php-gd php-xml php-mbstring  php-xmlrpc php-zip php-soap php-intl php-imagick -y</span><br><span class="line"><span class="built_in">sudo</span> /etc/init.d/apache2 restart</span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>建站</category>
+      </categories>
+      <tags>
+        <tag>ubuntu</tag>
+        <tag>wordpress</tag>
+        <tag>apache</tag>
+        <tag>mysql</tag>
+        <tag>php</tag>
+      </tags>
+  </entry>
+</search>
