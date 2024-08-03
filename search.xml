@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>解决 ssh 连接自动断开</title>
+    <url>/posts/fix-ssh-auto-disconnect/</url>
+    <content><![CDATA[<p>ssh 连接远程服务器时, 默认情况会自动断开, 需要修改设置以保持连接</p>
+<span id="more"></span>
+
+<h2 id="远程主机"><a href="#远程主机" class="headerlink" title="远程主机"></a>远程主机</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure></div>
+
+<p>修改发送客户端 <code>KeepAlive</code> 时间间隔 和 超时次数</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>sshd_config</span></figcaption><table><tr><td class="code"><pre><span class="line">ClientAliveInterval 30  #每30秒发送一个 KeepAlive 请求</span><br><span class="line">ClientAliveCountMax 30  #总时间为: 30 × 30, 15分钟没有操作则终端断开</span><br></pre></td></tr></table></figure></div>
+
+<p>保存并重启 <code>ssh</code> 服务</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">service sshd reload</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="本地终端"><a href="#本地终端" class="headerlink" title="本地终端"></a>本地终端</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">vi  ~/.ssh/config</span><br></pre></td></tr></table></figure></div>
+
+<p>所有主机都是同样的间隔</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>config</span></figcaption><table><tr><td class="code"><pre><span class="line">Host *</span><br><span class="line">ServerAliveInterval 30</span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>优化</category>
+      </categories>
+      <tags>
+        <tag>ssh</tag>
+        <tag>网络</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用 Ubuntu-18.04 和 WordPress 搭建博客</title>
     <url>/posts/ubuntu-1804-wordpress/</url>
     <content><![CDATA[<p>WordPress 有很优秀的博客文章管理, 也有很多的主题和插件可以制作各种各样的网站, 甚至购物网站, 这篇文章将帮助你基于 Ubuntu-18.04 部署 WordPress 搭建博客</p>
@@ -57,21 +84,21 @@
 <h2 id="配置-Apache-主页"><a href="#配置-Apache-主页" class="headerlink" title="配置 Apache 主页"></a>配置 Apache 主页</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/apache2/sites-enabled/000-default.conf</span><br></pre></td></tr></table></figure></div>
 
 <h3 id="修改主页在-wordpress-目录下"><a href="#修改主页在-wordpress-目录下" class="headerlink" title="修改主页在 wordpress 目录下"></a>修改主页在 wordpress 目录下</h3><p>将原来的 </p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">DocumentRoot /var/www/html</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>000-default.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">DocumentRoot /var/www/html</span><br></pre></td></tr></table></figure></div>
 
 <p>修改为</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">DocumentRoot /var/www/html/wordpress</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>000-default.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">DocumentRoot /var/www/html/wordpress</span><br></pre></td></tr></table></figure></div>
 
 <h3 id="修改-Apache-服务器对文件夹的读写限制"><a href="#修改-Apache-服务器对文件夹的读写限制" class="headerlink" title="修改 Apache 服务器对文件夹的读写限制"></a>修改 Apache 服务器对文件夹的读写限制</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/apache2/apache2.conf</span><br></pre></td></tr></table></figure></div>
 
 <p>将原来的</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;Directory /var/www/&gt;</span><br><span class="line">Options Indexes FollowSymLinks</span><br><span class="line">AllowOverride None</span><br><span class="line">Require all granted</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>apache2.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">&lt;Directory /var/www/&gt;</span><br><span class="line">Options Indexes FollowSymLinks</span><br><span class="line">AllowOverride None</span><br><span class="line">Require all granted</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure></div>
 
 <p>修改为</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;Directory /var/www/&gt;</span><br><span class="line">Options FollowSymLinks</span><br><span class="line">AllowOverride All</span><br><span class="line">Require all granted</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>apache2.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">&lt;Directory /var/www/&gt;</span><br><span class="line">Options FollowSymLinks</span><br><span class="line">AllowOverride All</span><br><span class="line">Require all granted</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure></div>
 
 <p>并在最后添加一行域名地址, 否则重启服务会报错</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">ServerName www.domain.com</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>apache2.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">ServerName www.domain.com</span><br></pre></td></tr></table></figure></div>
 
 <h2 id="修改-WordPress-数据库配置"><a href="#修改-WordPress-数据库配置" class="headerlink" title="修改 WordPress 数据库配置"></a>修改 WordPress 数据库配置</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/html/wordpress/</span><br><span class="line"><span class="built_in">cp</span> wp-config-sample.php wp-config.php</span><br><span class="line"><span class="built_in">sudo</span> vi wp-config.php</span><br></pre></td></tr></table></figure></div>
 
@@ -90,12 +117,15 @@
 <h3 id="启用-SSL-模块"><a href="#启用-SSL-模块" class="headerlink" title="启用 SSL 模块"></a>启用 SSL 模块</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> a2enmod ssl</span><br></pre></td></tr></table></figure></div>
 
 <p>可以执行命令查看是否自动生成 <code>default-ssl.conf</code> 文件</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">ll /etc/apache2/sites-available/</span><br><span class="line">total 20</span><br><span class="line">drwxr-xr-x 2 root root 4096 Jun 22 12:26 ./</span><br><span class="line">drwxr-xr-x 9 root root 4096 Jun 22 12:27 ../</span><br><span class="line">-rw-r--r-- 1 root root 1342 Jun 22 10:28 000-default.conf</span><br><span class="line">-rw-r--r-- 1 root root 6308 Jun 22 10:47 default-ssl.conf</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">ll /etc/apache2/sites-available/</span><br></pre></td></tr></table></figure></div>
+
+<p>应该会看到</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">total 20</span><br><span class="line">drwxr-xr-x 2 root root 4096 Jun 22 12:26 ./</span><br><span class="line">drwxr-xr-x 9 root root 4096 Jun 22 12:27 ../</span><br><span class="line">-rw-r--r-- 1 root root 1342 Jun 22 10:28 000-default.conf</span><br><span class="line">-rw-r--r-- 1 root root 6308 Jun 22 10:47 default-ssl.conf</span><br></pre></td></tr></table></figure></div>
 
 <h3 id="修改-SSL-配置文件"><a href="#修改-SSL-配置文件" class="headerlink" title="修改 SSL 配置文件"></a>修改 SSL 配置文件</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/apache2/sites-available/default-ssl.conf</span><br></pre></td></tr></table></figure></div>
 
 <p>将对应的参数修改为你自己的内容</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;IfModule mod_ssl.c&gt;</span><br><span class="line">    &lt;VirtualHost *:443&gt;</span><br><span class="line">        # 添加ServerName, 域名替换为你自己的</span><br><span class="line">        ServerName www.domain.com</span><br><span class="line">        DocumentRoot /var/www/html/wordpress</span><br><span class="line">        ...</span><br><span class="line">        SSLCertificateFile /etc/apache2/cert/cert.crt</span><br><span class="line">        SSLCertificateKeyFile /etc/apache2/cert/cert.key</span><br><span class="line">        ...</span><br><span class="line">        SSLCertificateChainFile /etc/apache2/cert/chain.crt</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>default-ssl.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">&lt;IfModule mod_ssl.c&gt;</span><br><span class="line">    &lt;VirtualHost *:443&gt;</span><br><span class="line">        # 添加ServerName, 域名替换为你自己的</span><br><span class="line">        ServerName www.domain.com</span><br><span class="line">        DocumentRoot /var/www/html/wordpress</span><br><span class="line">        ...</span><br><span class="line">        SSLCertificateFile /etc/apache2/cert/cert.crt</span><br><span class="line">        SSLCertificateKeyFile /etc/apache2/cert/cert.key</span><br><span class="line">        ...</span><br><span class="line">        SSLCertificateChainFile /etc/apache2/cert/chain.crt</span><br></pre></td></tr></table></figure></div>
 
 <h3 id="创建软连接进行关联"><a href="#创建软连接进行关联" class="headerlink" title="创建软连接进行关联"></a>创建软连接进行关联</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">ln</span> -s /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-enabled/001-ssl.conf</span><br></pre></td></tr></table></figure></div>
 
@@ -109,7 +139,7 @@
 <h2 id="强制-https-访问"><a href="#强制-https-访问" class="headerlink" title="强制 https 访问"></a>强制 https 访问</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/html/wordpress/</span><br><span class="line"><span class="built_in">sudo</span> vi .htaccess</span><br></pre></td></tr></table></figure></div>
 
 <p>在配置里最后增加两行, 必须在 <code>&lt;IfModule&gt;</code> 以外, 否则会被自动重写从而丢失</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;/IfModule&gt;</span><br><span class="line"></span><br><span class="line">## END WordPress</span><br><span class="line">## 强制 HTTPS 访问</span><br><span class="line">RewriteCond %&#123;SERVER_PORT&#125; !^443$</span><br><span class="line">RewriteRule ^(.*)$ https://%&#123;HTTP_HOST&#125;%&#123;REQUEST_URI&#125; [L,R=301]</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>.htaccess</span></figcaption><table><tr><td class="code"><pre><span class="line">&lt;/IfModule&gt;</span><br><span class="line"></span><br><span class="line">## END WordPress</span><br><span class="line">## 强制 HTTPS 访问</span><br><span class="line">RewriteCond %&#123;SERVER_PORT&#125; !^443$</span><br><span class="line">RewriteRule ^(.*)$ https://%&#123;HTTP_HOST&#125;%&#123;REQUEST_URI&#125; [L,R=301]</span><br></pre></td></tr></table></figure></div>
 
 <p>这样用 <code>http</code> 访问也会自动跳转到 <code>https</code>, 同时最好也在 <code>WordPress</code> 后台管理的 个人资料 和 设置 里面的把 站点&#x2F;域名 都改为 <code>https</code> 类型的</p>
 <h2 id="美化-WordPress-搜索-url"><a href="#美化-WordPress-搜索-url" class="headerlink" title="美化 WordPress 搜索 url"></a>美化 WordPress 搜索 url</h2><p>将搜索后的 url 从 <code>https://www.domain.com/?s=搜索词</code> 变为 <code>https://www.domain.com/search/搜索词</code></p>
@@ -117,7 +147,10 @@
 <div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">//搜索美化伪静态</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">change_search_url_rewrite</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ( <span class="title function_ invoke__">is_search</span>() &amp;&amp; ! <span class="keyword">empty</span>( <span class="variable">$_GET</span>[<span class="string">&#x27;s&#x27;</span>] ) ) &#123;</span><br><span class="line">        <span class="title function_ invoke__">wp_redirect</span>( <span class="title function_ invoke__">home_url</span>( <span class="string">&#x27;/search/&#x27;</span> ) . <span class="title function_ invoke__">urlencode</span>( <span class="title function_ invoke__">get_query_var</span>( <span class="string">&#x27;s&#x27;</span> ) ) );</span><br><span class="line">        <span class="keyword">exit</span>();</span><br><span class="line">    &#125; <span class="keyword">elseif</span> ( <span class="title function_ invoke__">is_search</span>() &amp;&amp; <span class="keyword">empty</span>( <span class="title function_ invoke__">get_query_var</span>( <span class="string">&#x27;s&#x27;</span> ) ) ) &#123;</span><br><span class="line">        <span class="title function_ invoke__">wp_redirect</span>( <span class="title function_ invoke__">home_url</span>( <span class="string">&#x27;/search&#x27;</span> ) );</span><br><span class="line">        <span class="keyword">exit</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_ invoke__">add_action</span>( <span class="string">&#x27;template_redirect&#x27;</span>, <span class="string">&#x27;change_search_url_rewrite&#x27;</span> );</span><br></pre></td></tr></table></figure></div>
 
 <h2 id="安装-PHP-模组"><a href="#安装-PHP-模组" class="headerlink" title="安装 PHP 模组"></a>安装 PHP 模组</h2><p>安装完后在 <code>管理后台</code> – <code>工具</code> – <code>站点健康</code> 会看到 <code>WordPress</code> 检测到 <code>PHP</code> 缺失的模组, 根据提示的模组名字一个个安装即可, 比如 <code>curl</code></p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt-cache search curl | grep php</span><br><span class="line">php7.2-curl - CURL module <span class="keyword">for</span> PHP</span><br><span class="line">php-http-request2 - Provides an easy way to perform HTTP requests</span><br><span class="line">php-curl - CURL module <span class="keyword">for</span> PHP [default]</span><br><span class="line">php5.6-curl - CURL module <span class="keyword">for</span> PHP</span><br><span class="line">php7.0-curl - CURL module <span class="keyword">for</span> PHP</span><br><span class="line">php7.1-curl - CURL module <span class="keyword">for</span> PHP</span><br><span class="line">php7.3-curl - CURL module <span class="keyword">for</span> PHP</span><br><span class="line">php7.4-curl - CURL module <span class="keyword">for</span> PHP</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt-cache search curl | grep php</span><br></pre></td></tr></table></figure></div>
+
+<p>可能得到:</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">php7.2-curl - CURL module <span class="keyword">for</span> PHP</span><br><span class="line">php-http-request2 - Provides an easy way to perform HTTP requests</span><br><span class="line">php-curl - CURL module <span class="keyword">for</span> PHP [default]</span><br><span class="line">php5.6-curl - CURL module <span class="keyword">for</span> PHP</span><br><span class="line">php7.0-curl - CURL module <span class="keyword">for</span> PHP</span><br><span class="line">php7.1-curl - CURL module <span class="keyword">for</span> PHP</span><br><span class="line">php7.3-curl - CURL module <span class="keyword">for</span> PHP</span><br><span class="line">php7.4-curl - CURL module <span class="keyword">for</span> PHP</span><br></pre></td></tr></table></figure></div>
 
 <p>根据搜索结果安装与当前 php 版本相同的模组</p>
 <div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install php7.4-curl -y</span><br></pre></td></tr></table></figure></div>
@@ -138,6 +171,169 @@
         <tag>mysql</tag>
         <tag>php</tag>
         <tag>blog</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>升级 Windows 10 v2004 和 wsl2</title>
+    <url>/posts/upgrade-win10-v2004-wsl2/</url>
+    <content><![CDATA[<p>Windows 10 v2004 正式版发布, 同时更快更好的 wsl2 也来了</p>
+<span id="more"></span>
+
+<h2 id="升级-Windows-系统"><a href="#升级-Windows-系统" class="headerlink" title="升级 Windows 系统"></a>升级 Windows 系统</h2><p>可以在 <code>开始</code> → <code>设置</code> → <code>更新和安全</code> → <code>Windows 更新</code> 获取最新版系统, 但有时候会一直提示已经是最新版系统, 这时可以下载安装官方更新助手 <a class="link"   href="https://www.microsoft.com/zh-cn/software-download/windows10" >易升 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>升级成功后可以在 <code>开始</code> → <code>设置</code> → <code>系统</code> → <code>关于</code> 中看到系统版本号为 <code>2004</code></p>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/upgrade-win10-v2004-wsl2/img1.png"
+                      alt="系统版本信息"
+                ><figcaption>系统版本信息</figcaption></figure></p>
+<h2 id="系统功能开放"><a href="#系统功能开放" class="headerlink" title="系统功能开放"></a>系统功能开放</h2><p>升级 <code>wsl2</code> 需要先启动 <code>子系统功能</code> 和 <code>CPU 虚拟化</code></p>
+<h3 id="开启子系统"><a href="#开启子系统" class="headerlink" title="开启子系统"></a>开启子系统</h3><p>键盘 <code>Windows + R</code> 打开 运行, 输入 <code>control</code> 打开 <code>控制版面</code> → <code>程序</code> → <code>程序和功能</code> → <code>启用或关闭 Windows 功能</code></p>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/upgrade-win10-v2004-wsl2/img2.png"
+                      alt="启用或关闭 Windows 功能"
+                ><figcaption>启用或关闭 Windows 功能</figcaption></figure></p>
+<p>如图将 <code>适用于 Linux 的 Windows 子系统</code> 打开点击确定, 并按照提示重启系统</p>
+<h3 id="开启-BIOS-CPU-虚拟化"><a href="#开启-BIOS-CPU-虚拟化" class="headerlink" title="开启 BIOS CPU 虚拟化"></a>开启 BIOS CPU 虚拟化</h3><p>不同品牌主板的 <code>BIOS</code> 各不相同, 但一般位置是在 <code>Security</code> → <code>Intel Virtual Technology</code> 或中文的 <code>高级</code> → <code>Intel 虚拟化</code></p>
+<p>开启并重进系统后, 在 <code>任务管理器</code> → <code>性能</code> → <code>CPU</code> 可以看到 <code>虚拟化: 已启用</code></p>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/upgrade-win10-v2004-wsl2/img3.png"
+                      alt="CPU 性能信息"
+                ><figcaption>CPU 性能信息</figcaption></figure></p>
+<h2 id="升级-wsl2"><a href="#升级-wsl2" class="headerlink" title="升级 wsl2"></a>升级 wsl2</h2><p>先下载 <code>wsl2</code> 更新包并安装: <a class="link"   href="https://docs.microsoft.com/zh-cn/windows/wsl/wsl2-kernel" >wsl2 更新包链接 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>安装完后打开 <code>PowerShell</code>, 将安装的子系统从 <code>wsl</code> 迁移到 <code>wsl2</code></p>
+<ul>
+<li>命令 <code>wsl --set-version &#123;LinuxVersion&#125; &#123;WslVersion&#125;</code></li>
+<li><code>LinuxVersion</code> 表示 <code>Linux</code> 子系统版本</li>
+<li><code>WslVersion</code> 表示 <code>wsl</code> 的版本</li>
+</ul>
+<div class="highlight-container" data-rel="Powershell"><figure class="iseeu highlight powershell"><table><tr><td class="code"><pre><span class="line">wsl <span class="literal">--set-version</span> Ubuntu<span class="literal">-18</span>.<span class="number">04</span> <span class="number">2</span></span><br></pre></td></tr></table></figure></div>
+
+<p>将会看到</p>
+<div class="highlight-container" data-rel="Powershell"><figure class="iseeu highlight powershell"><table><tr><td class="code"><pre><span class="line">正在进行转换, 这可能需要几分钟时间...</span><br><span class="line">有关与 WSL <span class="number">2</span> 的主要区别的信息, 请访问 https://aka.ms/wsl2</span><br><span class="line">转换完成</span><br></pre></td></tr></table></figure></div>
+
+<p>然后将 <code>wsl2</code> 设置为默认</p>
+<div class="highlight-container" data-rel="Powershell"><figure class="iseeu highlight powershell"><table><tr><td class="code"><pre><span class="line">wsl <span class="literal">--set-default-version</span> <span class="number">2</span></span><br></pre></td></tr></table></figure></div>
+
+<p>查看当前子系统和对应的 wsl 版本</p>
+<div class="highlight-container" data-rel="Powershell"><figure class="iseeu highlight powershell"><table><tr><td class="code"><pre><span class="line">wsl <span class="literal">-l</span> <span class="literal">-v</span></span><br></pre></td></tr></table></figure></div>
+
+<p>将会看到</p>
+<div class="highlight-container" data-rel="Powershell"><figure class="iseeu highlight powershell"><table><tr><td class="code"><pre><span class="line">  NAME            STATE           VERSION</span><br><span class="line">* Ubuntu<span class="literal">-18</span>.<span class="number">04</span>    Stopped         <span class="number">2</span></span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>系统</category>
+      </categories>
+      <tags>
+        <tag>ubuntu</tag>
+        <tag>win10</tag>
+        <tag>windows 10</tag>
+        <tag>wsl</tag>
+        <tag>wsl2</tag>
+        <tag>子系统</tag>
+        <tag>subsystem</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决 WP Super Cache 安装后无法使用</title>
+    <url>/posts/wp-super-cache-not-working/</url>
+    <content><![CDATA[<p>修改配置修复 WP Super Cache 插件安装后无法使用问题</p>
+<span id="more"></span>
+
+<h2 id="获取-wp-content-读写权限"><a href="#获取-wp-content-读写权限" class="headerlink" title="获取 wp-content 读写权限"></a>获取 wp-content 读写权限</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> 777 /var/www/html/wordpress/wp-content/</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="检查-cache-文件"><a href="#检查-cache-文件" class="headerlink" title="检查 cache 文件"></a>检查 cache 文件</h2><p>进入 <code>wp-content</code> 目录</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/html/wordpress/wp-content</span><br></pre></td></tr></table></figure></div>
+
+<p>检查 <code>wp-cache-config.php</code> 是否存在, 若不存在则将 <code>./plugins/wp-super-cache/wp-cache-config-sample.php</code> 复制到 <code>wp-content/</code> 中, 并重命名为 <code>wp-cache-config.php</code></p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> plugins/wp-super-cache/wp-cache-config-sample.php ./wp-cache-config.php</span><br></pre></td></tr></table></figure></div>
+
+<p>检查 <code>advanced-cache.php</code> 是否存在, 若不存在则将 <code>./plugins/wp-super-cache/advanced-cache.php</code> 复制到 <code>wp-content/</code> 中</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> plugins/wp-super-cache/advanced-cache.php ./</span><br></pre></td></tr></table></figure></div>
+<p>并将这两个文件都开启可写入权限</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> 777 wp-cache-config.php advanced-cache.php</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="添加配置"><a href="#添加配置" class="headerlink" title="添加配置"></a>添加配置</h2><p>回到 <code>wordpress</code> 根目录, 在 <code>wp-config.php</code> 中 <code>ABSPATH</code> 之前添加两行</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><figcaption><span>wp-config.php</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">define</span>(<span class="string">&#x27;WP_CACHE&#x27;</span>, <span class="literal">true</span>);</span><br><span class="line"><span class="title function_ invoke__">define</span>(<span class="string">&#x27;WPCACHEHOME&#x27;</span>,<span class="string">&#x27;/var/www/html/wordpress/wp-content/plugins/wp-super-cache/&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 设置WordPress变量和包含文件 */</span></span><br><span class="line"><span class="keyword">require_once</span>( ABSPATH . <span class="string">&#x27;wp-settings.php&#x27;</span> );</span><br></pre></td></tr></table></figure></div>
+
+<p>刷新 <code>WordPress</code> 插件页面应该就不会报错了, 但会在 <code>WP Super Cache</code> 设置页面顶部提示 <code>/var/www/html/wordpress/wp-content</code> 权限问题, 此时先不要修改权限, 先 <code>启用缓存功能</code></p>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/wp-super-cache-not-working/img1.png"
+                      alt="缓存功能"
+                ><figcaption>缓存功能</figcaption></figure></p>
+<p>保存更新后再执行</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> 755 /var/www/html/wordpress/wp-content/</span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>插件</category>
+      </categories>
+      <tags>
+        <tag>wordpress</tag>
+        <tag>cache</tag>
+        <tag>plugin</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows 10 子系统安装 Erlang OTP 19</title>
+    <url>/posts/win10-wsl-erlang/</url>
+    <content><![CDATA[<p>在 Windows 10 子系统安装 Erlang OTP 19</p>
+<span id="more"></span>
+
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
+<li>系统: <code>Windows 10 pro ×64</code></li>
+<li>子系统: <code>wsl2 Ubuntu 18.04</code></li>
+</ul>
+<h2 id="添加镜像"><a href="#添加镜像" class="headerlink" title="添加镜像"></a>添加镜像</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/apt/sources.list</span><br></pre></td></tr></table></figure></div>
+<p>最后添加清华 <code>erlang-solutions</code> 源</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>sources.list</span></figcaption><table><tr><td class="code"><pre><span class="line"># qing hua erlang-solutions</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/erlang-solutions/ubuntu/ bionic contrib</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt update</span><br></pre></td></tr></table></figure></div>
+
+<p>若失败提示 <code>The following signatures couldn’t be verified because the public key is not available: NO_PUBKEY XXXXXXXXXXXX</code> 则复制最后的 <code>KEY</code>, 执行</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-key adv --keyserver keyserver.ubuntu.com --recv-keys XXXXXXXXXXXX</span><br></pre></td></tr></table></figure></div>
+
+<p>若提示如下错误: </p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">gpg: keyserver receive failed: Server indicated a failure</span><br></pre></td></tr></table></figure></div>
+
+<p>则执行</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv XXXXXXXXXXXX</span><br></pre></td></tr></table></figure></div>
+
+<p>将会看到:</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">Executing: /tmp/apt-key-gpghome.VehtZ71sTw/gpg.1.sh --keyserver hkp://keyserver.ubuntu.com:80 --recv XXXXXXXXXXXX</span><br><span class="line">gpg: key D208507CA14F4FCA: public key <span class="string">&quot;Erlang Solutions Ltd. &lt;packages@erlang-solutions.com&gt;&quot;</span> imported</span><br><span class="line">gpg: Total number processed: 1</span><br><span class="line">gpg:               imported: 1</span><br></pre></td></tr></table></figure></div>
+
+<p>然后再次执行 <code>sudo apt update</code> 即可</p>
+<h2 id="安装-Erlang"><a href="#安装-Erlang" class="headerlink" title="安装 Erlang"></a>安装 Erlang</h2><p>可以选择安装特定版本, 也可以直接安装, 会自动安装最新版</p>
+<h3 id="安装特定版本"><a href="#安装特定版本" class="headerlink" title="安装特定版本"></a>安装特定版本</h3><p>比如选择 <code>OTP 19</code> 安装</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install esl-erlang=1:19.*</span><br></pre></td></tr></table></figure></div>
+
+<p>提示安装成功后, 测试</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">erl</span><br><span class="line">Erlang/OTP 19 [erts-8.3.5.7] [<span class="built_in">source</span>] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:<span class="literal">false</span>]</span><br><span class="line"></span><br><span class="line">Ebash V8.3.5.7  (abort with ^G)</span><br><span class="line">1&gt;</span><br></pre></td></tr></table></figure></div>
+
+<p>安装完成后记得把镜像地址注释掉, 否则下次更新系统会不小心升级版本</p>
+<h3 id="安装最新版"><a href="#安装最新版" class="headerlink" title="安装最新版"></a>安装最新版</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install esl-erlang</span><br></pre></td></tr></table></figure></div>
+
+<p><code>OTP 20</code> 以上自带支持 <code>history</code>, 方便在 shell 运行时记录执行过的命令, 添加环境变量</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi ~/.bashrc</span><br></pre></td></tr></table></figure></div>
+
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>.bashrc</span></figcaption><table><tr><td class="code"><pre><span class="line">export ERL_AFLAGS=&quot;-kernel shell_history enabled&quot;</span><br></pre></td></tr></table></figure></div>
+
+<p>开启新终端 或 <code>source</code> 下 <code>.bashrc</code></p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>应用</category>
+      </categories>
+      <tags>
+        <tag>ubuntu</tag>
+        <tag>win10</tag>
+        <tag>wsl</tag>
+        <tag>erlang</tag>
       </tags>
   </entry>
 </search>
