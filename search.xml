@@ -8,16 +8,16 @@
 
 <h2 id="远程主机"><a href="#远程主机" class="headerlink" title="远程主机"></a>远程主机</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure></div>
 
-<p>修改发送客户端 <code>KeepAlive</code> 时间间隔 和 超时次数</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>sshd_config</span></figcaption><table><tr><td class="code"><pre><span class="line">ClientAliveInterval 30  #每30秒发送一个 KeepAlive 请求</span><br><span class="line">ClientAliveCountMax 30  #总时间为: 30 × 30, 15分钟没有操作则终端断开</span><br></pre></td></tr></table></figure></div>
+<p>修改发送客户端 <code>KeepAlive</code> 时间间隔(秒) 和 超时次数</p>
+<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>sshd_config</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="deletion">- ClientAliveInterval 0</span></span><br><span class="line"><span class="addition">+ ClientAliveInterval 30</span></span><br><span class="line"><span class="deletion">- ClientAliveCountMax 3</span></span><br><span class="line"><span class="addition">+ ClientAliveCountMax 30</span></span><br></pre></td></tr></table></figure></div>
 
-<p>保存并重启 <code>ssh</code> 服务</p>
+<p>总时间为: 30 × 30, 即 15 分钟没有操作则终端断开, 保存并重启 <code>ssh</code> 服务</p>
 <div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">service sshd reload</span><br></pre></td></tr></table></figure></div>
 
 <h2 id="本地终端"><a href="#本地终端" class="headerlink" title="本地终端"></a>本地终端</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">vi  ~/.ssh/config</span><br></pre></td></tr></table></figure></div>
 
 <p>所有主机都是同样的间隔</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>config</span></figcaption><table><tr><td class="code"><pre><span class="line">Host *</span><br><span class="line">ServerAliveInterval 30</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>config</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ Host *</span></span><br><span class="line"><span class="addition">+     ServerAliveInterval 30</span></span><br></pre></td></tr></table></figure></div>
 ]]></content>
       <categories>
         <category>优化</category>
@@ -69,33 +69,34 @@
 <h3 id="配置-MySQL-数据库"><a href="#配置-MySQL-数据库" class="headerlink" title="配置 MySQL 数据库"></a>配置 MySQL 数据库</h3><p>用于后面的网站数据存储, 先给 <code>MySQL</code> 控制台 <code>root</code> 用户添加免密登录</p>
 <div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/mysql/mysql.conf.d/mysqld.cnf</span><br></pre></td></tr></table></figure></div>
 
-<p>在最后一行添加: <code>skip-grant-tables</code>, 重启服务后进入 <code>MySQL</code> 控制台</p>
+<p>在最后一行添加</p>
+<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>mysqld.cnf</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ skip-grant-tables</span></span><br></pre></td></tr></table></figure></div>
+
+<p>重启服务后进入 <code>MySQL</code> 控制台</p>
 <div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> service mysql restart  <span class="comment"># 重启服务</span></span><br><span class="line">mysql -u root -p            <span class="comment"># 直接回车进入</span></span><br></pre></td></tr></table></figure></div>
 
 <h3 id="修改-MySQL-root-用户的密码"><a href="#修改-MySQL-root-用户的密码" class="headerlink" title="修改 MySQL root 用户的密码"></a>修改 MySQL root 用户的密码</h3><p>将 <code>xxxxxx</code> 替换为你自己的密码</p>
 <div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">update</span> mysql.user <span class="keyword">set</span> authentication_string<span class="operator">=</span>PASSWORD(<span class="string">&#x27;xxxxxx&#x27;</span>), plugin<span class="operator">=</span><span class="string">&#x27;mysql_native_password&#x27;</span> <span class="keyword">where</span> <span class="keyword">user</span><span class="operator">=</span><span class="string">&#x27;root&#x27;</span>;</span><br><span class="line">flush privileges;</span><br><span class="line">exit</span><br></pre></td></tr></table></figure></div>
 
 <p>这样下次进入时就使用自己定义的密码登录 <code>MySQL</code> 控制台了, 然后记得回到 <code>mysqld.cnf</code> 把刚刚添加的 <code>skip-grant-tables</code> 删除, 否则不安全</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/mysql/mysql.conf.d/mysqld.cnf      <span class="comment"># 删除 skip-grant-tables</span></span><br><span class="line"><span class="built_in">sudo</span> service mysql restart                      <span class="comment"># 重启服务</span></span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/mysql/mysql.conf.d/mysqld.cnf</span><br></pre></td></tr></table></figure></div>
+<p>删除</p>
+<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>mysqld.cnf</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="deletion">- skip-grant-tables</span></span><br></pre></td></tr></table></figure></div>
+
+<p>重启服务</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> service mysql restart</span><br></pre></td></tr></table></figure></div>
 
 <h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><p>将 <code>xxxxxx</code> 替换为你自己的密码</p>
 <div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> database wordpressdb;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> wordpress<span class="variable">@localhost</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;xxxxxx&#x27;</span>;</span><br><span class="line"><span class="keyword">GRANT</span> <span class="keyword">ALL</span> PRIVILEGES <span class="keyword">ON</span> wordpressdb.<span class="operator">*</span> <span class="keyword">TO</span> wordpress<span class="variable">@localhost</span>;</span><br><span class="line">FLUSH PRIVILEGES;</span><br><span class="line">exit</span><br></pre></td></tr></table></figure></div>
 
 <h2 id="配置-Apache-主页"><a href="#配置-Apache-主页" class="headerlink" title="配置 Apache 主页"></a>配置 Apache 主页</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/apache2/sites-enabled/000-default.conf</span><br></pre></td></tr></table></figure></div>
 
-<h3 id="修改主页在-wordpress-目录下"><a href="#修改主页在-wordpress-目录下" class="headerlink" title="修改主页在 wordpress 目录下"></a>修改主页在 wordpress 目录下</h3><p>将原来的 </p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>000-default.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">DocumentRoot /var/www/html</span><br></pre></td></tr></table></figure></div>
-
-<p>修改为</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>000-default.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">DocumentRoot /var/www/html/wordpress</span><br></pre></td></tr></table></figure></div>
+<h3 id="修改主页在-wordpress-目录下"><a href="#修改主页在-wordpress-目录下" class="headerlink" title="修改主页在 wordpress 目录下"></a>修改主页在 wordpress 目录下</h3><div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>000-default.conf</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="deletion">- DocumentRoot /var/www/html</span></span><br><span class="line"><span class="addition">+ DocumentRoot /var/www/html/wordpress</span></span><br></pre></td></tr></table></figure></div>
 
 <h3 id="修改-Apache-服务器对文件夹的读写限制"><a href="#修改-Apache-服务器对文件夹的读写限制" class="headerlink" title="修改 Apache 服务器对文件夹的读写限制"></a>修改 Apache 服务器对文件夹的读写限制</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/apache2/apache2.conf</span><br></pre></td></tr></table></figure></div>
 
 <p>将原来的</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>apache2.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">&lt;Directory /var/www/&gt;</span><br><span class="line">Options Indexes FollowSymLinks</span><br><span class="line">AllowOverride None</span><br><span class="line">Require all granted</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure></div>
-
-<p>修改为</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>apache2.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">&lt;Directory /var/www/&gt;</span><br><span class="line">Options FollowSymLinks</span><br><span class="line">AllowOverride All</span><br><span class="line">Require all granted</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>apache2.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">  &lt;Directory /var/www/&gt;</span><br><span class="line"><span class="deletion">- Options Indexes FollowSymLinks</span></span><br><span class="line"><span class="addition">+ Options FollowSymLinks</span></span><br><span class="line"><span class="deletion">- AllowOverride None</span></span><br><span class="line"><span class="addition">+ AllowOverride All</span></span><br><span class="line">  Require all granted</span><br><span class="line">  &lt;/Directory&gt;</span><br></pre></td></tr></table></figure></div>
 
 <p>并在最后添加一行域名地址, 否则重启服务会报错</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>apache2.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">ServerName www.domain.com</span><br></pre></td></tr></table></figure></div>
@@ -103,10 +104,10 @@
 <h2 id="修改-WordPress-数据库配置"><a href="#修改-WordPress-数据库配置" class="headerlink" title="修改 WordPress 数据库配置"></a>修改 WordPress 数据库配置</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/html/wordpress/</span><br><span class="line"><span class="built_in">cp</span> wp-config-sample.php wp-config.php</span><br><span class="line"><span class="built_in">sudo</span> vi wp-config.php</span><br></pre></td></tr></table></figure></div>
 
 <p>将要连接的数据库设置为前面 <code>MySQL</code> 控制台所配置的</p>
-<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ** MySQL 设置 - 具体信息来自您正在使用的主机 ** //</span></span><br><span class="line"><span class="comment">/** WordPress数据库的名称 */</span></span><br><span class="line"><span class="title function_ invoke__">define</span>( <span class="string">&#x27;DB_NAME&#x27;</span>, <span class="string">&#x27;wordpressdb&#x27;</span> );</span><br><span class="line"><span class="comment">/** MySQL数据库用户名 */</span></span><br><span class="line"><span class="title function_ invoke__">define</span>( <span class="string">&#x27;DB_USER&#x27;</span>, <span class="string">&#x27;wordpress&#x27;</span> );</span><br><span class="line"><span class="comment">/** MySQL数据库密码 */</span></span><br><span class="line"><span class="comment">// 将 xxxxxx 替换为前面配置数据的密码</span></span><br><span class="line"><span class="title function_ invoke__">define</span>( <span class="string">&#x27;DB_PASSWORD&#x27;</span>, <span class="string">&#x27;xxxxxx&#x27;</span> );</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><figcaption><span>wp-config.php</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">// ** MySQL 设置 - 具体信息来自您正在使用的主机 ** //</span></span><br><span class="line"><span class="comment">/** WordPress数据库的名称 */</span></span><br><span class="line"><span class="title function_ invoke__">define</span>( <span class="string">&#x27;DB_NAME&#x27;</span>, <span class="string">&#x27;wordpressdb&#x27;</span> );</span><br><span class="line"><span class="comment">/** MySQL数据库用户名 */</span></span><br><span class="line"><span class="title function_ invoke__">define</span>( <span class="string">&#x27;DB_USER&#x27;</span>, <span class="string">&#x27;wordpress&#x27;</span> );</span><br><span class="line"><span class="comment">/** MySQL数据库密码 */</span></span><br><span class="line"><span class="comment">// 将 xxxxxx 替换为前面配置数据的密码</span></span><br><span class="line"><span class="title function_ invoke__">define</span>( <span class="string">&#x27;DB_PASSWORD&#x27;</span>, <span class="string">&#x27;xxxxxx&#x27;</span> );</span><br></pre></td></tr></table></figure></div>
 
 <p>并在最后面添加 <code>WordPress</code> 进行更新时免登录的配置</p>
-<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">define</span>(<span class="string">&quot;FS_METHOD&quot;</span>, <span class="string">&quot;direct&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">define</span>(<span class="string">&quot;FS_CHMOD_DIR&quot;</span>, <span class="number">0777</span>);</span><br><span class="line"><span class="title function_ invoke__">define</span>(<span class="string">&quot;FS_CHMOD_FILE&quot;</span>, <span class="number">0777</span>);</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>wp-config.php</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ define(&quot;FS_METHOD&quot;, &quot;direct&quot;);</span></span><br><span class="line"><span class="addition">+ define(&quot;FS_CHMOD_DIR&quot;, 0777);</span></span><br><span class="line"><span class="addition">+ define(&quot;FS_CHMOD_FILE&quot;, 0777);</span></span><br></pre></td></tr></table></figure></div>
 
 <p>重启服务</p>
 <div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> service mysql restart</span><br><span class="line"><span class="built_in">sudo</span> apache2ctl restart</span><br></pre></td></tr></table></figure></div>
@@ -139,12 +140,12 @@
 <h2 id="强制-https-访问"><a href="#强制-https-访问" class="headerlink" title="强制 https 访问"></a>强制 https 访问</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/html/wordpress/</span><br><span class="line"><span class="built_in">sudo</span> vi .htaccess</span><br></pre></td></tr></table></figure></div>
 
 <p>在配置里最后增加两行, 必须在 <code>&lt;IfModule&gt;</code> 以外, 否则会被自动重写从而丢失</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>.htaccess</span></figcaption><table><tr><td class="code"><pre><span class="line">&lt;/IfModule&gt;</span><br><span class="line"></span><br><span class="line">## END WordPress</span><br><span class="line">## 强制 HTTPS 访问</span><br><span class="line">RewriteCond %&#123;SERVER_PORT&#125; !^443$</span><br><span class="line">RewriteRule ^(.*)$ https://%&#123;HTTP_HOST&#125;%&#123;REQUEST_URI&#125; [L,R=301]</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>.htaccess</span></figcaption><table><tr><td class="code"><pre><span class="line">  &lt;/IfModule&gt;</span><br><span class="line"></span><br><span class="line"><span class="addition">+ ## END WordPress</span></span><br><span class="line"><span class="addition">+ ## 强制 HTTPS 访问</span></span><br><span class="line"><span class="addition">+ RewriteCond %&#123;SERVER_PORT&#125; !^443$</span></span><br><span class="line"><span class="addition">+ RewriteRule ^(.*)$ https://%&#123;HTTP_HOST&#125;%&#123;REQUEST_URI&#125; [L,R=301]</span></span><br></pre></td></tr></table></figure></div>
 
 <p>这样用 <code>http</code> 访问也会自动跳转到 <code>https</code>, 同时最好也在 <code>WordPress</code> 后台管理的 个人资料 和 设置 里面的把 站点&#x2F;域名 都改为 <code>https</code> 类型的</p>
 <h2 id="美化-WordPress-搜索-url"><a href="#美化-WordPress-搜索-url" class="headerlink" title="美化 WordPress 搜索 url"></a>美化 WordPress 搜索 url</h2><p>将搜索后的 url 从 <code>https://www.domain.com/?s=搜索词</code> 变为 <code>https://www.domain.com/search/搜索词</code></p>
 <p>在主题函数模板 <code>functions.php</code> 最后添加即可</p>
-<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">//搜索美化伪静态</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">change_search_url_rewrite</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ( <span class="title function_ invoke__">is_search</span>() &amp;&amp; ! <span class="keyword">empty</span>( <span class="variable">$_GET</span>[<span class="string">&#x27;s&#x27;</span>] ) ) &#123;</span><br><span class="line">        <span class="title function_ invoke__">wp_redirect</span>( <span class="title function_ invoke__">home_url</span>( <span class="string">&#x27;/search/&#x27;</span> ) . <span class="title function_ invoke__">urlencode</span>( <span class="title function_ invoke__">get_query_var</span>( <span class="string">&#x27;s&#x27;</span> ) ) );</span><br><span class="line">        <span class="keyword">exit</span>();</span><br><span class="line">    &#125; <span class="keyword">elseif</span> ( <span class="title function_ invoke__">is_search</span>() &amp;&amp; <span class="keyword">empty</span>( <span class="title function_ invoke__">get_query_var</span>( <span class="string">&#x27;s&#x27;</span> ) ) ) &#123;</span><br><span class="line">        <span class="title function_ invoke__">wp_redirect</span>( <span class="title function_ invoke__">home_url</span>( <span class="string">&#x27;/search&#x27;</span> ) );</span><br><span class="line">        <span class="keyword">exit</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_ invoke__">add_action</span>( <span class="string">&#x27;template_redirect&#x27;</span>, <span class="string">&#x27;change_search_url_rewrite&#x27;</span> );</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><figcaption><span>functions.php</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">//搜索美化伪静态</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">change_search_url_rewrite</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ( <span class="title function_ invoke__">is_search</span>() &amp;&amp; ! <span class="keyword">empty</span>( <span class="variable">$_GET</span>[<span class="string">&#x27;s&#x27;</span>] ) ) &#123;</span><br><span class="line">        <span class="title function_ invoke__">wp_redirect</span>( <span class="title function_ invoke__">home_url</span>( <span class="string">&#x27;/search/&#x27;</span> ) . <span class="title function_ invoke__">urlencode</span>( <span class="title function_ invoke__">get_query_var</span>( <span class="string">&#x27;s&#x27;</span> ) ) );</span><br><span class="line">        <span class="keyword">exit</span>();</span><br><span class="line">    &#125; <span class="keyword">elseif</span> ( <span class="title function_ invoke__">is_search</span>() &amp;&amp; <span class="keyword">empty</span>( <span class="title function_ invoke__">get_query_var</span>( <span class="string">&#x27;s&#x27;</span> ) ) ) &#123;</span><br><span class="line">        <span class="title function_ invoke__">wp_redirect</span>( <span class="title function_ invoke__">home_url</span>( <span class="string">&#x27;/search&#x27;</span> ) );</span><br><span class="line">        <span class="keyword">exit</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_ invoke__">add_action</span>( <span class="string">&#x27;template_redirect&#x27;</span>, <span class="string">&#x27;change_search_url_rewrite&#x27;</span> );</span><br></pre></td></tr></table></figure></div>
 
 <h2 id="安装-PHP-模组"><a href="#安装-PHP-模组" class="headerlink" title="安装 PHP 模组"></a>安装 PHP 模组</h2><p>安装完后在 <code>管理后台</code> – <code>工具</code> – <code>站点健康</code> 会看到 <code>WordPress</code> 检测到 <code>PHP</code> 缺失的模组, 根据提示的模组名字一个个安装即可, 比如 <code>curl</code></p>
 <div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt-cache search curl | grep php</span><br></pre></td></tr></table></figure></div>
@@ -239,47 +240,6 @@
       </tags>
   </entry>
   <entry>
-    <title>解决 WP Super Cache 安装后无法使用</title>
-    <url>/posts/wp-super-cache-not-working/</url>
-    <content><![CDATA[<p>修改配置修复 WP Super Cache 插件安装后无法使用问题</p>
-<span id="more"></span>
-
-<h2 id="获取-wp-content-读写权限"><a href="#获取-wp-content-读写权限" class="headerlink" title="获取 wp-content 读写权限"></a>获取 wp-content 读写权限</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> 777 /var/www/html/wordpress/wp-content/</span><br></pre></td></tr></table></figure></div>
-
-<h2 id="检查-cache-文件"><a href="#检查-cache-文件" class="headerlink" title="检查 cache 文件"></a>检查 cache 文件</h2><p>进入 <code>wp-content</code> 目录</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/html/wordpress/wp-content</span><br></pre></td></tr></table></figure></div>
-
-<p>检查 <code>wp-cache-config.php</code> 是否存在, 若不存在则将 <code>./plugins/wp-super-cache/wp-cache-config-sample.php</code> 复制到 <code>wp-content/</code> 中, 并重命名为 <code>wp-cache-config.php</code></p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> plugins/wp-super-cache/wp-cache-config-sample.php ./wp-cache-config.php</span><br></pre></td></tr></table></figure></div>
-
-<p>检查 <code>advanced-cache.php</code> 是否存在, 若不存在则将 <code>./plugins/wp-super-cache/advanced-cache.php</code> 复制到 <code>wp-content/</code> 中</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> plugins/wp-super-cache/advanced-cache.php ./</span><br></pre></td></tr></table></figure></div>
-<p>并将这两个文件都开启可写入权限</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> 777 wp-cache-config.php advanced-cache.php</span><br></pre></td></tr></table></figure></div>
-
-<h2 id="添加配置"><a href="#添加配置" class="headerlink" title="添加配置"></a>添加配置</h2><p>回到 <code>wordpress</code> 根目录, 在 <code>wp-config.php</code> 中 <code>ABSPATH</code> 之前添加两行</p>
-<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><figcaption><span>wp-config.php</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">define</span>(<span class="string">&#x27;WP_CACHE&#x27;</span>, <span class="literal">true</span>);</span><br><span class="line"><span class="title function_ invoke__">define</span>(<span class="string">&#x27;WPCACHEHOME&#x27;</span>,<span class="string">&#x27;/var/www/html/wordpress/wp-content/plugins/wp-super-cache/&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 设置WordPress变量和包含文件 */</span></span><br><span class="line"><span class="keyword">require_once</span>( ABSPATH . <span class="string">&#x27;wp-settings.php&#x27;</span> );</span><br></pre></td></tr></table></figure></div>
-
-<p>刷新 <code>WordPress</code> 插件页面应该就不会报错了, 但会在 <code>WP Super Cache</code> 设置页面顶部提示 <code>/var/www/html/wordpress/wp-content</code> 权限问题, 此时先不要修改权限, 先 <code>启用缓存功能</code></p>
-<p><figure class="image-caption"><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/posts/wp-super-cache-not-working/img1.png"
-                      alt="缓存功能"
-                ><figcaption>缓存功能</figcaption></figure></p>
-<p>保存更新后再执行</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> 755 /var/www/html/wordpress/wp-content/</span><br></pre></td></tr></table></figure></div>
-]]></content>
-      <categories>
-        <category>插件</category>
-      </categories>
-      <tags>
-        <tag>wordpress</tag>
-        <tag>cache</tag>
-        <tag>plugin</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Windows 10 子系统安装 Erlang OTP 19</title>
     <url>/posts/win10-wsl-erlang/</url>
     <content><![CDATA[<p>在 Windows 10 子系统安装 Erlang OTP 19</p>
@@ -291,7 +251,7 @@
 </ul>
 <h2 id="添加镜像"><a href="#添加镜像" class="headerlink" title="添加镜像"></a>添加镜像</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/apt/sources.list</span><br></pre></td></tr></table></figure></div>
 <p>最后添加清华 <code>erlang-solutions</code> 源</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>sources.list</span></figcaption><table><tr><td class="code"><pre><span class="line"># qing hua erlang-solutions</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/erlang-solutions/ubuntu/ bionic contrib</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>sources.list</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ # qing hua erlang-solutions</span></span><br><span class="line"><span class="addition">+ deb https://mirrors.tuna.tsinghua.edu.cn/erlang-solutions/ubuntu/ bionic contrib</span></span><br></pre></td></tr></table></figure></div>
 
 <h2 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt update</span><br></pre></td></tr></table></figure></div>
 
@@ -321,7 +281,7 @@
 <p><code>OTP 20</code> 以上自带支持 <code>history</code>, 方便在 shell 运行时记录执行过的命令, 添加环境变量</p>
 <div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi ~/.bashrc</span><br></pre></td></tr></table></figure></div>
 
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>.bashrc</span></figcaption><table><tr><td class="code"><pre><span class="line">export ERL_AFLAGS=&quot;-kernel shell_history enabled&quot;</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>.bashrc</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ export ERL_AFLAGS=&quot;-kernel shell_history enabled&quot;</span></span><br></pre></td></tr></table></figure></div>
 
 <p>开启新终端 或 <code>source</code> 下 <code>.bashrc</code></p>
 <div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure></div>
@@ -334,6 +294,47 @@
         <tag>win10</tag>
         <tag>wsl</tag>
         <tag>erlang</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决 WP Super Cache 安装后无法使用</title>
+    <url>/posts/wp-super-cache-not-working/</url>
+    <content><![CDATA[<p>修改配置修复 WP Super Cache 插件安装后无法使用问题</p>
+<span id="more"></span>
+
+<h2 id="获取-wp-content-读写权限"><a href="#获取-wp-content-读写权限" class="headerlink" title="获取 wp-content 读写权限"></a>获取 wp-content 读写权限</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> 777 /var/www/html/wordpress/wp-content/</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="检查-cache-文件"><a href="#检查-cache-文件" class="headerlink" title="检查 cache 文件"></a>检查 cache 文件</h2><p>进入 <code>wp-content</code> 目录</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/html/wordpress/wp-content</span><br></pre></td></tr></table></figure></div>
+
+<p>检查 <code>wp-cache-config.php</code> 是否存在, 若不存在则:</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> plugins/wp-super-cache/wp-cache-config-sample.php ./wp-cache-config.php</span><br></pre></td></tr></table></figure></div>
+
+<p>检查 <code>advanced-cache.php</code> 是否存在, 若不存在则:</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> plugins/wp-super-cache/advanced-cache.php ./</span><br></pre></td></tr></table></figure></div>
+<p>并将这两个文件都开启可写入权限</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> 777 wp-cache-config.php advanced-cache.php</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="添加配置"><a href="#添加配置" class="headerlink" title="添加配置"></a>添加配置</h2><p>回到 <code>wordpress</code> 根目录, 在 <code>wp-config.php</code> 中 <code>ABSPATH</code> 之前添加两行</p>
+<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>wp-config.php</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ define(&#x27;WP_CACHE&#x27;, true);</span></span><br><span class="line"><span class="addition">+ define(&#x27;WPCACHEHOME&#x27;,&#x27;/var/www/html/wordpress/wp-content/plugins/wp-super-cache/&#x27;);</span></span><br><span class="line"></span><br><span class="line">/** 设置WordPress变量和包含文件 */</span><br><span class="line">require_once( ABSPATH . &#x27;wp-settings.php&#x27; );</span><br></pre></td></tr></table></figure></div>
+
+<p>刷新 <code>WordPress</code> 插件页面应该就不会报错了, 但会在 <code>WP Super Cache</code> 设置页面顶部提示 <code>/var/www/html/wordpress/wp-content</code> 权限问题, 此时先不要修改权限, 先 <code>启用缓存功能</code></p>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/wp-super-cache-not-working/img1.png"
+                      alt="缓存功能"
+                ><figcaption>缓存功能</figcaption></figure></p>
+<p>保存更新后再执行</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> 755 /var/www/html/wordpress/wp-content/</span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>插件</category>
+      </categories>
+      <tags>
+        <tag>wordpress</tag>
+        <tag>cache</tag>
+        <tag>plugin</tag>
       </tags>
   </entry>
 </search>
