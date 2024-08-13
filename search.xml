@@ -1,6 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>《黑神话悟空》性能测试</title>
+    <url>/posts/black-myth-wukong-performance-testing/</url>
+    <content><![CDATA[<p>《黑神话悟空》提前放出了性能测试工具, 赶紧看看我的电脑能有多少帧!</p>
+<span id="more"></span>
+
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><ul>
+<li>CPU: 13700k</li>
+<li>主板: ASUS ROG MAXIMUS Z790 HERO</li>
+<li>显卡: NVIDIA RTX 4090 24G</li>
+<li>内存: 64G</li>
+<li>系统: Win11</li>
+<li>画质: 4K, 除了 <code>DLSS</code> 超采样清晰度, 其他全部最高</li>
+</ul>
+<h2 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h2><p>切换不同的 <code>DLSS</code> 超采样清晰度测试</p>
+<h3 id="DLAA"><a href="#DLAA" class="headerlink" title="DLAA"></a>DLAA</h3><ul>
+<li>超采样清晰度: 100</li>
+<li>平均帧数: 43帧&#x2F;秒</li>
+<li>显存占用: 12.4GB</li>
+</ul>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/black-myth-wukong-performance-testing/img1.png"
+                      alt="[DLAA]测试结果"
+                ><figcaption>[DLAA]测试结果</figcaption></figure></p>
+<h3 id="质量"><a href="#质量" class="headerlink" title="质量"></a>质量</h3><ul>
+<li>超采样清晰度: 88</li>
+<li>平均帧数: 72帧&#x2F;秒</li>
+<li>显存占用: 10.4GB</li>
+</ul>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/black-myth-wukong-performance-testing/img2.png"
+                      alt="[质量]测试结果"
+                ><figcaption>[质量]测试结果</figcaption></figure></p>
+<h3 id="均衡"><a href="#均衡" class="headerlink" title="均衡"></a>均衡</h3><ul>
+<li>超采样清晰度: 60</li>
+<li>平均帧数: 86帧&#x2F;秒</li>
+<li>显存占用: 9.8GB</li>
+</ul>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/black-myth-wukong-performance-testing/img3.png"
+                      alt="[均衡]测试结果"
+                ><figcaption>[均衡]测试结果</figcaption></figure></p>
+<h3 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h3><ul>
+<li>超采样清晰度: 53</li>
+<li>平均帧数: 101帧&#x2F;秒</li>
+<li>显存占用: 9.4GB</li>
+</ul>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/black-myth-wukong-performance-testing/img4.png"
+                      alt="[性能]测试结果"
+                ><figcaption>[性能]测试结果</figcaption></figure></p>
+<h3 id="极致性能"><a href="#极致性能" class="headerlink" title="极致性能"></a>极致性能</h3><ul>
+<li>超采样清晰度: 38</li>
+<li>平均帧数: 135帧&#x2F;秒</li>
+<li>显存占用: 8.7GB</li>
+</ul>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/black-myth-wukong-performance-testing/img5.png"
+                      alt="[极致性能]测试结果"
+                ><figcaption>[极致性能]测试结果</figcaption></figure></p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><blockquote>
+<p><code>DLAA</code> 画质虽好但帧数确实偏低, <code>性能</code> 帧数能过百但稍微偏糊</p>
+</blockquote>
+<p>到时候应该是选 <code>均衡</code> 和 <code>质量</code> 其中一种配置来玩了</p>
+]]></content>
+      <categories>
+        <category>日常</category>
+      </categories>
+      <tags>
+        <tag>game</tag>
+        <tag>wukong</tag>
+        <tag>black myth</tag>
+        <tag>performance testing</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>解决 ssh 连接自动断开</title>
     <url>/posts/fix-ssh-auto-disconnect/</url>
     <content><![CDATA[<p>ssh 连接远程服务器时, 默认情况会自动断开, 需要修改设置以保持连接</p>
@@ -25,6 +110,73 @@
       <tags>
         <tag>ssh</tag>
         <tag>网络</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git 优化</title>
+    <url>/posts/git-opt/</url>
+    <content><![CDATA[<p>优化 Git 的命令和设置, 方便使用</p>
+<span id="more"></span>
+
+<h2 id="命令别名"><a href="#命令别名" class="headerlink" title="命令别名"></a>命令别名</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">vi ~/.gitconfig</span><br></pre></td></tr></table></figure></div>
+<p>添加命令别名</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>.gitconfig</span></figcaption><table><tr><td class="code"><pre><span class="line">[alias]</span><br><span class="line">    st = status</span><br><span class="line">    co = checkout</span><br><span class="line">    ci = commit</span><br><span class="line">    br = branch</span><br><span class="line">    sub = submodule</span><br><span class="line">    cp = cherry-pick</span><br><span class="line">    tail = log -3</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="去掉-END-提示"><a href="#去掉-END-提示" class="headerlink" title="去掉 (END) 提示"></a>去掉 (END) 提示</h2><p>有可能会出现输入 <code>git br</code> 和 <code>git log</code> 后, 列表会出现 <code>(END)</code> 且需要手动输入 <code>q</code> 退出, 执行以下代码即可</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global pager.branch <span class="literal">false</span></span><br><span class="line">git config --global pager.log <span class="literal">false</span></span><br></pre></td></tr></table></figure></div>
+
+<h2 id="记住用户名和密码"><a href="#记住用户名和密码" class="headerlink" title="记住用户名和密码"></a>记住用户名和密码</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="git-diff-去掉-M"><a href="#git-diff-去掉-M" class="headerlink" title="git diff 去掉 ^M"></a>git diff 去掉 ^M</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global core.whitespace cr-at-eol</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="忽略文件权限变化"><a href="#忽略文件权限变化" class="headerlink" title="忽略文件权限变化"></a>忽略文件权限变化</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global core.filemode <span class="literal">false</span></span><br></pre></td></tr></table></figure></div>
+
+<h2 id="git-shell-中文文件显示"><a href="#git-shell-中文文件显示" class="headerlink" title="git shell 中文文件显示"></a>git shell 中文文件显示</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global core.quotepath <span class="literal">false</span></span><br></pre></td></tr></table></figure></div>
+
+<h2 id="添加代理"><a href="#添加代理" class="headerlink" title="添加代理"></a>添加代理</h2><h3 id="http代理"><a href="#http代理" class="headerlink" title="http代理"></a>http代理</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global https.proxy http://127.0.0.1:1080</span><br><span class="line">git config --global https.proxy https://127.0.0.1:1080</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="socks5代理"><a href="#socks5代理" class="headerlink" title="socks5代理"></a>socks5代理</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy socks5://127.0.0.1:1080</span><br><span class="line">git config --global https.proxy socks5://127.0.0.1:1080</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="取消代理"><a href="#取消代理" class="headerlink" title="取消代理"></a>取消代理</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global --<span class="built_in">unset</span> http.proxy</span><br><span class="line">git config --global --<span class="built_in">unset</span> https.proxy</span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>优化</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>优化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Rebar3 安装</title>
+    <url>/posts/install-rebar3/</url>
+    <content><![CDATA[<p>安装 rebar3 便于 Erlang 编译、配置管理和发布</p>
+<span id="more"></span>
+
+<h2 id="下载或生成-rebar3"><a href="#下载或生成-rebar3" class="headerlink" title="下载或生成 rebar3"></a>下载或生成 rebar3</h2><h3 id="编译过的稳定版"><a href="#编译过的稳定版" class="headerlink" title="编译过的稳定版"></a>编译过的稳定版</h3><p>下载 <code>rebar3</code> 文件并赋予可执行属性</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://s3.amazonaws.com/rebar3/rebar3 &amp;&amp; <span class="built_in">chmod</span> +x rebar3</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="从源码编译生成"><a href="#从源码编译生成" class="headerlink" title="从源码编译生成"></a>从源码编译生成</h3><p>前提是已经 <a href="/posts/win10-wsl-erlang">安装 Erlang</a>, 然后从仓库将源文件拉取下来并编译生成 <code>rebar3</code></p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/erlang/rebar3.git</span><br><span class="line"><span class="built_in">cd</span> rebar3</span><br><span class="line">./bootstrap</span><br></pre></td></tr></table></figure></div>
+<p>完成后在目录下会出现 <code>rebar3</code> 文件</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">./rebar3 <span class="built_in">local</span> install</span><br></pre></td></tr></table></figure></div>
+
+<p>将会看到</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">===&gt; Extracting rebar3 libs to YourHome/.cache/rebar3/lib...</span><br><span class="line">===&gt; Writing rebar3 run script YourHome/.cache/rebar3/bin/rebar3...</span><br><span class="line">===&gt; Add to <span class="variable">$PATH</span> <span class="keyword">for</span> use: <span class="built_in">export</span> PATH=YourHome/.cache/rebar3/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure></div>
+
+<h2 id="添加全局环境变量"><a href="#添加全局环境变量" class="headerlink" title="添加全局环境变量"></a>添加全局环境变量</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/profile</span><br></pre></td></tr></table></figure></div>
+
+<p>复制安装后提示的 <code>export</code> 语句, 并在 <code>profile</code> 最后加入</p>
+<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>config profile</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ export PATH=~/.cache/rebar3/bin:$PATH</span></span><br></pre></td></tr></table></figure></div>
+
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">rebar3 compile</span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>应用</category>
+      </categories>
+      <tags>
+        <tag>rebar3</tag>
+        <tag>erlang</tag>
       </tags>
   </entry>
   <entry>
@@ -96,7 +248,7 @@
 <h3 id="修改-Apache-服务器对文件夹的读写限制"><a href="#修改-Apache-服务器对文件夹的读写限制" class="headerlink" title="修改 Apache 服务器对文件夹的读写限制"></a>修改 Apache 服务器对文件夹的读写限制</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/apache2/apache2.conf</span><br></pre></td></tr></table></figure></div>
 
 <p>将原来的</p>
-<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>apache2.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">  &lt;Directory /var/www/&gt;</span><br><span class="line"><span class="deletion">- Options Indexes FollowSymLinks</span></span><br><span class="line"><span class="addition">+ Options FollowSymLinks</span></span><br><span class="line"><span class="deletion">- AllowOverride None</span></span><br><span class="line"><span class="addition">+ AllowOverride All</span></span><br><span class="line">  Require all granted</span><br><span class="line">  &lt;/Directory&gt;</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>apache2.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">  &lt;Directory /var/www/&gt;</span><br><span class="line"><span class="deletion">-     Options Indexes FollowSymLinks</span></span><br><span class="line"><span class="addition">+     Options FollowSymLinks</span></span><br><span class="line"><span class="deletion">-     AllowOverride None</span></span><br><span class="line"><span class="addition">+     AllowOverride All</span></span><br><span class="line">      Require all granted</span><br><span class="line">  &lt;/Directory&gt;</span><br></pre></td></tr></table></figure></div>
 
 <p>并在最后添加一行域名地址, 否则重启服务会报错</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>apache2.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">ServerName www.domain.com</span><br></pre></td></tr></table></figure></div>
@@ -175,6 +327,104 @@
       </tags>
   </entry>
   <entry>
+    <title>Ubuntu 20.04 Apache2 CORS</title>
+    <url>/posts/ubuntu-2004-apache2-cors/</url>
+    <content><![CDATA[<p>解决 Ubuntu 20.04 下 Apache2 CORS 问题</p>
+<span id="more"></span>
+
+<p>修改配置, 开启 <code>Header</code> 功能</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> a2enmod headers</span><br></pre></td></tr></table></figure></div>
+
+<p>修改 <code>Apache</code> 配置, 其他系统是 <code>httpd.conf</code>, 但在 <code>Ubuntu</code> 系统中是 <code>/etc/apache2/apache2.conf</code></p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/apache2/apache2.conf</span><br></pre></td></tr></table></figure></div>
+
+<p>在 <code>&lt;Directory /var/www/&gt;</code> 下添加一行 <code>Access-Control-Allow-Origin</code> 的配置</p>
+<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>apache2.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">  &lt;Directory /var/www/&gt;</span><br><span class="line">      Options FollowSymLinks</span><br><span class="line">      AllowOverride All</span><br><span class="line">      Require all granted</span><br><span class="line"><span class="addition">+     Header set Access-Control-Allow-Origin *</span></span><br><span class="line">  &lt;/Directory&gt;</span><br></pre></td></tr></table></figure></div>
+
+<p>保存退出, 然后检测配置是否有错</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apachectl -t</span><br></pre></td></tr></table></figure></div>
+
+<p>正常情况应该得到</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">Syntax OK</span><br></pre></td></tr></table></figure></div>
+
+<p>重新加载配置并重启服务即可</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> /etc/init.d/apache2 force-reload</span><br><span class="line"><span class="built_in">sudo</span> /etc/init.d/apache2 restart</span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>建站</category>
+      </categories>
+      <tags>
+        <tag>ubuntu</tag>
+        <tag>apache</tag>
+        <tag>cors</tag>
+        <tag>跨域</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu Apache2 Alias 映射目录</title>
+    <url>/posts/ubuntu-apache2-alias-virtual-host/</url>
+    <content><![CDATA[<p>在 Ubuntu Apache2 下使用 Alias 关联虚拟目录到某个路径</p>
+<span id="more"></span>
+
+<p><code>Ubuntu</code> 系统, 如果你的网站不在 <code>Apache2</code> 的 <code>/var/www/html</code> 目录下, 可以使用 <code>Alias</code> 绑定自定义目录, 同时可以起到自定义为自己要的 <code>url</code> 路径作用</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/apache2/apache2.conf</span><br></pre></td></tr></table></figure></div>
+<p>在最后添加</p>
+<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>apache2.conf</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ Alias /custom_name /some/directory/web</span></span><br></pre></td></tr></table></figure></div>
+
+<p>访问的时候就可以这样: <a href="">http://www.yourdomain.com/custom_name</a> 访问 <code>Alias</code> 所映射目录下的资源</p>
+]]></content>
+      <categories>
+        <category>建站</category>
+      </categories>
+      <tags>
+        <tag>ubuntu</tag>
+        <tag>apache</tag>
+        <tag>virtual host</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu 终端优化</title>
+    <url>/posts/ubuntu-bash-opt/</url>
+    <content><![CDATA[<p>修改 .bashrc 等配置优化 ubuntu shell </p>
+<span id="more"></span>
+
+<h2 id="简化-PS1"><a href="#简化-PS1" class="headerlink" title="简化 PS1"></a>简化 PS1</h2><p>修改 <code>.bashrc</code></p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">vi ~/.bashrc</span><br></pre></td></tr></table></figure></div>
+
+<p>添加 <code>PS1</code> 配置</p>
+<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>.bashrc</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ export PS1=&quot;\[\e]0;$&#123;debian_chroot:+($debian_chroot)&#125;\w\a\]\[\e[35;1m\]\u \[\e[37;1m\]in \[\e[36;1m\]\W \[\e[0m\]&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>应用环境变量 或 开启新终端</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure></div>
+
+<p>终端将从</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">gelomen@GELOMEN-PC:~$</span><br></pre></td></tr></table></figure></div>
+
+<p>变为</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">gelomen <span class="keyword">in</span> ~ </span><br></pre></td></tr></table></figure></div>
+
+<h2 id="忽略大小写"><a href="#忽略大小写" class="headerlink" title="忽略大小写"></a>忽略大小写</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">vi ~/.inputrc</span><br></pre></td></tr></table></figure></div>
+
+<p>添加</p>
+<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>.inputrc</span></figcaption><table><tr><td class="code"><pre><span class="line">set completion-ignore-case on</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="解决左右跳单词-5D-5C"><a href="#解决左右跳单词-5D-5C" class="headerlink" title="解决左右跳单词 ;5D;5C"></a>解决左右跳单词 ;5D;5C</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">vi ~/.inputrc</span><br></pre></td></tr></table></figure></div>
+
+<p>添加</p>
+<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>.inputrc</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ &quot;\e[1;5C&quot;: forward-word     # ctrl + →</span></span><br><span class="line"><span class="addition">+ &quot;\e[1;5D&quot;: backward-word    # ctrl + ←</span></span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>优化</category>
+      </categories>
+      <tags>
+        <tag>优化</tag>
+        <tag>ubuntu</tag>
+        <tag>bash</tag>
+        <tag>shell</tag>
+        <tag>美化</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>升级 Windows 10 v2004 和 wsl2</title>
     <url>/posts/upgrade-win10-v2004-wsl2/</url>
     <content><![CDATA[<p>Windows 10 v2004 正式版发布, 同时更快更好的 wsl2 也来了</p>
@@ -240,6 +490,91 @@
       </tags>
   </entry>
   <entry>
+    <title>Video Of You! 勒索诈骗邮件</title>
+    <url>/posts/video-of-you-ransomware-email/</url>
+    <content><![CDATA[<p>前几天看邮箱, 清理一些垃圾邮件时, 看到一份好几天前就发给我的邮件, 位置在垃圾箱里, 标题写着 Video Of You! 看到这名字就觉得不对劲, 不像普通的垃圾广告邮件, 这引起了我的注意…</p>
+<span id="more"></span>
+
+<h2 id="诈骗勒索邮件"><a href="#诈骗勒索邮件" class="headerlink" title="诈骗勒索邮件"></a>诈骗勒索邮件</h2><p>该邮件内容如下:</p>
+<blockquote>
+<p>Hey, some time ago your computer was infected with my private software, RAT (Remote Administration Tool).<br>My software gave me access to all your accounts, contacts and it was possible to spy on you over your webcam.<br>For example, I know that at the time of infection your password was: 我平时常用的密码<br>Sometimes I was spying on you and then once I was shocked seeing you started to MASTRUBATE, so I recorded you with the software called: Bandicam, Google it if you want.<br>I can share the video of you with all your friends, contacts, post it on social networks and everywhere else.<br>You can stop me, send 450$ with the cryptocurrency Ethereum (ETH).<br>It’s easy to buy Ethereum (ETH), for example here: btcdirect.eu , bitvavo.com , anycoindirect.eu , binance.com , or Google another exchanger.<br>My Ethereum (ETH) wallet is: 0x869C893E84618DA936274bADF3d9E800d0572955<br>Yes that’s how the wallet looks like, copy and paste it.<br>After receiving the payment, I will remove everything and you never hear from me again.<br>You got 3 days time!<br>Next time update your browser before browsing the web, so you won’t get infected again!</p>
+</blockquote>
+<ul>
+<li>邮件内容大概意思是他黑了我的电脑, 可以拿到我所有的账户和联系人信息, 并通过网络摄像头监视我 （可我台式机没装摄像头啊哈哈哈哈哈!!! 😂）</li>
+<li>然后贴出了我平时常用的密码, 从这一点上他的确黑到了我账户, 然后说有时监视我时, 看到我 ✊🏻🐔 就用 <code>Bandicam</code> 录了下来, 并威胁我他可以将视频发给我的所有朋友和社交网络上任何地方, 吓得我打开了 <strong>P</strong> 站 😏</li>
+<li>重点来了, 只要我三天内用以太币 <code>ETH</code> 虚拟货币转给他 450 美元, 他就删除所有内容, 还提供了购买以太币的网址, 以及他的以太币钱包, 整片邮件言语之间都透露了一种 “我说的都是网上能查到的方式或工具在监视你” 的语气, 从而隐约的暗示这件事是真实的</li>
+<li>因为我没有摄像头, 所以这邮件很明显是在骗我, 不过问题是, 他是怎么知道我常用密码的?! 是通过什么方式黑到我账户的?! </li>
+<li>在网上查了下, 别人也有相同的经历, 邮件内容大同小异, 但都是用爆出你用的密码来让你相信你被黑并且被监控录了视频</li>
+</ul>
+<p>有网友说 前几年有几个大网站用户数据泄露并被人在暗网上出售</p>
+<blockquote>
+<p>名为 <code>CosmicDark</code> 的国外团队在暗网上公开出售的这份优酷用户资料, 售价 300 美元, 数据量超过 1 亿条, 其中包括邮箱、密码等关键数据。</p>
+</blockquote>
+<h2 id="‘-–have-i-been-pwned"><a href="#‘-–have-i-been-pwned" class="headerlink" title="‘;–have i been pwned?"></a>‘;–have i been pwned?</h2><ul>
+<li><p>这时候有个牛逼的网站出来了：<a class="link"   href="https://haveibeenpwned.com/" >‘;–have i been pwned? <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>, 这个网站收录了这几年来被黑客窃取、公布在网络上的名单资料, 只要输入你的邮箱, 即可快速比对这些被窃取的资料里有没有你的个人资料。</p>
+</li>
+<li><p><code>pwned</code> 是什么意思呢? 其实这是一个骇客用语, 由 <code>owned</code> 演化而来, 有「被攻破、入侵或是控制」的意思</p>
+</li>
+</ul>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/video-of-you-ransomware-email/img1.png"
+                      alt="‘;–have i been pwned?"
+                ><figcaption>‘;–have i been pwned?</figcaption></figure></p>
+<ul>
+<li>进入 <a class="link"   href="https://haveibeenpwned.com/" >‘;–have i been pwned? <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 主页可以看到, 目前有 <strong>456</strong> 个网站泄露数据, 有 <strong>9,765,110,880</strong> 个账户被黑, 所以黑客利用这一点撒大网群发邮件, 总有人会上勾</li>
+</ul>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/video-of-you-ransomware-email/img2.png"
+                      alt="‘;–have i been pwned?"
+                ><figcaption>‘;–have i been pwned?</figcaption></figure></p>
+<h2 id="查查哪些网站泄露了"><a href="#查查哪些网站泄露了" class="headerlink" title="查查哪些网站泄露了"></a>查查哪些网站泄露了</h2><ul>
+<li>我用我的邮箱查了下, 我在 9 个网站的账户被泄露了, 往下滚动可以看到具体哪些网站泄露了我的账户</li>
+</ul>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/video-of-you-ransomware-email/img3.png"
+                      alt="‘;–have i been pwned?"
+                ><figcaption>‘;–have i been pwned?</figcaption></figure></p>
+<p>使用工具翻译了下:</p>
+<ul>
+<li><p><strong>Adobe:</strong><br>2013年10月, <code>Adobe</code> 的1.53亿个账户被入侵, 每个账户包含内部ID、用户名、电子邮件、加密密码和明文的密码提示。密码的加密方式非常差, 很多密码很快被破解回明文状态。未加密的密码提示也暴露了更多的密码信息, 使得数以百万计的 <code>Adobe</code> 用户面临更大的风险。<br><strong>泄露数据:</strong> 电子邮件地址、密码提示、密码、用户名。</p>
+</li>
+<li><p><strong>Aipai.com (未经验证):</strong><br>2016年9月, 据称来自中国游戏网站 <a class="link"   href="https://www.aipai.com/" >Aipai.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 的数据泄露, 包含650万个账户的信息被泄露。虽然有证据表明数据是合法的, 但由于很难完全验证这一中国数据泄露事件, 因而标记为“未经验证”。泄露的数据包括电子邮件地址和 <code>MD5</code> 密码哈希值。<br><strong>泄露数据:</strong> 电子邮件地址、密码。</p>
+</li>
+<li><p><strong>Collection #1 (未经验证):</strong><br>2019年1月, 一份庞大的凭证填充列表（包含电子邮件地址和密码, 用于在其他服务上进行账号劫持）被发现被分发到一个受欢迎的黑客论坛。数据包含超过27亿条记录, 包括7.73亿个唯一的电子邮件地址和密码, 这些密码曾被用于其他被泄露的服务中。<br><strong>泄露数据:</strong> 电子邮件地址、密码。</p>
+</li>
+<li><p><strong>DLH.net:</strong><br>2016年7月, 游戏新闻网站 <a class="link"   href="https://www.dlh.net/" >DLH.net <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 发生数据泄露, 暴露了330万订阅者的身份信息。泄露包括用于在 <code>Steam</code> 平台上兑换和激活游戏的密钥, 暴露的信息包括电子邮件地址、出生日期和加盐的MD5密码哈希值。<br><strong>泄露数据:</strong> 出生日期、电子邮件地址、姓名、密码、用户名、网站活动。</p>
+</li>
+<li><p><strong>Gravatar:</strong><br>2020年10月, 一名安全研究员发布了一项技术, 用于从 <code>Gravatar</code> 服务中抓取大量数据, <code>Gravatar</code> 是提供全球唯一头像的服务。1.67亿个姓名、用户名和用于引用用户头像的 <code>MD5</code> 哈希值的电子邮件地址被抓取, 并在黑客社区中广泛传播。1.14亿个MD5哈希值被破解并与源哈希一起传播, 泄露了原始电子邮件地址和相关数据。<br><strong>泄露数据:</strong> 电子邮件地址、姓名、用户名。</p>
+</li>
+<li><p><strong>JD:</strong><br>2013年（确切日期不明）, 中国电子商务服务 <a class="link"   href="https://www.jd.com/" >JD <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 发生数据泄露, 暴露了13GB数据, 其中包含7700万个唯一的电子邮件地址。数据还包括用户名、电话号码和作为 <code>SHA-1</code> 哈希值存储的密码。<br><strong>泄露数据:</strong> 电子邮件地址、密码、电话号码、用户名。</p>
+</li>
+<li><p><strong>NetEase (未经验证):</strong><br>2015年10月, 报告称中国网站 <a class="link"   href="https://www.163.com/" >NetEase <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> (163.com)发生数据泄露, 影响了数亿订阅者。虽然有证据表明数据是合法的（多个 <code>HIBP</code> 订阅者确认他们使用的数据中的密码）, 但由于难以完全验证这一中国数据泄露事件, 因而标记为“未经验证”。泄露的数据包括电子邮件地址和明文密码。<br><strong>泄露数据:</strong> 电子邮件地址、密码。</p>
+</li>
+<li><p><strong>TGBUS (未经验证):</strong><br>大约在2017年, 据称中国游戏网站 <a class="link"   href="https://tgbus.com/" >TGBUS <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 发生了一次数据泄露, 影响了超过1000万独特订阅者。虽然有证据表明数据是合法的, 但由于难以完全验证这一中国数据泄露事件, 因而标记为“未经验证”。泄露的数据包括用户名、电子邮件地址和加盐的 <code>MD5</code> 密码哈希值。<br><strong>泄露数据:</strong> 电子邮件地址、密码、用户名。</p>
+</li>
+<li><p><strong>Youku:</strong><br>2016年末, 在线视频服务 <a class="link"   href="https://www.youku.com/" >Youku <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 发生数据泄露。事件暴露了9200万个唯一用户账户及其对应的 <code>MD5</code> 密码哈希值。<br><strong>泄露数据:</strong> 电子邮件地址、密码。</p>
+</li>
+</ul>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>也就是说, 真正泄露 我账户的应该是 <code>Adobe</code>、<code>DLH.net</code>、<code>Gravatar</code>、<code>JD</code> 和 <code>优酷</code> 这几个网站, 所以大家最好定期修改密码且使用复杂一些的字符</p>
+]]></content>
+      <categories>
+        <category>日常</category>
+      </categories>
+      <tags>
+        <tag>ransomware</tag>
+        <tag>scam</tag>
+        <tag>勒索</tag>
+        <tag>诈骗</tag>
+        <tag>邮件</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Windows 10 子系统安装 Erlang OTP 19</title>
     <url>/posts/win10-wsl-erlang/</url>
     <content><![CDATA[<p>在 Windows 10 子系统安装 Erlang OTP 19</p>
@@ -290,10 +625,10 @@
         <category>应用</category>
       </categories>
       <tags>
+        <tag>erlang</tag>
         <tag>ubuntu</tag>
         <tag>win10</tag>
         <tag>wsl</tag>
-        <tag>erlang</tag>
       </tags>
   </entry>
   <entry>
