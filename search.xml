@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>《黑神话悟空》性能测试</title>
-    <url>/posts/black-myth-wukong-performance-testing/</url>
+    <url>/posts/black-myth-wukong-benchmark-tool/</url>
     <content><![CDATA[<p>《黑神话悟空》提前放出了性能测试工具, 赶紧看看我的电脑能有多少帧!</p>
 <span id="more"></span>
 
@@ -23,7 +23,7 @@
 <p><figure class="image-caption"><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/posts/black-myth-wukong-performance-testing/img1.png"
+                     data-src="/images/posts/black-myth-wukong-benchmark-tool/img1.png"
                       alt="[DLAA]测试结果"
                 ><figcaption>[DLAA]测试结果</figcaption></figure></p>
 <h3 id="质量"><a href="#质量" class="headerlink" title="质量"></a>质量</h3><ul>
@@ -34,7 +34,7 @@
 <p><figure class="image-caption"><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/posts/black-myth-wukong-performance-testing/img2.png"
+                     data-src="/images/posts/black-myth-wukong-benchmark-tool/img2.png"
                       alt="[质量]测试结果"
                 ><figcaption>[质量]测试结果</figcaption></figure></p>
 <h3 id="均衡"><a href="#均衡" class="headerlink" title="均衡"></a>均衡</h3><ul>
@@ -45,7 +45,7 @@
 <p><figure class="image-caption"><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/posts/black-myth-wukong-performance-testing/img3.png"
+                     data-src="/images/posts/black-myth-wukong-benchmark-tool/img3.png"
                       alt="[均衡]测试结果"
                 ><figcaption>[均衡]测试结果</figcaption></figure></p>
 <h3 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h3><ul>
@@ -56,7 +56,7 @@
 <p><figure class="image-caption"><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/posts/black-myth-wukong-performance-testing/img4.png"
+                     data-src="/images/posts/black-myth-wukong-benchmark-tool/img4.png"
                       alt="[性能]测试结果"
                 ><figcaption>[性能]测试结果</figcaption></figure></p>
 <h3 id="极致性能"><a href="#极致性能" class="headerlink" title="极致性能"></a>极致性能</h3><ul>
@@ -67,13 +67,42 @@
 <p><figure class="image-caption"><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/posts/black-myth-wukong-performance-testing/img5.png"
+                     data-src="/images/posts/black-myth-wukong-benchmark-tool/img5.png"
                       alt="[极致性能]测试结果"
                 ><figcaption>[极致性能]测试结果</figcaption></figure></p>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><blockquote>
-<p><code>DLAA</code> 画质虽好但帧数确实偏低, <code>性能</code> 帧数能过百但稍微偏糊</p>
-</blockquote>
-<p>到时候应该是选 <code>均衡</code> 和 <code>质量</code> 其中一种配置来玩了</p>
+<h2 id="优化设置"><a href="#优化设置" class="headerlink" title="优化设置"></a>优化设置</h2><p>看了网上的科普, <code>DLAA</code> 并不属于 <code>DLSS</code> 而是抗锯齿, 不仅没有提高性能, 反而会更消耗性能</p>
+<p>所以目前看 <code>DLSS</code> 效果最好的还是 <code>质量</code>, 而同时 <code>全景光线追踪</code> 开最高时性能消耗也比较大, 动态模糊会让镜头摆动时模糊</p>
+<p>即进行以下设置:</p>
+<ul>
+<li>动态模糊: 关</li>
+<li>全景光线追踪: 中</li>
+<li>超采样清晰度: 质量(80)</li>
+<li>其他: 影视级</li>
+</ul>
+<p>还有一个问题是, 若开启了 <code>帧生成</code>, 也就是补帧, 会增加 <code>动作</code> 和 <code>FPS</code> 类型游戏的操作延迟, 所以这里做了下测试</p>
+<h3 id="关闭帧生成"><a href="#关闭帧生成" class="headerlink" title="关闭帧生成"></a>关闭帧生成</h3><p><strong>平均帧数: 56帧&#x2F;秒</strong>, 说明如果开了 <code>帧生成</code> 也不会有很大延迟</p>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/black-myth-wukong-benchmark-tool/img6.png"
+                      alt="[关闭帧生成]测试结果"
+                ><figcaption>[关闭帧生成]测试结果</figcaption></figure></p>
+<h3 id="开启帧生成"><a href="#开启帧生成" class="headerlink" title="开启帧生成"></a>开启帧生成</h3><p><strong>平均帧数: 88帧&#x2F;秒</strong>, 帧数挺不错的</p>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/black-myth-wukong-benchmark-tool/img7.png"
+                      alt="[开启帧生成]测试结果"
+                ><figcaption>[开启帧生成]测试结果</figcaption></figure></p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>到时候设置:</p>
+<ul>
+<li>动态模糊: 关</li>
+<li>超采样清晰度: 质量(80)</li>
+<li>帧生成: 开启</li>
+<li>全景光线追踪: 中</li>
+<li>其他: 影视级</li>
+</ul>
+<p>除非操作手感有延迟不舒服, 再把 <code>帧生成</code> 关闭, 然后调低几个画质</p>
 ]]></content>
       <categories>
         <category>日常</category>
