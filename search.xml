@@ -14,7 +14,7 @@
 <li>系统: Win11</li>
 <li>画质: 4K, 除了 <code>DLSS</code> 超采样清晰度, 其他全部最高</li>
 </ul>
-<h2 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h2><p>切换不同的 <code>DLSS</code> 超采样清晰度测试</p>
+<h2 id="特效拉满测试"><a href="#特效拉满测试" class="headerlink" title="特效拉满测试"></a>特效拉满测试</h2><p>特效拉满情况下, 切换不同的 <code>DLSS</code> 超采样清晰度测试</p>
 <h3 id="DLAA"><a href="#DLAA" class="headerlink" title="DLAA"></a>DLAA</h3><ul>
 <li>超采样清晰度: 100</li>
 <li>平均帧数: 43帧&#x2F;秒</li>
@@ -24,8 +24,8 @@
                      lazyload
                      src="/images/loading.svg"
                      data-src="/images/posts/black-myth-wukong-benchmark-tool/img1.png"
-                      alt="[DLAA]测试结果"
-                ><figcaption>[DLAA]测试结果</figcaption></figure></p>
+                      alt="[DLAA] 测试结果"
+                ><figcaption>[DLAA] 测试结果</figcaption></figure></p>
 <h3 id="质量"><a href="#质量" class="headerlink" title="质量"></a>质量</h3><ul>
 <li>超采样清晰度: 88</li>
 <li>平均帧数: 72帧&#x2F;秒</li>
@@ -35,8 +35,8 @@
                      lazyload
                      src="/images/loading.svg"
                      data-src="/images/posts/black-myth-wukong-benchmark-tool/img2.png"
-                      alt="[质量]测试结果"
-                ><figcaption>[质量]测试结果</figcaption></figure></p>
+                      alt="[质量] 测试结果"
+                ><figcaption>[质量] 测试结果</figcaption></figure></p>
 <h3 id="均衡"><a href="#均衡" class="headerlink" title="均衡"></a>均衡</h3><ul>
 <li>超采样清晰度: 60</li>
 <li>平均帧数: 86帧&#x2F;秒</li>
@@ -46,8 +46,8 @@
                      lazyload
                      src="/images/loading.svg"
                      data-src="/images/posts/black-myth-wukong-benchmark-tool/img3.png"
-                      alt="[均衡]测试结果"
-                ><figcaption>[均衡]测试结果</figcaption></figure></p>
+                      alt="[均衡] 测试结果"
+                ><figcaption>[均衡] 测试结果</figcaption></figure></p>
 <h3 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h3><ul>
 <li>超采样清晰度: 53</li>
 <li>平均帧数: 101帧&#x2F;秒</li>
@@ -57,8 +57,8 @@
                      lazyload
                      src="/images/loading.svg"
                      data-src="/images/posts/black-myth-wukong-benchmark-tool/img4.png"
-                      alt="[性能]测试结果"
-                ><figcaption>[性能]测试结果</figcaption></figure></p>
+                      alt="[性能] 测试结果"
+                ><figcaption>[性能] 测试结果</figcaption></figure></p>
 <h3 id="极致性能"><a href="#极致性能" class="headerlink" title="极致性能"></a>极致性能</h3><ul>
 <li>超采样清晰度: 38</li>
 <li>平均帧数: 135帧&#x2F;秒</li>
@@ -68,41 +68,398 @@
                      lazyload
                      src="/images/loading.svg"
                      data-src="/images/posts/black-myth-wukong-benchmark-tool/img5.png"
-                      alt="[极致性能]测试结果"
-                ><figcaption>[极致性能]测试结果</figcaption></figure></p>
-<h2 id="优化设置"><a href="#优化设置" class="headerlink" title="优化设置"></a>优化设置</h2><p>看了网上的科普, <code>DLAA</code> 并不属于 <code>DLSS</code> 而是抗锯齿, 不仅没有提高性能, 反而会更消耗性能</p>
-<p>所以目前看 <code>DLSS</code> 效果最好的还是 <code>质量</code>, 而同时 <code>全景光线追踪</code> 开最高时性能消耗也比较大, 动态模糊会让镜头摆动时模糊</p>
-<p>即进行以下设置:</p>
-<ul>
-<li>动态模糊: 关</li>
-<li>全景光线追踪: 中</li>
-<li>超采样清晰度: 质量(80)</li>
-<li>其他: 影视级</li>
-</ul>
-<p>还有一个问题是, 若开启了 <code>帧生成</code>, 也就是补帧, 会增加 <code>动作</code> 和 <code>FPS</code> 类型游戏的操作延迟, 所以这里做了下测试</p>
-<h3 id="关闭帧生成"><a href="#关闭帧生成" class="headerlink" title="关闭帧生成"></a>关闭帧生成</h3><p><strong>平均帧数: 56帧&#x2F;秒</strong>, 说明如果开了 <code>帧生成</code> 也不会有很大延迟</p>
+                      alt="[极致性能] 测试结果"
+                ><figcaption>[极致性能] 测试结果</figcaption></figure></p>
+<h2 id="优化设置"><a href="#优化设置" class="headerlink" title="优化设置"></a>优化设置</h2><h3 id="DLAA-1"><a href="#DLAA-1" class="headerlink" title="DLAA"></a>DLAA</h3><p>看了网上的科普, <code>DLAA</code> 并不属于 <code>DLSS</code> 而是抗锯齿, 不仅没有提高性能, 反而会更消耗性能</p>
+<h3 id="偷帧的贼"><a href="#偷帧的贼" class="headerlink" title="偷帧的贼"></a>偷帧的贼</h3><p>看了 B 站 up 主 <a class="link"   href="https://space.bilibili.com/220929" >Fallere013 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 的测试视频: <a class="link"   href="https://www.bilibili.com/video/BV11WY2eUEjU" >偷帧的贼-黑神话画面设置-先行版 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>, 总结如下图:</p>
 <p><figure class="image-caption"><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/images/posts/black-myth-wukong-benchmark-tool/img6.png"
-                      alt="[关闭帧生成]测试结果"
-                ><figcaption>[关闭帧生成]测试结果</figcaption></figure></p>
-<h3 id="开启帧生成"><a href="#开启帧生成" class="headerlink" title="开启帧生成"></a>开启帧生成</h3><p><strong>平均帧数: 88帧&#x2F;秒</strong>, 帧数挺不错的</p>
+                      alt="各种画质不同档位的性能差异"
+                ><figcaption>各种画质不同档位的性能差异</figcaption></figure></p>
+<h3 id="影响性能和观感的选项"><a href="#影响性能和观感的选项" class="headerlink" title="影响性能和观感的选项"></a>影响性能和观感的选项</h3><table>
+<thead>
+<tr>
+<th align="left">选项</th>
+<th align="left">原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">垂直同步</td>
+<td align="left">强行对齐刷新率影响帧数</td>
+</tr>
+<tr>
+<td align="left">动态模糊</td>
+<td align="left">镜头晃动会变模糊影响观感</td>
+</tr>
+<tr>
+<td align="left">全景光线追踪</td>
+<td align="left">很耗性能, 但光影确实不错</td>
+</tr>
+<tr>
+<td align="left">阴影</td>
+<td align="left">阴影计算对帧数影响很大</td>
+</tr>
+<tr>
+<td align="left">全局光照</td>
+<td align="left">对帧数影响很大, 但并没有 <code>全景光线追踪</code> 有那么大影响, 略有模糊感</td>
+</tr>
+</tbody></table>
+<h2 id="光影测试"><a href="#光影测试" class="headerlink" title="光影测试"></a>光影测试</h2><p>根据上一点提到的 <code>影响性能和观感的选项</code>, 关闭或调低这些选项分别测试</p>
+<h3 id="全景光线追踪-低"><a href="#全景光线追踪-低" class="headerlink" title="全景光线追踪-低"></a>全景光线追踪-低</h3><table>
+<thead>
+<tr>
+<th align="center">选项</th>
+<th align="center">状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">垂直同步</td>
+<td align="center">关</td>
+</tr>
+<tr>
+<td align="center">动态模糊</td>
+<td align="center">关</td>
+</tr>
+<tr>
+<td align="center">DLSS</td>
+<td align="center">质量(80)</td>
+</tr>
+<tr>
+<td align="center">帧生成</td>
+<td align="center">开</td>
+</tr>
+<tr>
+<td align="center">全景光线追踪</td>
+<td align="center">低</td>
+</tr>
+<tr>
+<td align="center">阴影</td>
+<td align="center">高</td>
+</tr>
+<tr>
+<td align="center">全局光照</td>
+<td align="center">低</td>
+</tr>
+<tr>
+<td align="center">其他</td>
+<td align="center">影视级</td>
+</tr>
+</tbody></table>
 <p><figure class="image-caption"><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/images/posts/black-myth-wukong-benchmark-tool/img7.png"
-                      alt="[开启帧生成]测试结果"
-                ><figcaption>[开启帧生成]测试结果</figcaption></figure></p>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>到时候设置:</p>
-<ul>
-<li>动态模糊: 关</li>
-<li>超采样清晰度: 质量(80)</li>
-<li>帧生成: 开启</li>
-<li>全景光线追踪: 中</li>
-<li>其他: 影视级</li>
-</ul>
-<p>除非操作手感有延迟不舒服, 再把 <code>帧生成</code> 关闭, 然后调低几个画质</p>
+                      alt="[全景光线追踪-低] 测试结果"
+                ><figcaption>[全景光线追踪-低] 测试结果</figcaption></figure></p>
+<h3 id="全景光线追踪-中"><a href="#全景光线追踪-中" class="headerlink" title="全景光线追踪-中"></a>全景光线追踪-中</h3><table>
+<thead>
+<tr>
+<th align="center">选项</th>
+<th align="center">状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">垂直同步</td>
+<td align="center">关</td>
+</tr>
+<tr>
+<td align="center">动态模糊</td>
+<td align="center">关</td>
+</tr>
+<tr>
+<td align="center">DLSS</td>
+<td align="center">质量(80)</td>
+</tr>
+<tr>
+<td align="center">帧生成</td>
+<td align="center">开</td>
+</tr>
+<tr>
+<td align="center">全景光线追踪</td>
+<td align="center">中</td>
+</tr>
+<tr>
+<td align="center">阴影</td>
+<td align="center">高</td>
+</tr>
+<tr>
+<td align="center">全局光照</td>
+<td align="center">低</td>
+</tr>
+<tr>
+<td align="center">其他</td>
+<td align="center">影视级</td>
+</tr>
+</tbody></table>
+<p>测试结果如下:</p>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/black-myth-wukong-benchmark-tool/img8.png"
+                      alt="[全景光线追踪-中] 测试结果"
+                ><figcaption>[全景光线追踪-中] 测试结果</figcaption></figure></p>
+<h3 id="全景光线追踪-超高"><a href="#全景光线追踪-超高" class="headerlink" title="全景光线追踪-超高"></a>全景光线追踪-超高</h3><table>
+<thead>
+<tr>
+<th align="center">选项</th>
+<th align="center">状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">垂直同步</td>
+<td align="center">关</td>
+</tr>
+<tr>
+<td align="center">动态模糊</td>
+<td align="center">关</td>
+</tr>
+<tr>
+<td align="center">DLSS</td>
+<td align="center">质量(80)</td>
+</tr>
+<tr>
+<td align="center">帧生成</td>
+<td align="center">开</td>
+</tr>
+<tr>
+<td align="center">全景光线追踪</td>
+<td align="center">超高</td>
+</tr>
+<tr>
+<td align="center">阴影</td>
+<td align="center">高</td>
+</tr>
+<tr>
+<td align="center">全局光照</td>
+<td align="center">低</td>
+</tr>
+<tr>
+<td align="center">其他</td>
+<td align="center">影视级</td>
+</tr>
+</tbody></table>
+<p>测试结果如下:</p>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/black-myth-wukong-benchmark-tool/img9.png"
+                      alt="[全景光线追踪-超高] 测试结果"
+                ><figcaption>[全景光线追踪-超高] 测试结果</figcaption></figure></p>
+<h3 id="全局光照-高"><a href="#全局光照-高" class="headerlink" title="全局光照-高"></a>全局光照-高</h3><table>
+<thead>
+<tr>
+<th align="center">选项</th>
+<th align="center">状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">垂直同步</td>
+<td align="center">关</td>
+</tr>
+<tr>
+<td align="center">动态模糊</td>
+<td align="center">关</td>
+</tr>
+<tr>
+<td align="center">DLSS</td>
+<td align="center">质量(80)</td>
+</tr>
+<tr>
+<td align="center">帧生成</td>
+<td align="center">开</td>
+</tr>
+<tr>
+<td align="center">全景光线追踪</td>
+<td align="center">关</td>
+</tr>
+<tr>
+<td align="center">阴影</td>
+<td align="center">高</td>
+</tr>
+<tr>
+<td align="center">全局光照</td>
+<td align="center">高</td>
+</tr>
+<tr>
+<td align="center">其他</td>
+<td align="center">影视级</td>
+</tr>
+</tbody></table>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/black-myth-wukong-benchmark-tool/img10.png"
+                      alt="[全局光照-高] 测试结果"
+                ><figcaption>[全局光照-高] 测试结果</figcaption></figure></p>
+<h3 id="全局光照-超高"><a href="#全局光照-超高" class="headerlink" title="全局光照-超高"></a>全局光照-超高</h3><table>
+<thead>
+<tr>
+<th align="center">选项</th>
+<th align="center">状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">垂直同步</td>
+<td align="center">关</td>
+</tr>
+<tr>
+<td align="center">动态模糊</td>
+<td align="center">关</td>
+</tr>
+<tr>
+<td align="center">DLSS</td>
+<td align="center">质量(80)</td>
+</tr>
+<tr>
+<td align="center">帧生成</td>
+<td align="center">开</td>
+</tr>
+<tr>
+<td align="center">全景光线追踪</td>
+<td align="center">关</td>
+</tr>
+<tr>
+<td align="center">阴影</td>
+<td align="center">高</td>
+</tr>
+<tr>
+<td align="center">全局光照</td>
+<td align="center">超高</td>
+</tr>
+<tr>
+<td align="center">其他</td>
+<td align="center">影视级</td>
+</tr>
+</tbody></table>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/black-myth-wukong-benchmark-tool/img11.png"
+                      alt="[全局光照-超高] 测试结果"
+                ><figcaption>[全局光照-超高] 测试结果</figcaption></figure></p>
+<h3 id="全局光照-影视级"><a href="#全局光照-影视级" class="headerlink" title="全局光照-影视级"></a>全局光照-影视级</h3><table>
+<thead>
+<tr>
+<th align="center">选项</th>
+<th align="center">状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">垂直同步</td>
+<td align="center">关</td>
+</tr>
+<tr>
+<td align="center">动态模糊</td>
+<td align="center">关</td>
+</tr>
+<tr>
+<td align="center">DLSS</td>
+<td align="center">质量(80)</td>
+</tr>
+<tr>
+<td align="center">帧生成</td>
+<td align="center">开</td>
+</tr>
+<tr>
+<td align="center">全景光线追踪</td>
+<td align="center">关</td>
+</tr>
+<tr>
+<td align="center">阴影</td>
+<td align="center">高</td>
+</tr>
+<tr>
+<td align="center">全局光照</td>
+<td align="center">影视级</td>
+</tr>
+<tr>
+<td align="center">其他</td>
+<td align="center">影视级</td>
+</tr>
+</tbody></table>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/black-myth-wukong-benchmark-tool/img12.png"
+                      alt="[全局光照-影视级] 测试结果"
+                ><figcaption>[全局光照-影视级] 测试结果</figcaption></figure></p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><ol>
+<li><code>全景光线追踪</code> 对性能影响特别大, 明暗效果挺好</li>
+<li><code>全局光照</code> 帧数要比开启 <code>全景光线追踪</code> 高很多, 所以倾向于 <code>全局光照</code> 多些</li>
+<li><code>全局光照</code> 几个档位之间帧数差 [影视级 - 高]: 13 帧, [影视级 - 超高]: 4 帧, [超高 - 高]: 9 帧 </li>
+<li>综合考虑, 光影倾向于只打开 <code>全局光照</code> 影视级</li>
+</ol>
+<p>最终设置:</p>
+<table>
+<thead>
+<tr>
+<th align="center">选项</th>
+<th align="center">状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">垂直同步</td>
+<td align="center">关</td>
+</tr>
+<tr>
+<td align="center">动态模糊</td>
+<td align="center">关</td>
+</tr>
+<tr>
+<td align="center">DLSS</td>
+<td align="center">质量(80)</td>
+</tr>
+<tr>
+<td align="center">帧生成</td>
+<td align="center">开</td>
+</tr>
+<tr>
+<td align="center">全景光线追踪</td>
+<td align="center">关</td>
+</tr>
+<tr>
+<td align="center">视野距离</td>
+<td align="center">影视级</td>
+</tr>
+<tr>
+<td align="center">抗锯齿</td>
+<td align="center">影视级</td>
+</tr>
+<tr>
+<td align="center">后期处理</td>
+<td align="center">影视级</td>
+</tr>
+<tr>
+<td align="center">阴影质量</td>
+<td align="center">高</td>
+</tr>
+<tr>
+<td align="center">贴图质量</td>
+<td align="center">影视级</td>
+</tr>
+<tr>
+<td align="center">特效质量</td>
+<td align="center">影视级</td>
+</tr>
+<tr>
+<td align="center">毛发质量</td>
+<td align="center">影视级</td>
+</tr>
+<tr>
+<td align="center">植被质量</td>
+<td align="center">影视级</td>
+</tr>
+<tr>
+<td align="center">全局光照</td>
+<td align="center">影视级</td>
+</tr>
+<tr>
+<td align="center">反射质量</td>
+<td align="center">影视级</td>
+</tr>
+</tbody></table>
 ]]></content>
       <categories>
         <category>日常</category>
