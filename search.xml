@@ -713,6 +713,48 @@
       </tags>
   </entry>
   <entry>
+    <title>Ubuntu 终端优化</title>
+    <url>/posts/ubuntu-bash-opt/</url>
+    <content><![CDATA[<p>修改 .bashrc 等配置优化 ubuntu shell </p>
+<span id="more"></span>
+
+<h2 id="简化-PS1"><a href="#简化-PS1" class="headerlink" title="简化 PS1"></a>简化 PS1</h2><p>修改 <code>.bashrc</code></p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">vi ~/.bashrc</span><br></pre></td></tr></table></figure></div>
+
+<p>添加 <code>PS1</code> 配置</p>
+<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>.bashrc</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ export PS1=&quot;\[\e]0;$&#123;debian_chroot:+($debian_chroot)&#125;\w\a\]\[\e[35;1m\]\u \[\e[37;1m\]in \[\e[36;1m\]\W \[\e[0m\]&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>应用环境变量 或 开启新终端</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure></div>
+
+<p>终端将从</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">gelomen@GELOMEN-PC:~$</span><br></pre></td></tr></table></figure></div>
+
+<p>变为</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">gelomen <span class="keyword">in</span> ~ </span><br></pre></td></tr></table></figure></div>
+
+<h2 id="忽略大小写"><a href="#忽略大小写" class="headerlink" title="忽略大小写"></a>忽略大小写</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">vi ~/.inputrc</span><br></pre></td></tr></table></figure></div>
+
+<p>添加</p>
+<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>.inputrc</span></figcaption><table><tr><td class="code"><pre><span class="line">set completion-ignore-case on</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="解决左右跳单词-5D-5C"><a href="#解决左右跳单词-5D-5C" class="headerlink" title="解决左右跳单词 ;5D;5C"></a>解决左右跳单词 ;5D;5C</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">vi ~/.inputrc</span><br></pre></td></tr></table></figure></div>
+
+<p>添加</p>
+<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>.inputrc</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ &quot;\e[1;5C&quot;: forward-word     # ctrl + →</span></span><br><span class="line"><span class="addition">+ &quot;\e[1;5D&quot;: backward-word    # ctrl + ←</span></span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>优化</category>
+      </categories>
+      <tags>
+        <tag>优化</tag>
+        <tag>ubuntu</tag>
+        <tag>bash</tag>
+        <tag>shell</tag>
+        <tag>美化</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Ubuntu 20.04 Apache2 CORS</title>
     <url>/posts/ubuntu-2004-apache2-cors/</url>
     <content><![CDATA[<p>解决 Ubuntu 20.04 下 Apache2 CORS 问题</p>
@@ -769,45 +811,174 @@
       </tags>
   </entry>
   <entry>
-    <title>Ubuntu 终端优化</title>
-    <url>/posts/ubuntu-bash-opt/</url>
-    <content><![CDATA[<p>修改 .bashrc 等配置优化 ubuntu shell </p>
+    <title>使用 Ubuntu 20.04 XAMPP WordPress 搭建博客</title>
+    <url>/posts/ubuntu-xampp-wordpress/</url>
+    <content><![CDATA[<p>使用 <code>Ubuntu</code> <code>XAMPP</code> <code>WordPress</code> 便捷搭建博客</p>
 <span id="more"></span>
 
-<h2 id="简化-PS1"><a href="#简化-PS1" class="headerlink" title="简化 PS1"></a>简化 PS1</h2><p>修改 <code>.bashrc</code></p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">vi ~/.bashrc</span><br></pre></td></tr></table></figure></div>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
+<li>系统: Ubuntu 20.04 LTS</li>
+<li>服务: XAMPP (Apache + MySQL + PHP + PERL)</li>
+<li>框架: WordPress</li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="更新系统"><a href="#更新系统" class="headerlink" title="更新系统"></a>更新系统</h3><p>先将 <code>Ubuntu</code> 系统更新到最新</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"><span class="built_in">sudo</span> apt upgrade -y</span><br></pre></td></tr></table></figure></div>
 
-<p>添加 <code>PS1</code> 配置</p>
-<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>.bashrc</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ export PS1=&quot;\[\e]0;$&#123;debian_chroot:+($debian_chroot)&#125;\w\a\]\[\e[35;1m\]\u \[\e[37;1m\]in \[\e[36;1m\]\W \[\e[0m\]&quot;</span></span><br></pre></td></tr></table></figure></div>
+<h3 id="安装-XAMPP"><a href="#安装-XAMPP" class="headerlink" title="安装 XAMPP"></a>安装 XAMPP</h3><p>到 <a class="link"   href="https://www.apachefriends.org/index.html" >XAMPP 官网<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>, 选择 <code>Linux</code> 版本下载, 在弹出的新页面复制地址栏链接, 然后在 <code>Ubuntu</code> 主机下载</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 这个链接可能是旧的, 以官网提供的地址为准</span></span><br><span class="line">wget https://www.apachefriends.org/xampp-files/7.4.8/xampp-linux-x64-7.4.8-0-installer.run</span><br></pre></td></tr></table></figure></div>
 
-<p>应用环境变量 或 开启新终端</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure></div>
+<p>赋予安装文件可执行权限</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x ./xampp-linux-x64-7.4.8-0-installer.run</span><br></pre></td></tr></table></figure></div>
 
-<p>终端将从</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">gelomen@GELOMEN-PC:~$</span><br></pre></td></tr></table></figure></div>
+<p>以 <code>root</code> 身份安装, 安装过程提示的内容都默认即可</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> ./xampp-linux-x64-7.4.8-0-installer.run</span><br></pre></td></tr></table></figure></div>
 
-<p>变为</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">gelomen <span class="keyword">in</span> ~ </span><br></pre></td></tr></table></figure></div>
+<p>安装完成后, <code>XAMPP</code> 目录在 <code>/opt/lampp</code> 下</p>
+<h3 id="安装-WordPress"><a href="#安装-WordPress" class="headerlink" title="安装 WordPress"></a>安装 WordPress</h3><p>到官方简体中文网手动下载: <a class="link"   href="https://cn.wordpress.org/download/" >WordPress 官网<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 或者执行:</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://cn.wordpress.org/latest-zh_CN.tar.gz</span><br></pre></td></tr></table></figure></div>
 
-<h2 id="忽略大小写"><a href="#忽略大小写" class="headerlink" title="忽略大小写"></a>忽略大小写</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">vi ~/.inputrc</span><br></pre></td></tr></table></figure></div>
+<p>下载后解压并移动到目录 <code>/opt/lampp/htdocs</code> 下</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">tar zxf latest-zh_CN.tar.gz</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">mv</span> -f wordpress/ /opt/lampp/htdocs/</span><br></pre></td></tr></table></figure></div>
 
-<p>添加</p>
-<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>.inputrc</span></figcaption><table><tr><td class="code"><pre><span class="line">set completion-ignore-case on</span><br></pre></td></tr></table></figure></div>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>到此最好有域名, 然后生成 SSL 证书, 如何生成证书这里就不赘述了</p>
+<h3 id="配置-HTTP"><a href="#配置-HTTP" class="headerlink" title="配置 HTTP"></a>配置 HTTP</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /opt/lampp/etc/httpd.conf</span><br></pre></td></tr></table></figure></div>
 
-<h2 id="解决左右跳单词-5D-5C"><a href="#解决左右跳单词-5D-5C" class="headerlink" title="解决左右跳单词 ;5D;5C"></a>解决左右跳单词 ;5D;5C</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">vi ~/.inputrc</span><br></pre></td></tr></table></figure></div>
+<p>将以下参数修改为自己的信息</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">ServerName www.domain.com:80</span><br><span class="line">DocumentRoot <span class="string">&quot;/opt/lampp/htdocs/wordpress&quot;</span></span><br><span class="line">&lt;Directory <span class="string">&quot;/opt/lampp/htdocs/wordpress&quot;</span>&gt;</span><br></pre></td></tr></table></figure></div>
 
-<p>添加</p>
-<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>.inputrc</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ &quot;\e[1;5C&quot;: forward-word     # ctrl + →</span></span><br><span class="line"><span class="addition">+ &quot;\e[1;5D&quot;: backward-word    # ctrl + ←</span></span><br></pre></td></tr></table></figure></div>
+<p>修改后保存并重启 <code>Apache</code> 服务</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> /opt/lampp/lampp restartapache</span><br></pre></td></tr></table></figure></div>
+
+<p>服务重启成功后, 使用 <a class="link"   href="http://www.domain.com/" >http://www.domain.com<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 访问你的域名就可以进入 <code>WordPress</code> 配置界面了</p>
+<h3 id="升级-HTTPS"><a href="#升级-HTTPS" class="headerlink" title="升级 HTTPS"></a>升级 HTTPS</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /opt/lampp/etc/extra/httpd-ssl.conf</span><br></pre></td></tr></table></figure></div>
+
+<p>将以下参数修改为自己的信息</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">&lt;VirtualHost *:443&gt;</span><br><span class="line">DocumentRoot <span class="string">&quot;/opt/lampp/htdocs/wordpress&quot;</span></span><br><span class="line">ServerName www.domain.com:443</span><br><span class="line">ServerAlias domain.com:443</span><br><span class="line"><span class="comment"># 并找到下面三个参数修改为自定义证书路径</span></span><br><span class="line">SSLCertificateFile <span class="string">&quot;/server/cert/cert.crt&quot;</span></span><br><span class="line">SSLCertificateKeyFile <span class="string">&quot;/server/cert/cert.key&quot;</span></span><br><span class="line">SSLCertificateChainFile <span class="string">&quot;/server/cert/chain.crt&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>修改后保存并重启 <code>Apache</code> 服务</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> /opt/lampp/lampp restartapache</span><br></pre></td></tr></table></figure></div>
+
+<p>服务重启成功后, 就可以使用 <a class="link"   href="https://www.domain.com/" >https://www.domain.com<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 访问你的网站</p>
+<h3 id="数据库配置"><a href="#数据库配置" class="headerlink" title="数据库配置"></a>数据库配置</h3><p>允许 <code>phpmyadmin</code> 外网访问</p>
+<p><code>XAMPP</code> 自带 <code>MySQL</code>, 同时也自带了 <code>phpmyadmin</code>, 方便管理数据库, 首先配置 <code>httpd-xampp.conf</code> 使其允许外网访问</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /opt/lampp/etc/extra/httpd-xampp.conf</span><br></pre></td></tr></table></figure></div>
+
+<p>找到 <code>&lt;Directory “/opt/lampp/phpmyadmin”&gt;</code> 修改参数</p>
+<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>httpd-xampp.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">&lt;Directory &quot;/opt/lampp/phpmyadmin&quot;&gt;</span><br><span class="line"><span class="deletion">-    Require local</span></span><br><span class="line"><span class="addition">+    Require all granted</span></span><br></pre></td></tr></table></figure></div>
+
+<p>保存并重启 <code>Apache</code> 服务</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> /opt/lampp/lampp restartapache</span><br></pre></td></tr></table></figure></div>
+
+<p>此时访问 <a class="link"   href="https://www.domain.com/phpmyadmin" >https://www.domain.com/phpmyadmin<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 即可进入 MySQL 管理页面</p>
+<h4 id="phpmyadmin-账户登录"><a href="#phpmyadmin-账户登录" class="headerlink" title="phpmyadmin 账户登录"></a>phpmyadmin 账户登录</h4><p>目前外网可以直接访问 <code>phpmyadmin</code>, 没有提示登录, 这样任何人只要尝试访问都可以进入 <code>MySQL</code> 管理页面, 这样很危险, 所以需要修改 <code>phpmyadmin</code> 为账户登录方式进入</p>
+<p>首先给 <code>localhost</code> 的 <code>root</code> 用户添加密码, 点击 <code>phpmyadmin</code> 的 账户 标签, 在下方找到 用户名 <code>root</code> – 主机名 <code>localhost</code> 一行后面点击 <code>修改权限</code></p>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/ubuntu-xampp-wordpress/img1.png"
+                      alt="phpmyadmin 账户"
+                ><figcaption>phpmyadmin 账户</figcaption></figure></p>
+<p>点击 <code>修改密码</code> 按钮, 在下方输入密码, 点击 <code>执行</code> 按钮保存</p>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/ubuntu-xampp-wordpress/img2.png"
+                      alt="修改密码"
+                ><figcaption>修改密码</figcaption></figure></p>
+<p>然后修改 <code>phpmyadmin</code> 配置文件, 使其不能自动登录</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /opt/lampp/phpmyadmin/config.inc.php</span><br></pre></td></tr></table></figure></div>
+
+<p>修改以下参数</p>
+<div class="code-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$cfg</span>[<span class="string">&#x27;blowfish_secret&#x27;</span>] = <span class="string">&#x27;myblowfishsecretmyblowfishsecret&#x27;</span> <span class="comment"># 自定义且尽量长</span></span><br><span class="line"><span class="comment">/* Authentication type */</span></span><br><span class="line"><span class="variable">$cfg</span>[<span class="string">&#x27;Servers&#x27;</span>][<span class="variable">$i</span>][<span class="string">&#x27;auth_type&#x27;</span>] = <span class="string">&#x27;cookie&#x27;</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>修改后保存并重启 <code>XAMPP</code> 服务</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> /opt/lampp/lampp restart</span><br></pre></td></tr></table></figure></div>
+
+<p>重启后访问 <a class="link"   href="https://www.domain.com/phpmyadmin" >https://www.domain.com/phpmyadmin<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 即可看到需要账号密码登录</p>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/ubuntu-xampp-wordpress/img3.png"
+                      alt="phpmyadmin 登录"
+                ><figcaption>phpmyadmin 登录</figcaption></figure></p>
+<h4 id="phpmyadmin-强制-HTTPS-访问"><a href="#phpmyadmin-强制-HTTPS-访问" class="headerlink" title="phpmyadmin 强制 HTTPS 访问"></a>phpmyadmin 强制 HTTPS 访问</h4><p>默认使用 <code>http</code> 访问 <code>phpmyadmin</code> 是不会重定向到 <code>https</code> 的, 不安全, 所以可以修改配置让其重定向</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /opt/lampp/etc/extra/httpd-xampp.conf</span><br></pre></td></tr></table></figure></div>
+
+<p>找到 <code>&lt;IfModule mod_perl.c&gt;</code>, 在里面添加</p>
+<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>httpd-xampp.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">&lt;IfModule mod_perl.c&gt;</span><br><span class="line">        ...</span><br><span class="line"><span class="addition">+       PerlSendHeader On</span></span><br><span class="line"> </span><br><span class="line"><span class="addition">+       # 强制 HTTPS 访问</span></span><br><span class="line"><span class="addition">+       RewriteEngine On</span></span><br><span class="line"><span class="addition">+       RewriteCond %&#123;SERVER_PORT&#125; !^443$</span></span><br><span class="line"><span class="addition">+       RewriteRule ^(.*)$ https://%&#123;HTTP_HOST&#125;%&#123;REQUEST_URI&#125; [L,R=301]</span></span><br><span class="line">&lt;/IfModule&gt;</span><br></pre></td></tr></table></figure></div>
+
+<p>然后重启 <code>Apache</code> 服务, 再次用 <code>http</code> 访问 <code>phpmyadmin</code> 就可以自动跳转到 <code>https</code></p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> /opt/lampp/lampp restartapache</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="WordPress-账号和数据库"><a href="#WordPress-账号和数据库" class="headerlink" title="WordPress 账号和数据库"></a>WordPress 账号和数据库</h4><p>需要创建 <code>WordPress</code> 专用的 <code>MySQL</code> 账户和数据库</p>
+<h5 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h5><p>登录 <code>phpmyadmin</code> 后, 点击左侧数据库列表最顶部的 <code>新建</code> 或者点击 <code>数据库</code> 标签新建数据库, 数据库名字自定义, 最好是加上前缀, 比如我的数据库名字为: <code>clv_wp_db</code>, 点击 创建 按钮</p>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/ubuntu-xampp-wordpress/img4.png"
+                      alt="创建数据库"
+                ><figcaption>创建数据库</figcaption></figure></p>
+<h5 id="新建账户"><a href="#新建账户" class="headerlink" title="新建账户"></a>新建账户</h5><p>点击左侧数据库列表新建的数据库, 然后点击 <code>权限</code> 标签, 就可以看到该数据库下的账户权限, 点击下方的 <code>新增用户账户</code> 按钮</p>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/ubuntu-xampp-wordpress/img5.png"
+                      alt="新增用户账户"
+                ><figcaption>新增用户账户</figcaption></figure></p>
+<p>输入 <code>账号</code> 和 <code>密码</code>, 主机名选择 <code>本地</code>, 并滚动到下方将数据库全局权限的 <code>全选</code> 勾上, 然后点击 <code>执行</code> 保存</p>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/ubuntu-xampp-wordpress/img6.png"
+                      alt="配置账户密码"
+                ><figcaption>配置账户密码</figcaption></figure></p>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/ubuntu-xampp-wordpress/img7.png"
+                      alt="配置账户权限"
+                ><figcaption>配置账户权限</figcaption></figure></p>
+<p>最后点击 <code>执行</code> 按钮, 跳转到新界面后, 会显示该新建账户在当前数据库权限, 也将 <code>全选</code> 勾上, 然后点击 <code>执行</code> 保存</p>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/ubuntu-xampp-wordpress/img8.png"
+                      alt="配置账户权限"
+                ><figcaption>配置账户权限</figcaption></figure></p>
+<h5 id="配置-WordPress"><a href="#配置-WordPress" class="headerlink" title="配置 WordPress"></a>配置 WordPress</h5><p>修改 <code>WordPress</code> 目录权限</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/lampp/htdocs</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">chown</span> -R wp:www-data wordpress</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> -R 777 wordpress</span><br></pre></td></tr></table></figure></div>
+
+<p>复制 <code>wordpress</code> 目录下 <code>wp-config-sample.php</code> 为 <code>wp-config.php</code>, 并修改配置</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> wordpress/</span><br><span class="line"><span class="built_in">cp</span> wp-config-sample.php wp-config.php</span><br><span class="line">vi wp-config.php</span><br></pre></td></tr></table></figure></div>
+
+<p>修改数据库连接配置</p>
+<div class="code-container" data-rel="Php"><figure class="iseeu highlight php"><figcaption><span>wp-config.php</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">/** WordPress数据库的名称 */</span></span><br><span class="line"><span class="title function_ invoke__">define</span>( <span class="string">&#x27;DB_NAME&#x27;</span>, <span class="string">&#x27;clv_wp_db&#x27;</span> );</span><br><span class="line"><span class="comment">/** MySQL数据库用户名 */</span></span><br><span class="line"><span class="title function_ invoke__">define</span>( <span class="string">&#x27;DB_USER&#x27;</span>, <span class="string">&#x27;test1&#x27;</span> );</span><br><span class="line"><span class="comment">/** MySQL数据库密码 */</span></span><br><span class="line"><span class="title function_ invoke__">define</span>( <span class="string">&#x27;DB_PASSWORD&#x27;</span>, <span class="string">&#x27;12345678&#x27;</span> );</span><br><span class="line"><span class="comment">/** WordPress数据表前缀 */</span></span><br><span class="line"><span class="variable">$table_prefix</span> = <span class="string">&#x27;clv_&#x27;</span>; <span class="comment"># 自定义, 我自己用数据库名字前缀</span></span><br></pre></td></tr></table></figure></div>
+
+<p>并在该文件最后添加</p>
+<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>wp-config.php</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ /** wordpress 后台管理安装插件不需 ftp 登录  */</span></span><br><span class="line"><span class="addition">+ define(&quot;FS_METHOD&quot;, &quot;direct&quot;);</span></span><br><span class="line"><span class="addition">+ define(&quot;FS_CHMOD_DIR&quot;, 0777);</span></span><br><span class="line"><span class="addition">+ define(&quot;FS_CHMOD_FILE&quot;, 0777);</span></span><br></pre></td></tr></table></figure></div>
+
+<p>保存后直接访问你的域名 <a class="link"   href="https://www.domain.com/" >https://www.domain.com<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 即可初始化 <code>WordPress</code></p>
+<h2 id="强制-HTTPS-访问"><a href="#强制-HTTPS-访问" class="headerlink" title="强制 HTTPS 访问"></a>强制 HTTPS 访问</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /opt/lampp/htdocs/wordpress/.htaccess</span><br></pre></td></tr></table></figure></div>
+
+<p>在 <code>&lt;/IfModule&gt;</code> 以外添加</p>
+<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>.htaccess</span></figcaption><table><tr><td class="code"><pre><span class="line">&lt;/IfModule&gt;</span><br><span class="line"> </span><br><span class="line"># END WordPress</span><br><span class="line"> </span><br><span class="line"><span class="addition">+ # 强制 HTTPS 访问</span></span><br><span class="line"><span class="addition">+ RewriteCond %&#123;SERVER_PORT&#125; !^443$</span></span><br><span class="line"><span class="addition">+ RewriteRule ^(.*)$ https://%&#123;HTTP_HOST&#125;%&#123;REQUEST_URI&#125; [L,R=301]</span></span><br></pre></td></tr></table></figure></div>
+
+<p>保存并重启 <code>Apache</code> 服务</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> /opt/lampp/lampp restartapache</span><br></pre></td></tr></table></figure></div>
+
+<p>此时用 <a class="link"   href="http://www.domain.com/" >http://www.domain.com<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 会自动跳转到 <a class="link"   href="https://www.domain.com/" >https://www.domain.com<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<h2 id="美化-WordPress-搜索-url"><a href="#美化-WordPress-搜索-url" class="headerlink" title="美化 WordPress 搜索 url"></a>美化 WordPress 搜索 url</h2><p>将搜索后的 <code>url</code> 从 <a class="link"   href="https://www.domain.com/?s=%E6%90%9C%E7%B4%A2%E8%AF%8D" >https://www.domain.com/?s=搜索词<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 变为 <a class="link"   href="https://www.domain.com/search/%E6%90%9C%E7%B4%A2%E8%AF%8D" >https://www.domain.com/search/搜索词<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>在主题函数模板 <code>functions.php</code> 最后添加即可</p>
+<div class="code-container" data-rel="Php"><figure class="iseeu highlight php"><figcaption><span>functions.php</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">//搜索美化伪静态</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">change_search_url_rewrite</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ( <span class="title function_ invoke__">is_search</span>() &amp;&amp; ! <span class="keyword">empty</span>( <span class="variable">$_GET</span>[<span class="string">&#x27;s&#x27;</span>] ) ) &#123;</span><br><span class="line">        <span class="title function_ invoke__">wp_redirect</span>( <span class="title function_ invoke__">home_url</span>( <span class="string">&#x27;/search/&#x27;</span> ) . <span class="title function_ invoke__">urlencode</span>( <span class="title function_ invoke__">get_query_var</span>( <span class="string">&#x27;s&#x27;</span> ) ) );</span><br><span class="line">        <span class="keyword">exit</span>();</span><br><span class="line">    &#125; <span class="keyword">elseif</span> ( <span class="title function_ invoke__">is_search</span>() &amp;&amp; <span class="keyword">empty</span>( <span class="title function_ invoke__">get_query_var</span>( <span class="string">&#x27;s&#x27;</span> ) ) ) &#123;</span><br><span class="line">        <span class="title function_ invoke__">wp_redirect</span>( <span class="title function_ invoke__">home_url</span>( <span class="string">&#x27;/search&#x27;</span> ) );</span><br><span class="line">        <span class="keyword">exit</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_ invoke__">add_action</span>( <span class="string">&#x27;template_redirect&#x27;</span>, <span class="string">&#x27;change_search_url_rewrite&#x27;</span> );</span><br></pre></td></tr></table></figure></div>
 ]]></content>
       <categories>
-        <category>优化</category>
+        <category>建站</category>
       </categories>
       <tags>
-        <tag>优化</tag>
         <tag>ubuntu</tag>
-        <tag>bash</tag>
-        <tag>shell</tag>
-        <tag>美化</tag>
+        <tag>wordpress</tag>
+        <tag>blog</tag>
+        <tag>xampp</tag>
       </tags>
   </entry>
   <entry>
@@ -1061,7 +1232,7 @@
   <entry>
     <title>使用 XAMPP 和 Filezilla 搭建静态资源和 FTP 服务</title>
     <url>/posts/xampp-statistics-ftp-server/</url>
-    <content><![CDATA[<p>使用 <code>XAMPP</code> 和 <code>Filezilla</code> 搭建静态资源和 <code>FTP</code> 服务</p>
+    <content><![CDATA[<p>搭建静态资源和 <code>FTP</code> 服务, 便于管理网站的静态资源文件</p>
 <span id="more"></span>
 
 <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
@@ -1069,10 +1240,7 @@
 <li>服务: Apache2</li>
 <li>工具: Filezilla</li>
 </ul>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
-<li>需要先安装 <code>XAMPP</code>, 即 <code>Apache</code> + <code>MySQL</code> + <code>PHP</code> + <code>PERL</code>, 它是一个功能强大的建站集成软件包, 这个软件包原来的名字是 <code>LAMPP</code>, 但是为了避免误解, 现已改名为 <code>XAMPP</code> 了</li>
-<li>下载地址: <a class="link"   href="https://www.apachefriends.org/download.html" >XAMPP 官网<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 选择 <code>Linux</code> 版本</li>
-</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>需要先安装 <code>XAMPP</code>, 即 <code>Apache</code> + <code>MySQL</code> + <code>PHP</code> + <code>PERL</code>, 它是一个功能强大的建站集成软件包, 这个软件包原来的名字是 <code>LAMPP</code>, 但是为了避免误解, 现已改名为 <code>XAMPP</code> 了<br>下载地址: <a class="link"   href="https://www.apachefriends.org/download.html" >XAMPP 官网<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 选择 <code>Linux</code> 版本</p>
 <div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo chmod +x xampp-linux-x64-7.4.8-0-installer.run*</span><br><span class="line">sudo ./xampp-linux-x64-7.4.8-0-installer.run*</span><br></pre></td></tr></table></figure></div>
 
 <p>然后一路默认安装即可</p>
@@ -1157,6 +1325,7 @@
         <category>建站</category>
       </categories>
       <tags>
+        <tag>ubuntu</tag>
         <tag>apache</tag>
         <tag>xampp</tag>
         <tag>Filezilla</tag>
