@@ -71,7 +71,7 @@
                       alt="[极致性能] 测试结果"
                 ><figcaption>[极致性能] 测试结果</figcaption></figure></p>
 <h2 id="优化设置"><a href="#优化设置" class="headerlink" title="优化设置"></a>优化设置</h2><h3 id="DLAA-1"><a href="#DLAA-1" class="headerlink" title="DLAA"></a>DLAA</h3><p>看了网上的科普, <code>DLAA</code> 并不属于 <code>DLSS</code> 而是抗锯齿, 不仅没有提高性能, 反而会更消耗性能</p>
-<h3 id="偷帧的贼"><a href="#偷帧的贼" class="headerlink" title="偷帧的贼"></a>偷帧的贼</h3><p>看了 B 站 up 主 <a class="link"   href="https://space.bilibili.com/220929" >Fallere013 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 的测试视频: <a class="link"   href="https://www.bilibili.com/video/BV11WY2eUEjU" >偷帧的贼-黑神话画面设置-先行版 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>, 总结如下图:</p>
+<h3 id="偷帧的贼"><a href="#偷帧的贼" class="headerlink" title="偷帧的贼"></a>偷帧的贼</h3><p>看了 B 站 up 主 <a class="link"   href="https://space.bilibili.com/220929" >Fallere013<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 的测试视频: <a class="link"   href="https://www.bilibili.com/video/BV11WY2eUEjU" >偷帧的贼-黑神话画面设置-先行版<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>, 总结如下图:</p>
 <p><figure class="image-caption"><img  
                      lazyload
                      src="/images/loading.svg"
@@ -477,18 +477,18 @@
     <content><![CDATA[<p>ssh 连接远程服务器时, 默认情况会自动断开, 需要修改设置以保持连接</p>
 <span id="more"></span>
 
-<h2 id="远程主机"><a href="#远程主机" class="headerlink" title="远程主机"></a>远程主机</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure></div>
+<h2 id="远程主机"><a href="#远程主机" class="headerlink" title="远程主机"></a>远程主机</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure></div>
 
 <p>修改发送客户端 <code>KeepAlive</code> 时间间隔(秒) 和 超时次数</p>
-<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>sshd_config</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="deletion">- ClientAliveInterval 0</span></span><br><span class="line"><span class="addition">+ ClientAliveInterval 30</span></span><br><span class="line"><span class="deletion">- ClientAliveCountMax 3</span></span><br><span class="line"><span class="addition">+ ClientAliveCountMax 30</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>sshd_config</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="deletion">- ClientAliveInterval 0</span></span><br><span class="line"><span class="addition">+ ClientAliveInterval 30</span></span><br><span class="line"><span class="deletion">- ClientAliveCountMax 3</span></span><br><span class="line"><span class="addition">+ ClientAliveCountMax 30</span></span><br></pre></td></tr></table></figure></div>
 
 <p>总时间为: 30 × 30, 即 15 分钟没有操作则终端断开, 保存并重启 <code>ssh</code> 服务</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">service sshd reload</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">service sshd reload</span><br></pre></td></tr></table></figure></div>
 
-<h2 id="本地终端"><a href="#本地终端" class="headerlink" title="本地终端"></a>本地终端</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">vi  ~/.ssh/config</span><br></pre></td></tr></table></figure></div>
+<h2 id="本地终端"><a href="#本地终端" class="headerlink" title="本地终端"></a>本地终端</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">vi  ~/.ssh/config</span><br></pre></td></tr></table></figure></div>
 
 <p>所有主机都是同样的间隔</p>
-<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>config</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ Host *</span></span><br><span class="line"><span class="addition">+     ServerAliveInterval 30</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>config</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ Host *</span></span><br><span class="line"><span class="addition">+     ServerAliveInterval 30</span></span><br></pre></td></tr></table></figure></div>
 ]]></content>
       <categories>
         <category>优化</category>
@@ -504,26 +504,26 @@
     <content><![CDATA[<p>优化 Git 的命令和设置, 方便使用</p>
 <span id="more"></span>
 
-<h2 id="命令别名"><a href="#命令别名" class="headerlink" title="命令别名"></a>命令别名</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">vi ~/.gitconfig</span><br></pre></td></tr></table></figure></div>
+<h2 id="命令别名"><a href="#命令别名" class="headerlink" title="命令别名"></a>命令别名</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">vi ~/.gitconfig</span><br></pre></td></tr></table></figure></div>
 <p>添加命令别名</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>.gitconfig</span></figcaption><table><tr><td class="code"><pre><span class="line">[alias]</span><br><span class="line">    st = status</span><br><span class="line">    co = checkout</span><br><span class="line">    ci = commit</span><br><span class="line">    br = branch</span><br><span class="line">    sub = submodule</span><br><span class="line">    cp = cherry-pick</span><br><span class="line">    tail = log -3</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>.gitconfig</span></figcaption><table><tr><td class="code"><pre><span class="line">[alias]</span><br><span class="line">    st = status</span><br><span class="line">    co = checkout</span><br><span class="line">    ci = commit</span><br><span class="line">    br = branch</span><br><span class="line">    sub = submodule</span><br><span class="line">    cp = cherry-pick</span><br><span class="line">    tail = log -3</span><br></pre></td></tr></table></figure></div>
 
 <h2 id="去掉-END-提示"><a href="#去掉-END-提示" class="headerlink" title="去掉 (END) 提示"></a>去掉 (END) 提示</h2><p>有可能会出现输入 <code>git br</code> 和 <code>git log</code> 后, 列表会出现 <code>(END)</code> 且需要手动输入 <code>q</code> 退出, 执行以下代码即可</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global pager.branch <span class="literal">false</span></span><br><span class="line">git config --global pager.log <span class="literal">false</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global pager.branch <span class="literal">false</span></span><br><span class="line">git config --global pager.log <span class="literal">false</span></span><br></pre></td></tr></table></figure></div>
 
-<h2 id="记住用户名和密码"><a href="#记住用户名和密码" class="headerlink" title="记住用户名和密码"></a>记住用户名和密码</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure></div>
+<h2 id="记住用户名和密码"><a href="#记住用户名和密码" class="headerlink" title="记住用户名和密码"></a>记住用户名和密码</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure></div>
 
-<h2 id="git-diff-去掉-M"><a href="#git-diff-去掉-M" class="headerlink" title="git diff 去掉 ^M"></a>git diff 去掉 ^M</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global core.whitespace cr-at-eol</span><br></pre></td></tr></table></figure></div>
+<h2 id="git-diff-去掉-M"><a href="#git-diff-去掉-M" class="headerlink" title="git diff 去掉 ^M"></a>git diff 去掉 ^M</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global core.whitespace cr-at-eol</span><br></pre></td></tr></table></figure></div>
 
-<h2 id="忽略文件权限变化"><a href="#忽略文件权限变化" class="headerlink" title="忽略文件权限变化"></a>忽略文件权限变化</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global core.filemode <span class="literal">false</span></span><br></pre></td></tr></table></figure></div>
+<h2 id="忽略文件权限变化"><a href="#忽略文件权限变化" class="headerlink" title="忽略文件权限变化"></a>忽略文件权限变化</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global core.filemode <span class="literal">false</span></span><br></pre></td></tr></table></figure></div>
 
-<h2 id="git-shell-中文文件显示"><a href="#git-shell-中文文件显示" class="headerlink" title="git shell 中文文件显示"></a>git shell 中文文件显示</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global core.quotepath <span class="literal">false</span></span><br></pre></td></tr></table></figure></div>
+<h2 id="git-shell-中文文件显示"><a href="#git-shell-中文文件显示" class="headerlink" title="git shell 中文文件显示"></a>git shell 中文文件显示</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global core.quotepath <span class="literal">false</span></span><br></pre></td></tr></table></figure></div>
 
-<h2 id="添加代理"><a href="#添加代理" class="headerlink" title="添加代理"></a>添加代理</h2><h3 id="http代理"><a href="#http代理" class="headerlink" title="http代理"></a>http代理</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global https.proxy http://127.0.0.1:1080</span><br><span class="line">git config --global https.proxy https://127.0.0.1:1080</span><br></pre></td></tr></table></figure></div>
+<h2 id="添加代理"><a href="#添加代理" class="headerlink" title="添加代理"></a>添加代理</h2><h3 id="http代理"><a href="#http代理" class="headerlink" title="http代理"></a>http代理</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global https.proxy http://127.0.0.1:1080</span><br><span class="line">git config --global https.proxy https://127.0.0.1:1080</span><br></pre></td></tr></table></figure></div>
 
-<h3 id="socks5代理"><a href="#socks5代理" class="headerlink" title="socks5代理"></a>socks5代理</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy socks5://127.0.0.1:1080</span><br><span class="line">git config --global https.proxy socks5://127.0.0.1:1080</span><br></pre></td></tr></table></figure></div>
+<h3 id="socks5代理"><a href="#socks5代理" class="headerlink" title="socks5代理"></a>socks5代理</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy socks5://127.0.0.1:1080</span><br><span class="line">git config --global https.proxy socks5://127.0.0.1:1080</span><br></pre></td></tr></table></figure></div>
 
-<h3 id="取消代理"><a href="#取消代理" class="headerlink" title="取消代理"></a>取消代理</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global --<span class="built_in">unset</span> http.proxy</span><br><span class="line">git config --global --<span class="built_in">unset</span> https.proxy</span><br></pre></td></tr></table></figure></div>
+<h3 id="取消代理"><a href="#取消代理" class="headerlink" title="取消代理"></a>取消代理</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global --<span class="built_in">unset</span> http.proxy</span><br><span class="line">git config --global --<span class="built_in">unset</span> https.proxy</span><br></pre></td></tr></table></figure></div>
 ]]></content>
       <categories>
         <category>优化</category>
@@ -540,22 +540,22 @@
 <span id="more"></span>
 
 <h2 id="下载或生成-rebar3"><a href="#下载或生成-rebar3" class="headerlink" title="下载或生成 rebar3"></a>下载或生成 rebar3</h2><h3 id="编译过的稳定版"><a href="#编译过的稳定版" class="headerlink" title="编译过的稳定版"></a>编译过的稳定版</h3><p>下载 <code>rebar3</code> 文件并赋予可执行属性</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://s3.amazonaws.com/rebar3/rebar3 &amp;&amp; <span class="built_in">chmod</span> +x rebar3</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://s3.amazonaws.com/rebar3/rebar3 &amp;&amp; <span class="built_in">chmod</span> +x rebar3</span><br></pre></td></tr></table></figure></div>
 
 <h3 id="从源码编译生成"><a href="#从源码编译生成" class="headerlink" title="从源码编译生成"></a>从源码编译生成</h3><p>前提是已经 <a href="/posts/win10-wsl-erlang">安装 Erlang</a>, 然后从仓库将源文件拉取下来并编译生成 <code>rebar3</code></p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/erlang/rebar3.git</span><br><span class="line"><span class="built_in">cd</span> rebar3</span><br><span class="line">./bootstrap</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/erlang/rebar3.git</span><br><span class="line"><span class="built_in">cd</span> rebar3</span><br><span class="line">./bootstrap</span><br></pre></td></tr></table></figure></div>
 <p>完成后在目录下会出现 <code>rebar3</code> 文件</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">./rebar3 <span class="built_in">local</span> install</span><br></pre></td></tr></table></figure></div>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">./rebar3 <span class="built_in">local</span> install</span><br></pre></td></tr></table></figure></div>
 
 <p>将会看到</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">===&gt; Extracting rebar3 libs to YourHome/.cache/rebar3/lib...</span><br><span class="line">===&gt; Writing rebar3 run script YourHome/.cache/rebar3/bin/rebar3...</span><br><span class="line">===&gt; Add to <span class="variable">$PATH</span> <span class="keyword">for</span> use: <span class="built_in">export</span> PATH=YourHome/.cache/rebar3/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">===&gt; Extracting rebar3 libs to YourHome/.cache/rebar3/lib...</span><br><span class="line">===&gt; Writing rebar3 run script YourHome/.cache/rebar3/bin/rebar3...</span><br><span class="line">===&gt; Add to <span class="variable">$PATH</span> <span class="keyword">for</span> use: <span class="built_in">export</span> PATH=YourHome/.cache/rebar3/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure></div>
 
-<h2 id="添加全局环境变量"><a href="#添加全局环境变量" class="headerlink" title="添加全局环境变量"></a>添加全局环境变量</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/profile</span><br></pre></td></tr></table></figure></div>
+<h2 id="添加全局环境变量"><a href="#添加全局环境变量" class="headerlink" title="添加全局环境变量"></a>添加全局环境变量</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/profile</span><br></pre></td></tr></table></figure></div>
 
 <p>复制安装后提示的 <code>export</code> 语句, 并在 <code>profile</code> 最后加入</p>
-<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>config profile</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ export PATH=~/.cache/rebar3/bin:$PATH</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>config profile</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ export PATH=~/.cache/rebar3/bin:$PATH</span></span><br></pre></td></tr></table></figure></div>
 
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">rebar3 compile</span><br></pre></td></tr></table></figure></div>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">rebar3 compile</span><br></pre></td></tr></table></figure></div>
 ]]></content>
       <categories>
         <category>应用</category>
@@ -578,127 +578,127 @@
 <li>数据库: MySQL 5.7</li>
 <li>网站框架: WordPress 5.4.2–zh_CN</li>
 </ul>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="更新系统"><a href="#更新系统" class="headerlink" title="更新系统"></a>更新系统</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"><span class="built_in">sudo</span> apt upgrade</span><br></pre></td></tr></table></figure></div>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="更新系统"><a href="#更新系统" class="headerlink" title="更新系统"></a>更新系统</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"><span class="built_in">sudo</span> apt upgrade</span><br></pre></td></tr></table></figure></div>
 
-<h3 id="添加-ppa-源"><a href="#添加-ppa-源" class="headerlink" title="添加 ppa 源"></a>添加 ppa 源</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install software-properties-common -y</span><br><span class="line"><span class="built_in">sudo</span> add-apt-repository ppa:ondrej/php</span><br><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"><span class="built_in">sudo</span> apt upgrade</span><br></pre></td></tr></table></figure></div>
+<h3 id="添加-ppa-源"><a href="#添加-ppa-源" class="headerlink" title="添加 ppa 源"></a>添加 ppa 源</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install software-properties-common -y</span><br><span class="line"><span class="built_in">sudo</span> add-apt-repository ppa:ondrej/php</span><br><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"><span class="built_in">sudo</span> apt upgrade</span><br></pre></td></tr></table></figure></div>
 
-<h2 id="安装所需要的软件"><a href="#安装所需要的软件" class="headerlink" title="安装所需要的软件"></a>安装所需要的软件</h2><h3 id="Apache"><a href="#Apache" class="headerlink" title="Apache"></a>Apache</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install apache2 -y</span><br></pre></td></tr></table></figure></div>
+<h2 id="安装所需要的软件"><a href="#安装所需要的软件" class="headerlink" title="安装所需要的软件"></a>安装所需要的软件</h2><h3 id="Apache"><a href="#Apache" class="headerlink" title="Apache"></a>Apache</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install apache2 -y</span><br></pre></td></tr></table></figure></div>
 
-<h3 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install php7.4 -y</span><br><span class="line"><span class="built_in">sudo</span> apt install libapache2-mod-php7.4 -y</span><br></pre></td></tr></table></figure></div>
+<h3 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install php7.4 -y</span><br><span class="line"><span class="built_in">sudo</span> apt install libapache2-mod-php7.4 -y</span><br></pre></td></tr></table></figure></div>
 
-<h3 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install php7.4-mysql -y</span><br><span class="line"><span class="built_in">sudo</span> apt install mysql-server -y</span><br></pre></td></tr></table></figure></div>
+<h3 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install php7.4-mysql -y</span><br><span class="line"><span class="built_in">sudo</span> apt install mysql-server -y</span><br></pre></td></tr></table></figure></div>
 
-<h3 id="WordPress"><a href="#WordPress" class="headerlink" title="WordPress"></a>WordPress</h3><p>到官方简体中文网手动下载: <a class="link"   href="https://cn.wordpress.org/download/" >cn.wordpress.org&#x2F;download <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 或者执行: </p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://cn.wordpress.org/latest-zh_CN.tar.gz</span><br></pre></td></tr></table></figure></div>
+<h3 id="WordPress"><a href="#WordPress" class="headerlink" title="WordPress"></a>WordPress</h3><p>到官方简体中文网手动下载: <a class="link"   href="https://cn.wordpress.org/download/" >cn.wordpress.org&#x2F;download<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 或者执行: </p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://cn.wordpress.org/latest-zh_CN.tar.gz</span><br></pre></td></tr></table></figure></div>
 
 <p>下载后解压并拷贝到目录 <code>/var/www/html/</code> 下</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">tar zxf latest-zh_CN.tar.gz</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">mv</span> -f wordpress/ /var/www/html/</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">tar zxf latest-zh_CN.tar.gz</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">mv</span> -f wordpress/ /var/www/html/</span><br></pre></td></tr></table></figure></div>
 
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="修改-wordpress-文件夹的所有者和读写属性"><a href="#修改-wordpress-文件夹的所有者和读写属性" class="headerlink" title="修改 wordpress 文件夹的所有者和读写属性"></a>修改 wordpress 文件夹的所有者和读写属性</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/html/</span><br></pre></td></tr></table></figure></div>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="修改-wordpress-文件夹的所有者和读写属性"><a href="#修改-wordpress-文件夹的所有者和读写属性" class="headerlink" title="修改 wordpress 文件夹的所有者和读写属性"></a>修改 wordpress 文件夹的所有者和读写属性</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/html/</span><br></pre></td></tr></table></figure></div>
 
 <h3 id="将-wp-替换为你的用户名"><a href="#将-wp-替换为你的用户名" class="headerlink" title="将 wp 替换为你的用户名"></a>将 wp 替换为你的用户名</h3><p><code>www-data</code> 是服务器的默认组</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">chown</span> -R wp:www-data wordpress</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">chown</span> -R wp:www-data wordpress</span><br></pre></td></tr></table></figure></div>
 
-<h3 id="修改读写属性"><a href="#修改读写属性" class="headerlink" title="修改读写属性"></a>修改读写属性</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> 777 -R wordpress</span><br></pre></td></tr></table></figure></div>
+<h3 id="修改读写属性"><a href="#修改读写属性" class="headerlink" title="修改读写属性"></a>修改读写属性</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> 777 -R wordpress</span><br></pre></td></tr></table></figure></div>
 
 <h3 id="启用-Apache-Rewrite-操作"><a href="#启用-Apache-Rewrite-操作" class="headerlink" title="启用 Apache Rewrite 操作"></a>启用 Apache Rewrite 操作</h3><p>让其能够重定向你的访问链接</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> a2enmod rewrite</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> a2enmod rewrite</span><br></pre></td></tr></table></figure></div>
 
 <h3 id="配置-MySQL-数据库"><a href="#配置-MySQL-数据库" class="headerlink" title="配置 MySQL 数据库"></a>配置 MySQL 数据库</h3><p>用于后面的网站数据存储, 先给 <code>MySQL</code> 控制台 <code>root</code> 用户添加免密登录</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/mysql/mysql.conf.d/mysqld.cnf</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/mysql/mysql.conf.d/mysqld.cnf</span><br></pre></td></tr></table></figure></div>
 
 <p>在最后一行添加</p>
-<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>mysqld.cnf</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ skip-grant-tables</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>mysqld.cnf</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ skip-grant-tables</span></span><br></pre></td></tr></table></figure></div>
 
 <p>重启服务后进入 <code>MySQL</code> 控制台</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> service mysql restart  <span class="comment"># 重启服务</span></span><br><span class="line">mysql -u root -p            <span class="comment"># 直接回车进入</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> service mysql restart  <span class="comment"># 重启服务</span></span><br><span class="line">mysql -u root -p            <span class="comment"># 直接回车进入</span></span><br></pre></td></tr></table></figure></div>
 
 <h3 id="修改-MySQL-root-用户的密码"><a href="#修改-MySQL-root-用户的密码" class="headerlink" title="修改 MySQL root 用户的密码"></a>修改 MySQL root 用户的密码</h3><p>将 <code>xxxxxx</code> 替换为你自己的密码</p>
-<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">update</span> mysql.user <span class="keyword">set</span> authentication_string<span class="operator">=</span>PASSWORD(<span class="string">&#x27;xxxxxx&#x27;</span>), plugin<span class="operator">=</span><span class="string">&#x27;mysql_native_password&#x27;</span> <span class="keyword">where</span> <span class="keyword">user</span><span class="operator">=</span><span class="string">&#x27;root&#x27;</span>;</span><br><span class="line">flush privileges;</span><br><span class="line">exit</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">update</span> mysql.user <span class="keyword">set</span> authentication_string<span class="operator">=</span>PASSWORD(<span class="string">&#x27;xxxxxx&#x27;</span>), plugin<span class="operator">=</span><span class="string">&#x27;mysql_native_password&#x27;</span> <span class="keyword">where</span> <span class="keyword">user</span><span class="operator">=</span><span class="string">&#x27;root&#x27;</span>;</span><br><span class="line">flush privileges;</span><br><span class="line">exit</span><br></pre></td></tr></table></figure></div>
 
 <p>这样下次进入时就使用自己定义的密码登录 <code>MySQL</code> 控制台了, 然后记得回到 <code>mysqld.cnf</code> 把刚刚添加的 <code>skip-grant-tables</code> 删除, 否则不安全</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/mysql/mysql.conf.d/mysqld.cnf</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/mysql/mysql.conf.d/mysqld.cnf</span><br></pre></td></tr></table></figure></div>
 <p>删除</p>
-<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>mysqld.cnf</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="deletion">- skip-grant-tables</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>mysqld.cnf</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="deletion">- skip-grant-tables</span></span><br></pre></td></tr></table></figure></div>
 
 <p>重启服务</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> service mysql restart</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> service mysql restart</span><br></pre></td></tr></table></figure></div>
 
 <h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><p>将 <code>xxxxxx</code> 替换为你自己的密码</p>
-<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> database wordpressdb;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> wordpress<span class="variable">@localhost</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;xxxxxx&#x27;</span>;</span><br><span class="line"><span class="keyword">GRANT</span> <span class="keyword">ALL</span> PRIVILEGES <span class="keyword">ON</span> wordpressdb.<span class="operator">*</span> <span class="keyword">TO</span> wordpress<span class="variable">@localhost</span>;</span><br><span class="line">FLUSH PRIVILEGES;</span><br><span class="line">exit</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> database wordpressdb;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> wordpress<span class="variable">@localhost</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;xxxxxx&#x27;</span>;</span><br><span class="line"><span class="keyword">GRANT</span> <span class="keyword">ALL</span> PRIVILEGES <span class="keyword">ON</span> wordpressdb.<span class="operator">*</span> <span class="keyword">TO</span> wordpress<span class="variable">@localhost</span>;</span><br><span class="line">FLUSH PRIVILEGES;</span><br><span class="line">exit</span><br></pre></td></tr></table></figure></div>
 
-<h2 id="配置-Apache-主页"><a href="#配置-Apache-主页" class="headerlink" title="配置 Apache 主页"></a>配置 Apache 主页</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/apache2/sites-enabled/000-default.conf</span><br></pre></td></tr></table></figure></div>
+<h2 id="配置-Apache-主页"><a href="#配置-Apache-主页" class="headerlink" title="配置 Apache 主页"></a>配置 Apache 主页</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/apache2/sites-enabled/000-default.conf</span><br></pre></td></tr></table></figure></div>
 
-<h3 id="修改主页在-wordpress-目录下"><a href="#修改主页在-wordpress-目录下" class="headerlink" title="修改主页在 wordpress 目录下"></a>修改主页在 wordpress 目录下</h3><div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>000-default.conf</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="deletion">- DocumentRoot /var/www/html</span></span><br><span class="line"><span class="addition">+ DocumentRoot /var/www/html/wordpress</span></span><br></pre></td></tr></table></figure></div>
+<h3 id="修改主页在-wordpress-目录下"><a href="#修改主页在-wordpress-目录下" class="headerlink" title="修改主页在 wordpress 目录下"></a>修改主页在 wordpress 目录下</h3><div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>000-default.conf</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="deletion">- DocumentRoot /var/www/html</span></span><br><span class="line"><span class="addition">+ DocumentRoot /var/www/html/wordpress</span></span><br></pre></td></tr></table></figure></div>
 
-<h3 id="修改-Apache-服务器对文件夹的读写限制"><a href="#修改-Apache-服务器对文件夹的读写限制" class="headerlink" title="修改 Apache 服务器对文件夹的读写限制"></a>修改 Apache 服务器对文件夹的读写限制</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/apache2/apache2.conf</span><br></pre></td></tr></table></figure></div>
+<h3 id="修改-Apache-服务器对文件夹的读写限制"><a href="#修改-Apache-服务器对文件夹的读写限制" class="headerlink" title="修改 Apache 服务器对文件夹的读写限制"></a>修改 Apache 服务器对文件夹的读写限制</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/apache2/apache2.conf</span><br></pre></td></tr></table></figure></div>
 
 <p>将原来的</p>
-<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>apache2.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">  &lt;Directory /var/www/&gt;</span><br><span class="line"><span class="deletion">-     Options Indexes FollowSymLinks</span></span><br><span class="line"><span class="addition">+     Options FollowSymLinks</span></span><br><span class="line"><span class="deletion">-     AllowOverride None</span></span><br><span class="line"><span class="addition">+     AllowOverride All</span></span><br><span class="line">      Require all granted</span><br><span class="line">  &lt;/Directory&gt;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>apache2.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">  &lt;Directory /var/www/&gt;</span><br><span class="line"><span class="deletion">-     Options Indexes FollowSymLinks</span></span><br><span class="line"><span class="addition">+     Options FollowSymLinks</span></span><br><span class="line"><span class="deletion">-     AllowOverride None</span></span><br><span class="line"><span class="addition">+     AllowOverride All</span></span><br><span class="line">      Require all granted</span><br><span class="line">  &lt;/Directory&gt;</span><br></pre></td></tr></table></figure></div>
 
 <p>并在最后添加一行域名地址, 否则重启服务会报错</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>apache2.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">ServerName www.domain.com</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>apache2.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">ServerName www.domain.com</span><br></pre></td></tr></table></figure></div>
 
-<h2 id="修改-WordPress-数据库配置"><a href="#修改-WordPress-数据库配置" class="headerlink" title="修改 WordPress 数据库配置"></a>修改 WordPress 数据库配置</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/html/wordpress/</span><br><span class="line"><span class="built_in">cp</span> wp-config-sample.php wp-config.php</span><br><span class="line"><span class="built_in">sudo</span> vi wp-config.php</span><br></pre></td></tr></table></figure></div>
+<h2 id="修改-WordPress-数据库配置"><a href="#修改-WordPress-数据库配置" class="headerlink" title="修改 WordPress 数据库配置"></a>修改 WordPress 数据库配置</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/html/wordpress/</span><br><span class="line"><span class="built_in">cp</span> wp-config-sample.php wp-config.php</span><br><span class="line"><span class="built_in">sudo</span> vi wp-config.php</span><br></pre></td></tr></table></figure></div>
 
 <p>将要连接的数据库设置为前面 <code>MySQL</code> 控制台所配置的</p>
-<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><figcaption><span>wp-config.php</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">// ** MySQL 设置 - 具体信息来自您正在使用的主机 ** //</span></span><br><span class="line"><span class="comment">/** WordPress数据库的名称 */</span></span><br><span class="line"><span class="title function_ invoke__">define</span>( <span class="string">&#x27;DB_NAME&#x27;</span>, <span class="string">&#x27;wordpressdb&#x27;</span> );</span><br><span class="line"><span class="comment">/** MySQL数据库用户名 */</span></span><br><span class="line"><span class="title function_ invoke__">define</span>( <span class="string">&#x27;DB_USER&#x27;</span>, <span class="string">&#x27;wordpress&#x27;</span> );</span><br><span class="line"><span class="comment">/** MySQL数据库密码 */</span></span><br><span class="line"><span class="comment">// 将 xxxxxx 替换为前面配置数据的密码</span></span><br><span class="line"><span class="title function_ invoke__">define</span>( <span class="string">&#x27;DB_PASSWORD&#x27;</span>, <span class="string">&#x27;xxxxxx&#x27;</span> );</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Php"><figure class="iseeu highlight php"><figcaption><span>wp-config.php</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">// ** MySQL 设置 - 具体信息来自您正在使用的主机 ** //</span></span><br><span class="line"><span class="comment">/** WordPress数据库的名称 */</span></span><br><span class="line"><span class="title function_ invoke__">define</span>( <span class="string">&#x27;DB_NAME&#x27;</span>, <span class="string">&#x27;wordpressdb&#x27;</span> );</span><br><span class="line"><span class="comment">/** MySQL数据库用户名 */</span></span><br><span class="line"><span class="title function_ invoke__">define</span>( <span class="string">&#x27;DB_USER&#x27;</span>, <span class="string">&#x27;wordpress&#x27;</span> );</span><br><span class="line"><span class="comment">/** MySQL数据库密码 */</span></span><br><span class="line"><span class="comment">// 将 xxxxxx 替换为前面配置数据的密码</span></span><br><span class="line"><span class="title function_ invoke__">define</span>( <span class="string">&#x27;DB_PASSWORD&#x27;</span>, <span class="string">&#x27;xxxxxx&#x27;</span> );</span><br></pre></td></tr></table></figure></div>
 
 <p>并在最后面添加 <code>WordPress</code> 进行更新时免登录的配置</p>
-<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>wp-config.php</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ define(&quot;FS_METHOD&quot;, &quot;direct&quot;);</span></span><br><span class="line"><span class="addition">+ define(&quot;FS_CHMOD_DIR&quot;, 0777);</span></span><br><span class="line"><span class="addition">+ define(&quot;FS_CHMOD_FILE&quot;, 0777);</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>wp-config.php</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ define(&quot;FS_METHOD&quot;, &quot;direct&quot;);</span></span><br><span class="line"><span class="addition">+ define(&quot;FS_CHMOD_DIR&quot;, 0777);</span></span><br><span class="line"><span class="addition">+ define(&quot;FS_CHMOD_FILE&quot;, 0777);</span></span><br></pre></td></tr></table></figure></div>
 
 <p>重启服务</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> service mysql restart</span><br><span class="line"><span class="built_in">sudo</span> apache2ctl restart</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> service mysql restart</span><br><span class="line"><span class="built_in">sudo</span> apache2ctl restart</span><br></pre></td></tr></table></figure></div>
 
 <p>到这里已经可以用你的域名访问 <code>WordPress</code> 进行网站的初始化配置了~</p>
 <h2 id="ssl-配置"><a href="#ssl-配置" class="headerlink" title="ssl 配置"></a>ssl 配置</h2><p>若你的域名是 <code>http</code> 类型的, 可以在阿里云申请免费 <code>ssl</code> 证书, 将 <code>http</code> 升级为 <code>https</code>, 申请比较简单这里就不说了</p>
 <p>选择 <code>Apache</code> 服务器类型的证书下载, 并上传到 <code>/etc/apache2/xxx</code> 目录下, 如 <code>/etc/apache2/cert</code></p>
-<h3 id="启用-SSL-模块"><a href="#启用-SSL-模块" class="headerlink" title="启用 SSL 模块"></a>启用 SSL 模块</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> a2enmod ssl</span><br></pre></td></tr></table></figure></div>
+<h3 id="启用-SSL-模块"><a href="#启用-SSL-模块" class="headerlink" title="启用 SSL 模块"></a>启用 SSL 模块</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> a2enmod ssl</span><br></pre></td></tr></table></figure></div>
 
 <p>可以执行命令查看是否自动生成 <code>default-ssl.conf</code> 文件</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">ll /etc/apache2/sites-available/</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">ll /etc/apache2/sites-available/</span><br></pre></td></tr></table></figure></div>
 
 <p>应该会看到</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">total 20</span><br><span class="line">drwxr-xr-x 2 root root 4096 Jun 22 12:26 ./</span><br><span class="line">drwxr-xr-x 9 root root 4096 Jun 22 12:27 ../</span><br><span class="line">-rw-r--r-- 1 root root 1342 Jun 22 10:28 000-default.conf</span><br><span class="line">-rw-r--r-- 1 root root 6308 Jun 22 10:47 default-ssl.conf</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">total 20</span><br><span class="line">drwxr-xr-x 2 root root 4096 Jun 22 12:26 ./</span><br><span class="line">drwxr-xr-x 9 root root 4096 Jun 22 12:27 ../</span><br><span class="line">-rw-r--r-- 1 root root 1342 Jun 22 10:28 000-default.conf</span><br><span class="line">-rw-r--r-- 1 root root 6308 Jun 22 10:47 default-ssl.conf</span><br></pre></td></tr></table></figure></div>
 
-<h3 id="修改-SSL-配置文件"><a href="#修改-SSL-配置文件" class="headerlink" title="修改 SSL 配置文件"></a>修改 SSL 配置文件</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/apache2/sites-available/default-ssl.conf</span><br></pre></td></tr></table></figure></div>
+<h3 id="修改-SSL-配置文件"><a href="#修改-SSL-配置文件" class="headerlink" title="修改 SSL 配置文件"></a>修改 SSL 配置文件</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/apache2/sites-available/default-ssl.conf</span><br></pre></td></tr></table></figure></div>
 
 <p>将对应的参数修改为你自己的内容</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>default-ssl.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">&lt;IfModule mod_ssl.c&gt;</span><br><span class="line">    &lt;VirtualHost *:443&gt;</span><br><span class="line">        # 添加ServerName, 域名替换为你自己的</span><br><span class="line">        ServerName www.domain.com</span><br><span class="line">        DocumentRoot /var/www/html/wordpress</span><br><span class="line">        ...</span><br><span class="line">        SSLCertificateFile /etc/apache2/cert/cert.crt</span><br><span class="line">        SSLCertificateKeyFile /etc/apache2/cert/cert.key</span><br><span class="line">        ...</span><br><span class="line">        SSLCertificateChainFile /etc/apache2/cert/chain.crt</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>default-ssl.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">&lt;IfModule mod_ssl.c&gt;</span><br><span class="line">    &lt;VirtualHost *:443&gt;</span><br><span class="line">        # 添加ServerName, 域名替换为你自己的</span><br><span class="line">        ServerName www.domain.com</span><br><span class="line">        DocumentRoot /var/www/html/wordpress</span><br><span class="line">        ...</span><br><span class="line">        SSLCertificateFile /etc/apache2/cert/cert.crt</span><br><span class="line">        SSLCertificateKeyFile /etc/apache2/cert/cert.key</span><br><span class="line">        ...</span><br><span class="line">        SSLCertificateChainFile /etc/apache2/cert/chain.crt</span><br></pre></td></tr></table></figure></div>
 
-<h3 id="创建软连接进行关联"><a href="#创建软连接进行关联" class="headerlink" title="创建软连接进行关联"></a>创建软连接进行关联</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">ln</span> -s /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-enabled/001-ssl.conf</span><br></pre></td></tr></table></figure></div>
+<h3 id="创建软连接进行关联"><a href="#创建软连接进行关联" class="headerlink" title="创建软连接进行关联"></a>创建软连接进行关联</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">ln</span> -s /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-enabled/001-ssl.conf</span><br></pre></td></tr></table></figure></div>
 
 <p>重新加载 Apache 配置文件</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> /etc/init.d/apache2 force-reload</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> /etc/init.d/apache2 force-reload</span><br></pre></td></tr></table></figure></div>
 
 <p>重启 Apache 服务</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> /etc/init.d/apache2 restart</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> /etc/init.d/apache2 restart</span><br></pre></td></tr></table></figure></div>
 
 <p>然后使用 <code>https://www.domain.com</code> 访问你的域名, 看是否能正常访问并且域名左边有个小锁头, 说明成功~</p>
-<h2 id="强制-https-访问"><a href="#强制-https-访问" class="headerlink" title="强制 https 访问"></a>强制 https 访问</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/html/wordpress/</span><br><span class="line"><span class="built_in">sudo</span> vi .htaccess</span><br></pre></td></tr></table></figure></div>
+<h2 id="强制-https-访问"><a href="#强制-https-访问" class="headerlink" title="强制 https 访问"></a>强制 https 访问</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/html/wordpress/</span><br><span class="line"><span class="built_in">sudo</span> vi .htaccess</span><br></pre></td></tr></table></figure></div>
 
 <p>在配置里最后增加两行, 必须在 <code>&lt;IfModule&gt;</code> 以外, 否则会被自动重写从而丢失</p>
-<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>.htaccess</span></figcaption><table><tr><td class="code"><pre><span class="line">  &lt;/IfModule&gt;</span><br><span class="line"></span><br><span class="line"><span class="addition">+ ## END WordPress</span></span><br><span class="line"><span class="addition">+ ## 强制 HTTPS 访问</span></span><br><span class="line"><span class="addition">+ RewriteCond %&#123;SERVER_PORT&#125; !^443$</span></span><br><span class="line"><span class="addition">+ RewriteRule ^(.*)$ https://%&#123;HTTP_HOST&#125;%&#123;REQUEST_URI&#125; [L,R=301]</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>.htaccess</span></figcaption><table><tr><td class="code"><pre><span class="line">  &lt;/IfModule&gt;</span><br><span class="line"></span><br><span class="line"><span class="addition">+ ## END WordPress</span></span><br><span class="line"><span class="addition">+ ## 强制 HTTPS 访问</span></span><br><span class="line"><span class="addition">+ RewriteCond %&#123;SERVER_PORT&#125; !^443$</span></span><br><span class="line"><span class="addition">+ RewriteRule ^(.*)$ https://%&#123;HTTP_HOST&#125;%&#123;REQUEST_URI&#125; [L,R=301]</span></span><br></pre></td></tr></table></figure></div>
 
 <p>这样用 <code>http</code> 访问也会自动跳转到 <code>https</code>, 同时最好也在 <code>WordPress</code> 后台管理的 个人资料 和 设置 里面的把 站点&#x2F;域名 都改为 <code>https</code> 类型的</p>
 <h2 id="美化-WordPress-搜索-url"><a href="#美化-WordPress-搜索-url" class="headerlink" title="美化 WordPress 搜索 url"></a>美化 WordPress 搜索 url</h2><p>将搜索后的 url 从 <code>https://www.domain.com/?s=搜索词</code> 变为 <code>https://www.domain.com/search/搜索词</code></p>
 <p>在主题函数模板 <code>functions.php</code> 最后添加即可</p>
-<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><figcaption><span>functions.php</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">//搜索美化伪静态</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">change_search_url_rewrite</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ( <span class="title function_ invoke__">is_search</span>() &amp;&amp; ! <span class="keyword">empty</span>( <span class="variable">$_GET</span>[<span class="string">&#x27;s&#x27;</span>] ) ) &#123;</span><br><span class="line">        <span class="title function_ invoke__">wp_redirect</span>( <span class="title function_ invoke__">home_url</span>( <span class="string">&#x27;/search/&#x27;</span> ) . <span class="title function_ invoke__">urlencode</span>( <span class="title function_ invoke__">get_query_var</span>( <span class="string">&#x27;s&#x27;</span> ) ) );</span><br><span class="line">        <span class="keyword">exit</span>();</span><br><span class="line">    &#125; <span class="keyword">elseif</span> ( <span class="title function_ invoke__">is_search</span>() &amp;&amp; <span class="keyword">empty</span>( <span class="title function_ invoke__">get_query_var</span>( <span class="string">&#x27;s&#x27;</span> ) ) ) &#123;</span><br><span class="line">        <span class="title function_ invoke__">wp_redirect</span>( <span class="title function_ invoke__">home_url</span>( <span class="string">&#x27;/search&#x27;</span> ) );</span><br><span class="line">        <span class="keyword">exit</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_ invoke__">add_action</span>( <span class="string">&#x27;template_redirect&#x27;</span>, <span class="string">&#x27;change_search_url_rewrite&#x27;</span> );</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Php"><figure class="iseeu highlight php"><figcaption><span>functions.php</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">//搜索美化伪静态</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">change_search_url_rewrite</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ( <span class="title function_ invoke__">is_search</span>() &amp;&amp; ! <span class="keyword">empty</span>( <span class="variable">$_GET</span>[<span class="string">&#x27;s&#x27;</span>] ) ) &#123;</span><br><span class="line">        <span class="title function_ invoke__">wp_redirect</span>( <span class="title function_ invoke__">home_url</span>( <span class="string">&#x27;/search/&#x27;</span> ) . <span class="title function_ invoke__">urlencode</span>( <span class="title function_ invoke__">get_query_var</span>( <span class="string">&#x27;s&#x27;</span> ) ) );</span><br><span class="line">        <span class="keyword">exit</span>();</span><br><span class="line">    &#125; <span class="keyword">elseif</span> ( <span class="title function_ invoke__">is_search</span>() &amp;&amp; <span class="keyword">empty</span>( <span class="title function_ invoke__">get_query_var</span>( <span class="string">&#x27;s&#x27;</span> ) ) ) &#123;</span><br><span class="line">        <span class="title function_ invoke__">wp_redirect</span>( <span class="title function_ invoke__">home_url</span>( <span class="string">&#x27;/search&#x27;</span> ) );</span><br><span class="line">        <span class="keyword">exit</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_ invoke__">add_action</span>( <span class="string">&#x27;template_redirect&#x27;</span>, <span class="string">&#x27;change_search_url_rewrite&#x27;</span> );</span><br></pre></td></tr></table></figure></div>
 
 <h2 id="安装-PHP-模组"><a href="#安装-PHP-模组" class="headerlink" title="安装 PHP 模组"></a>安装 PHP 模组</h2><p>安装完后在 <code>管理后台</code> – <code>工具</code> – <code>站点健康</code> 会看到 <code>WordPress</code> 检测到 <code>PHP</code> 缺失的模组, 根据提示的模组名字一个个安装即可, 比如 <code>curl</code></p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt-cache search curl | grep php</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt-cache search curl | grep php</span><br></pre></td></tr></table></figure></div>
 
 <p>可能得到:</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">php7.2-curl - CURL module <span class="keyword">for</span> PHP</span><br><span class="line">php-http-request2 - Provides an easy way to perform HTTP requests</span><br><span class="line">php-curl - CURL module <span class="keyword">for</span> PHP [default]</span><br><span class="line">php5.6-curl - CURL module <span class="keyword">for</span> PHP</span><br><span class="line">php7.0-curl - CURL module <span class="keyword">for</span> PHP</span><br><span class="line">php7.1-curl - CURL module <span class="keyword">for</span> PHP</span><br><span class="line">php7.3-curl - CURL module <span class="keyword">for</span> PHP</span><br><span class="line">php7.4-curl - CURL module <span class="keyword">for</span> PHP</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">php7.2-curl - CURL module <span class="keyword">for</span> PHP</span><br><span class="line">php-http-request2 - Provides an easy way to perform HTTP requests</span><br><span class="line">php-curl - CURL module <span class="keyword">for</span> PHP [default]</span><br><span class="line">php5.6-curl - CURL module <span class="keyword">for</span> PHP</span><br><span class="line">php7.0-curl - CURL module <span class="keyword">for</span> PHP</span><br><span class="line">php7.1-curl - CURL module <span class="keyword">for</span> PHP</span><br><span class="line">php7.3-curl - CURL module <span class="keyword">for</span> PHP</span><br><span class="line">php7.4-curl - CURL module <span class="keyword">for</span> PHP</span><br></pre></td></tr></table></figure></div>
 
 <p>根据搜索结果安装与当前 php 版本相同的模组</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install php7.4-curl -y</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install php7.4-curl -y</span><br></pre></td></tr></table></figure></div>
 
 <p>提示缺失的模组全部安装完后重启 <code>Apache2</code> 服务即可</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> /etc/init.d/apache2 restart</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> /etc/init.d/apache2 restart</span><br></pre></td></tr></table></figure></div>
 
 <p>又或者直接执行下面命令, 全部一次性安装</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install php-curl php-gd php-xml php-mbstring  php-xmlrpc php-zip php-soap php-intl php-imagick -y</span><br><span class="line"><span class="built_in">sudo</span> /etc/init.d/apache2 restart</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install php-curl php-gd php-xml php-mbstring  php-xmlrpc php-zip php-soap php-intl php-imagick -y</span><br><span class="line"><span class="built_in">sudo</span> /etc/init.d/apache2 restart</span><br></pre></td></tr></table></figure></div>
 ]]></content>
       <categories>
         <category>建站</category>
@@ -719,22 +719,22 @@
 <span id="more"></span>
 
 <p>修改配置, 开启 <code>Header</code> 功能</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> a2enmod headers</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> a2enmod headers</span><br></pre></td></tr></table></figure></div>
 
 <p>修改 <code>Apache</code> 配置, 其他系统是 <code>httpd.conf</code>, 但在 <code>Ubuntu</code> 系统中是 <code>/etc/apache2/apache2.conf</code></p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/apache2/apache2.conf</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/apache2/apache2.conf</span><br></pre></td></tr></table></figure></div>
 
 <p>在 <code>&lt;Directory /var/www/&gt;</code> 下添加一行 <code>Access-Control-Allow-Origin</code> 的配置</p>
-<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>apache2.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">  &lt;Directory /var/www/&gt;</span><br><span class="line">      Options FollowSymLinks</span><br><span class="line">      AllowOverride All</span><br><span class="line">      Require all granted</span><br><span class="line"><span class="addition">+     Header set Access-Control-Allow-Origin *</span></span><br><span class="line">  &lt;/Directory&gt;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>apache2.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">  &lt;Directory /var/www/&gt;</span><br><span class="line">      Options FollowSymLinks</span><br><span class="line">      AllowOverride All</span><br><span class="line">      Require all granted</span><br><span class="line"><span class="addition">+     Header set Access-Control-Allow-Origin *</span></span><br><span class="line">  &lt;/Directory&gt;</span><br></pre></td></tr></table></figure></div>
 
 <p>保存退出, 然后检测配置是否有错</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apachectl -t</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apachectl -t</span><br></pre></td></tr></table></figure></div>
 
 <p>正常情况应该得到</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">Syntax OK</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">Syntax OK</span><br></pre></td></tr></table></figure></div>
 
 <p>重新加载配置并重启服务即可</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> /etc/init.d/apache2 force-reload</span><br><span class="line"><span class="built_in">sudo</span> /etc/init.d/apache2 restart</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> /etc/init.d/apache2 force-reload</span><br><span class="line"><span class="built_in">sudo</span> /etc/init.d/apache2 restart</span><br></pre></td></tr></table></figure></div>
 ]]></content>
       <categories>
         <category>建站</category>
@@ -753,9 +753,9 @@
 <span id="more"></span>
 
 <p><code>Ubuntu</code> 系统, 如果你的网站不在 <code>Apache2</code> 的 <code>/var/www/html</code> 目录下, 可以使用 <code>Alias</code> 绑定自定义目录, 同时可以起到自定义为自己要的 <code>url</code> 路径作用</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/apache2/apache2.conf</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/apache2/apache2.conf</span><br></pre></td></tr></table></figure></div>
 <p>在最后添加</p>
-<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>apache2.conf</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ Alias /custom_name /some/directory/web</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>apache2.conf</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ Alias /custom_name /some/directory/web</span></span><br></pre></td></tr></table></figure></div>
 
 <p>访问的时候就可以这样: <a href="">http://www.yourdomain.com/custom_name</a> 访问 <code>Alias</code> 所映射目录下的资源</p>
 ]]></content>
@@ -775,29 +775,29 @@
 <span id="more"></span>
 
 <h2 id="简化-PS1"><a href="#简化-PS1" class="headerlink" title="简化 PS1"></a>简化 PS1</h2><p>修改 <code>.bashrc</code></p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">vi ~/.bashrc</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">vi ~/.bashrc</span><br></pre></td></tr></table></figure></div>
 
 <p>添加 <code>PS1</code> 配置</p>
-<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>.bashrc</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ export PS1=&quot;\[\e]0;$&#123;debian_chroot:+($debian_chroot)&#125;\w\a\]\[\e[35;1m\]\u \[\e[37;1m\]in \[\e[36;1m\]\W \[\e[0m\]&quot;</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>.bashrc</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ export PS1=&quot;\[\e]0;$&#123;debian_chroot:+($debian_chroot)&#125;\w\a\]\[\e[35;1m\]\u \[\e[37;1m\]in \[\e[36;1m\]\W \[\e[0m\]&quot;</span></span><br></pre></td></tr></table></figure></div>
 
 <p>应用环境变量 或 开启新终端</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure></div>
 
 <p>终端将从</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">gelomen@GELOMEN-PC:~$</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">gelomen@GELOMEN-PC:~$</span><br></pre></td></tr></table></figure></div>
 
 <p>变为</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">gelomen <span class="keyword">in</span> ~ </span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">gelomen <span class="keyword">in</span> ~ </span><br></pre></td></tr></table></figure></div>
 
-<h2 id="忽略大小写"><a href="#忽略大小写" class="headerlink" title="忽略大小写"></a>忽略大小写</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">vi ~/.inputrc</span><br></pre></td></tr></table></figure></div>
-
-<p>添加</p>
-<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>.inputrc</span></figcaption><table><tr><td class="code"><pre><span class="line">set completion-ignore-case on</span><br></pre></td></tr></table></figure></div>
-
-<h2 id="解决左右跳单词-5D-5C"><a href="#解决左右跳单词-5D-5C" class="headerlink" title="解决左右跳单词 ;5D;5C"></a>解决左右跳单词 ;5D;5C</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">vi ~/.inputrc</span><br></pre></td></tr></table></figure></div>
+<h2 id="忽略大小写"><a href="#忽略大小写" class="headerlink" title="忽略大小写"></a>忽略大小写</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">vi ~/.inputrc</span><br></pre></td></tr></table></figure></div>
 
 <p>添加</p>
-<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>.inputrc</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ &quot;\e[1;5C&quot;: forward-word     # ctrl + →</span></span><br><span class="line"><span class="addition">+ &quot;\e[1;5D&quot;: backward-word    # ctrl + ←</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>.inputrc</span></figcaption><table><tr><td class="code"><pre><span class="line">set completion-ignore-case on</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="解决左右跳单词-5D-5C"><a href="#解决左右跳单词-5D-5C" class="headerlink" title="解决左右跳单词 ;5D;5C"></a>解决左右跳单词 ;5D;5C</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">vi ~/.inputrc</span><br></pre></td></tr></table></figure></div>
+
+<p>添加</p>
+<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>.inputrc</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ &quot;\e[1;5C&quot;: forward-word     # ctrl + →</span></span><br><span class="line"><span class="addition">+ &quot;\e[1;5D&quot;: backward-word    # ctrl + ←</span></span><br></pre></td></tr></table></figure></div>
 ]]></content>
       <categories>
         <category>优化</category>
@@ -816,7 +816,7 @@
     <content><![CDATA[<p>Windows 10 v2004 正式版发布, 同时更快更好的 wsl2 也来了</p>
 <span id="more"></span>
 
-<h2 id="升级-Windows-系统"><a href="#升级-Windows-系统" class="headerlink" title="升级 Windows 系统"></a>升级 Windows 系统</h2><p>可以在 <code>开始</code> → <code>设置</code> → <code>更新和安全</code> → <code>Windows 更新</code> 获取最新版系统, 但有时候会一直提示已经是最新版系统, 这时可以下载安装官方更新助手 <a class="link"   href="https://www.microsoft.com/zh-cn/software-download/windows10" >易升 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h2 id="升级-Windows-系统"><a href="#升级-Windows-系统" class="headerlink" title="升级 Windows 系统"></a>升级 Windows 系统</h2><p>可以在 <code>开始</code> → <code>设置</code> → <code>更新和安全</code> → <code>Windows 更新</code> 获取最新版系统, 但有时候会一直提示已经是最新版系统, 这时可以下载安装官方更新助手 <a class="link"   href="https://www.microsoft.com/zh-cn/software-download/windows10" >易升<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
 <p>升级成功后可以在 <code>开始</code> → <code>设置</code> → <code>系统</code> → <code>关于</code> 中看到系统版本号为 <code>2004</code></p>
 <p><figure class="image-caption"><img  
                      lazyload
@@ -841,26 +841,26 @@
                      data-src="/images/posts/upgrade-win10-v2004-wsl2/img3.png"
                       alt="CPU 性能信息"
                 ><figcaption>CPU 性能信息</figcaption></figure></p>
-<h2 id="升级-wsl2"><a href="#升级-wsl2" class="headerlink" title="升级 wsl2"></a>升级 wsl2</h2><p>先下载 <code>wsl2</code> 更新包并安装: <a class="link"   href="https://docs.microsoft.com/zh-cn/windows/wsl/wsl2-kernel" >wsl2 更新包链接 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h2 id="升级-wsl2"><a href="#升级-wsl2" class="headerlink" title="升级 wsl2"></a>升级 wsl2</h2><p>先下载 <code>wsl2</code> 更新包并安装: <a class="link"   href="https://docs.microsoft.com/zh-cn/windows/wsl/wsl2-kernel" >wsl2 更新包链接<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
 <p>安装完后打开 <code>PowerShell</code>, 将安装的子系统从 <code>wsl</code> 迁移到 <code>wsl2</code></p>
 <ul>
 <li>命令 <code>wsl --set-version &#123;LinuxVersion&#125; &#123;WslVersion&#125;</code></li>
 <li><code>LinuxVersion</code> 表示 <code>Linux</code> 子系统版本</li>
 <li><code>WslVersion</code> 表示 <code>wsl</code> 的版本</li>
 </ul>
-<div class="highlight-container" data-rel="Powershell"><figure class="iseeu highlight powershell"><table><tr><td class="code"><pre><span class="line">wsl <span class="literal">--set-version</span> Ubuntu<span class="literal">-18</span>.<span class="number">04</span> <span class="number">2</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Powershell"><figure class="iseeu highlight powershell"><table><tr><td class="code"><pre><span class="line">wsl <span class="literal">--set-version</span> Ubuntu<span class="literal">-18</span>.<span class="number">04</span> <span class="number">2</span></span><br></pre></td></tr></table></figure></div>
 
 <p>将会看到</p>
-<div class="highlight-container" data-rel="Powershell"><figure class="iseeu highlight powershell"><table><tr><td class="code"><pre><span class="line">正在进行转换, 这可能需要几分钟时间...</span><br><span class="line">有关与 WSL <span class="number">2</span> 的主要区别的信息, 请访问 https://aka.ms/wsl2</span><br><span class="line">转换完成</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Powershell"><figure class="iseeu highlight powershell"><table><tr><td class="code"><pre><span class="line">正在进行转换, 这可能需要几分钟时间...</span><br><span class="line">有关与 WSL <span class="number">2</span> 的主要区别的信息, 请访问 https://aka.ms/wsl2</span><br><span class="line">转换完成</span><br></pre></td></tr></table></figure></div>
 
 <p>然后将 <code>wsl2</code> 设置为默认</p>
-<div class="highlight-container" data-rel="Powershell"><figure class="iseeu highlight powershell"><table><tr><td class="code"><pre><span class="line">wsl <span class="literal">--set-default-version</span> <span class="number">2</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Powershell"><figure class="iseeu highlight powershell"><table><tr><td class="code"><pre><span class="line">wsl <span class="literal">--set-default-version</span> <span class="number">2</span></span><br></pre></td></tr></table></figure></div>
 
 <p>查看当前子系统和对应的 wsl 版本</p>
-<div class="highlight-container" data-rel="Powershell"><figure class="iseeu highlight powershell"><table><tr><td class="code"><pre><span class="line">wsl <span class="literal">-l</span> <span class="literal">-v</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Powershell"><figure class="iseeu highlight powershell"><table><tr><td class="code"><pre><span class="line">wsl <span class="literal">-l</span> <span class="literal">-v</span></span><br></pre></td></tr></table></figure></div>
 
 <p>将会看到</p>
-<div class="highlight-container" data-rel="Powershell"><figure class="iseeu highlight powershell"><table><tr><td class="code"><pre><span class="line">  NAME            STATE           VERSION</span><br><span class="line">* Ubuntu<span class="literal">-18</span>.<span class="number">04</span>    Stopped         <span class="number">2</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Powershell"><figure class="iseeu highlight powershell"><table><tr><td class="code"><pre><span class="line">  NAME            STATE           VERSION</span><br><span class="line">* Ubuntu<span class="literal">-18</span>.<span class="number">04</span>    Stopped         <span class="number">2</span></span><br></pre></td></tr></table></figure></div>
 ]]></content>
       <categories>
         <category>系统</category>
@@ -897,7 +897,7 @@
 <p>名为 <code>CosmicDark</code> 的国外团队在暗网上公开出售的这份优酷用户资料, 售价 300 美元, 数据量超过 1 亿条, 其中包括邮箱、密码等关键数据。</p>
 </blockquote>
 <h2 id="‘-–have-i-been-pwned"><a href="#‘-–have-i-been-pwned" class="headerlink" title="‘;–have i been pwned?"></a>‘;–have i been pwned?</h2><ul>
-<li><p>这时候有个牛逼的网站出来了：<a class="link"   href="https://haveibeenpwned.com/" >‘;–have i been pwned? <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>, 这个网站收录了这几年来被黑客窃取、公布在网络上的名单资料, 只要输入你的邮箱, 即可快速比对这些被窃取的资料里有没有你的个人资料。</p>
+<li><p>这时候有个牛逼的网站出来了：<a class="link"   href="https://haveibeenpwned.com/" >‘;–have i been pwned?<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>, 这个网站收录了这几年来被黑客窃取、公布在网络上的名单资料, 只要输入你的邮箱, 即可快速比对这些被窃取的资料里有没有你的个人资料。</p>
 </li>
 <li><p><code>pwned</code> 是什么意思呢? 其实这是一个骇客用语, 由 <code>owned</code> 演化而来, 有「被攻破、入侵或是控制」的意思</p>
 </li>
@@ -909,7 +909,7 @@
                       alt="‘;–have i been pwned?"
                 ><figcaption>‘;–have i been pwned?</figcaption></figure></p>
 <ul>
-<li>进入 <a class="link"   href="https://haveibeenpwned.com/" >‘;–have i been pwned? <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 主页可以看到, 目前有 <strong>456</strong> 个网站泄露数据, 有 <strong>9,765,110,880</strong> 个账户被黑, 所以黑客利用这一点撒大网群发邮件, 总有人会上勾</li>
+<li>进入 <a class="link"   href="https://haveibeenpwned.com/" >‘;–have i been pwned?<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 主页可以看到, 目前有 <strong>456</strong> 个网站泄露数据, 有 <strong>9,765,110,880</strong> 个账户被黑, 所以黑客利用这一点撒大网群发邮件, 总有人会上勾</li>
 </ul>
 <p><figure class="image-caption"><img  
                      lazyload
@@ -930,21 +930,21 @@
 <ul>
 <li><p><strong>Adobe:</strong><br>2013年10月, <code>Adobe</code> 的1.53亿个账户被入侵, 每个账户包含内部ID、用户名、电子邮件、加密密码和明文的密码提示。密码的加密方式非常差, 很多密码很快被破解回明文状态。未加密的密码提示也暴露了更多的密码信息, 使得数以百万计的 <code>Adobe</code> 用户面临更大的风险。<br><strong>泄露数据:</strong> 电子邮件地址、密码提示、密码、用户名。</p>
 </li>
-<li><p><strong>Aipai.com (未经验证):</strong><br>2016年9月, 据称来自中国游戏网站 <a class="link"   href="https://www.aipai.com/" >Aipai.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 的数据泄露, 包含650万个账户的信息被泄露。虽然有证据表明数据是合法的, 但由于很难完全验证这一中国数据泄露事件, 因而标记为“未经验证”。泄露的数据包括电子邮件地址和 <code>MD5</code> 密码哈希值。<br><strong>泄露数据:</strong> 电子邮件地址、密码。</p>
+<li><p><strong>Aipai.com (未经验证):</strong><br>2016年9月, 据称来自中国游戏网站 <a class="link"   href="https://www.aipai.com/" >Aipai.com<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 的数据泄露, 包含650万个账户的信息被泄露。虽然有证据表明数据是合法的, 但由于很难完全验证这一中国数据泄露事件, 因而标记为“未经验证”。泄露的数据包括电子邮件地址和 <code>MD5</code> 密码哈希值。<br><strong>泄露数据:</strong> 电子邮件地址、密码。</p>
 </li>
 <li><p><strong>Collection #1 (未经验证):</strong><br>2019年1月, 一份庞大的凭证填充列表（包含电子邮件地址和密码, 用于在其他服务上进行账号劫持）被发现被分发到一个受欢迎的黑客论坛。数据包含超过27亿条记录, 包括7.73亿个唯一的电子邮件地址和密码, 这些密码曾被用于其他被泄露的服务中。<br><strong>泄露数据:</strong> 电子邮件地址、密码。</p>
 </li>
-<li><p><strong>DLH.net:</strong><br>2016年7月, 游戏新闻网站 <a class="link"   href="https://www.dlh.net/" >DLH.net <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 发生数据泄露, 暴露了330万订阅者的身份信息。泄露包括用于在 <code>Steam</code> 平台上兑换和激活游戏的密钥, 暴露的信息包括电子邮件地址、出生日期和加盐的MD5密码哈希值。<br><strong>泄露数据:</strong> 出生日期、电子邮件地址、姓名、密码、用户名、网站活动。</p>
+<li><p><strong>DLH.net:</strong><br>2016年7月, 游戏新闻网站 <a class="link"   href="https://www.dlh.net/" >DLH.net<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 发生数据泄露, 暴露了330万订阅者的身份信息。泄露包括用于在 <code>Steam</code> 平台上兑换和激活游戏的密钥, 暴露的信息包括电子邮件地址、出生日期和加盐的MD5密码哈希值。<br><strong>泄露数据:</strong> 出生日期、电子邮件地址、姓名、密码、用户名、网站活动。</p>
 </li>
 <li><p><strong>Gravatar:</strong><br>2020年10月, 一名安全研究员发布了一项技术, 用于从 <code>Gravatar</code> 服务中抓取大量数据, <code>Gravatar</code> 是提供全球唯一头像的服务。1.67亿个姓名、用户名和用于引用用户头像的 <code>MD5</code> 哈希值的电子邮件地址被抓取, 并在黑客社区中广泛传播。1.14亿个MD5哈希值被破解并与源哈希一起传播, 泄露了原始电子邮件地址和相关数据。<br><strong>泄露数据:</strong> 电子邮件地址、姓名、用户名。</p>
 </li>
-<li><p><strong>JD:</strong><br>2013年（确切日期不明）, 中国电子商务服务 <a class="link"   href="https://www.jd.com/" >JD <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 发生数据泄露, 暴露了13GB数据, 其中包含7700万个唯一的电子邮件地址。数据还包括用户名、电话号码和作为 <code>SHA-1</code> 哈希值存储的密码。<br><strong>泄露数据:</strong> 电子邮件地址、密码、电话号码、用户名。</p>
+<li><p><strong>JD:</strong><br>2013年（确切日期不明）, 中国电子商务服务 <a class="link"   href="https://www.jd.com/" >JD<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 发生数据泄露, 暴露了13GB数据, 其中包含7700万个唯一的电子邮件地址。数据还包括用户名、电话号码和作为 <code>SHA-1</code> 哈希值存储的密码。<br><strong>泄露数据:</strong> 电子邮件地址、密码、电话号码、用户名。</p>
 </li>
-<li><p><strong>NetEase (未经验证):</strong><br>2015年10月, 报告称中国网站 <a class="link"   href="https://www.163.com/" >NetEase <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> (163.com)发生数据泄露, 影响了数亿订阅者。虽然有证据表明数据是合法的（多个 <code>HIBP</code> 订阅者确认他们使用的数据中的密码）, 但由于难以完全验证这一中国数据泄露事件, 因而标记为“未经验证”。泄露的数据包括电子邮件地址和明文密码。<br><strong>泄露数据:</strong> 电子邮件地址、密码。</p>
+<li><p><strong>NetEase (未经验证):</strong><br>2015年10月, 报告称中国网站 <a class="link"   href="https://www.163.com/" >NetEase<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> (163.com)发生数据泄露, 影响了数亿订阅者。虽然有证据表明数据是合法的（多个 <code>HIBP</code> 订阅者确认他们使用的数据中的密码）, 但由于难以完全验证这一中国数据泄露事件, 因而标记为“未经验证”。泄露的数据包括电子邮件地址和明文密码。<br><strong>泄露数据:</strong> 电子邮件地址、密码。</p>
 </li>
-<li><p><strong>TGBUS (未经验证):</strong><br>大约在2017年, 据称中国游戏网站 <a class="link"   href="https://tgbus.com/" >TGBUS <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 发生了一次数据泄露, 影响了超过1000万独特订阅者。虽然有证据表明数据是合法的, 但由于难以完全验证这一中国数据泄露事件, 因而标记为“未经验证”。泄露的数据包括用户名、电子邮件地址和加盐的 <code>MD5</code> 密码哈希值。<br><strong>泄露数据:</strong> 电子邮件地址、密码、用户名。</p>
+<li><p><strong>TGBUS (未经验证):</strong><br>大约在2017年, 据称中国游戏网站 <a class="link"   href="https://tgbus.com/" >TGBUS<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 发生了一次数据泄露, 影响了超过1000万独特订阅者。虽然有证据表明数据是合法的, 但由于难以完全验证这一中国数据泄露事件, 因而标记为“未经验证”。泄露的数据包括用户名、电子邮件地址和加盐的 <code>MD5</code> 密码哈希值。<br><strong>泄露数据:</strong> 电子邮件地址、密码、用户名。</p>
 </li>
-<li><p><strong>Youku:</strong><br>2016年末, 在线视频服务 <a class="link"   href="https://www.youku.com/" >Youku <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 发生数据泄露。事件暴露了9200万个唯一用户账户及其对应的 <code>MD5</code> 密码哈希值。<br><strong>泄露数据:</strong> 电子邮件地址、密码。</p>
+<li><p><strong>Youku:</strong><br>2016年末, 在线视频服务 <a class="link"   href="https://www.youku.com/" >Youku<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 发生数据泄露。事件暴露了9200万个唯一用户账户及其对应的 <code>MD5</code> 密码哈希值。<br><strong>泄露数据:</strong> 电子邮件地址、密码。</p>
 </li>
 </ul>
 <h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>也就是说, 真正泄露 我账户的应该是 <code>Adobe</code>、<code>DLH.net</code>、<code>Gravatar</code>、<code>JD</code> 和 <code>优酷</code> 这几个网站, 所以大家最好定期修改密码且使用复杂一些的字符</p>
@@ -970,42 +970,42 @@
 <li>系统: <code>Windows 10 pro ×64</code></li>
 <li>子系统: <code>wsl2 Ubuntu 18.04</code></li>
 </ul>
-<h2 id="添加镜像"><a href="#添加镜像" class="headerlink" title="添加镜像"></a>添加镜像</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/apt/sources.list</span><br></pre></td></tr></table></figure></div>
+<h2 id="添加镜像"><a href="#添加镜像" class="headerlink" title="添加镜像"></a>添加镜像</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/apt/sources.list</span><br></pre></td></tr></table></figure></div>
 <p>最后添加清华 <code>erlang-solutions</code> 源</p>
-<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>sources.list</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ # qing hua erlang-solutions</span></span><br><span class="line"><span class="addition">+ deb https://mirrors.tuna.tsinghua.edu.cn/erlang-solutions/ubuntu/ bionic contrib</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>sources.list</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ # qing hua erlang-solutions</span></span><br><span class="line"><span class="addition">+ deb https://mirrors.tuna.tsinghua.edu.cn/erlang-solutions/ubuntu/ bionic contrib</span></span><br></pre></td></tr></table></figure></div>
 
-<h2 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt update</span><br></pre></td></tr></table></figure></div>
+<h2 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt update</span><br></pre></td></tr></table></figure></div>
 
 <p>若失败提示 <code>The following signatures couldn’t be verified because the public key is not available: NO_PUBKEY XXXXXXXXXXXX</code> 则复制最后的 <code>KEY</code>, 执行</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-key adv --keyserver keyserver.ubuntu.com --recv-keys XXXXXXXXXXXX</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-key adv --keyserver keyserver.ubuntu.com --recv-keys XXXXXXXXXXXX</span><br></pre></td></tr></table></figure></div>
 
 <p>若提示如下错误: </p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">gpg: keyserver receive failed: Server indicated a failure</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">gpg: keyserver receive failed: Server indicated a failure</span><br></pre></td></tr></table></figure></div>
 
 <p>则执行</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv XXXXXXXXXXXX</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv XXXXXXXXXXXX</span><br></pre></td></tr></table></figure></div>
 
 <p>将会看到:</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">Executing: /tmp/apt-key-gpghome.VehtZ71sTw/gpg.1.sh --keyserver hkp://keyserver.ubuntu.com:80 --recv XXXXXXXXXXXX</span><br><span class="line">gpg: key D208507CA14F4FCA: public key <span class="string">&quot;Erlang Solutions Ltd. &lt;packages@erlang-solutions.com&gt;&quot;</span> imported</span><br><span class="line">gpg: Total number processed: 1</span><br><span class="line">gpg:               imported: 1</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">Executing: /tmp/apt-key-gpghome.VehtZ71sTw/gpg.1.sh --keyserver hkp://keyserver.ubuntu.com:80 --recv XXXXXXXXXXXX</span><br><span class="line">gpg: key D208507CA14F4FCA: public key <span class="string">&quot;Erlang Solutions Ltd. &lt;packages@erlang-solutions.com&gt;&quot;</span> imported</span><br><span class="line">gpg: Total number processed: 1</span><br><span class="line">gpg:               imported: 1</span><br></pre></td></tr></table></figure></div>
 
 <p>然后再次执行 <code>sudo apt update</code> 即可</p>
 <h2 id="安装-Erlang"><a href="#安装-Erlang" class="headerlink" title="安装 Erlang"></a>安装 Erlang</h2><p>可以选择安装特定版本, 也可以直接安装, 会自动安装最新版</p>
 <h3 id="安装特定版本"><a href="#安装特定版本" class="headerlink" title="安装特定版本"></a>安装特定版本</h3><p>比如选择 <code>OTP 19</code> 安装</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install esl-erlang=1:19.*</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install esl-erlang=1:19.*</span><br></pre></td></tr></table></figure></div>
 
 <p>提示安装成功后, 测试</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">erl</span><br><span class="line">Erlang/OTP 19 [erts-8.3.5.7] [<span class="built_in">source</span>] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:<span class="literal">false</span>]</span><br><span class="line"></span><br><span class="line">Ebash V8.3.5.7  (abort with ^G)</span><br><span class="line">1&gt;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">erl</span><br><span class="line">Erlang/OTP 19 [erts-8.3.5.7] [<span class="built_in">source</span>] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:<span class="literal">false</span>]</span><br><span class="line"></span><br><span class="line">Ebash V8.3.5.7  (abort with ^G)</span><br><span class="line">1&gt;</span><br></pre></td></tr></table></figure></div>
 
 <p>安装完成后记得把镜像地址注释掉, 否则下次更新系统会不小心升级版本</p>
-<h3 id="安装最新版"><a href="#安装最新版" class="headerlink" title="安装最新版"></a>安装最新版</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install esl-erlang</span><br></pre></td></tr></table></figure></div>
+<h3 id="安装最新版"><a href="#安装最新版" class="headerlink" title="安装最新版"></a>安装最新版</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install esl-erlang</span><br></pre></td></tr></table></figure></div>
 
 <p><code>OTP 20</code> 以上自带支持 <code>history</code>, 方便在 shell 运行时记录执行过的命令, 添加环境变量</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi ~/.bashrc</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi ~/.bashrc</span><br></pre></td></tr></table></figure></div>
 
-<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>.bashrc</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ export ERL_AFLAGS=&quot;-kernel shell_history enabled&quot;</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>.bashrc</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ export ERL_AFLAGS=&quot;-kernel shell_history enabled&quot;</span></span><br></pre></td></tr></table></figure></div>
 
 <p>开启新终端 或 <code>source</code> 下 <code>.bashrc</code></p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure></div>
 ]]></content>
       <categories>
         <category>应用</category>
@@ -1023,21 +1023,21 @@
     <content><![CDATA[<p>修改配置修复 WP Super Cache 插件安装后无法使用问题</p>
 <span id="more"></span>
 
-<h2 id="获取-wp-content-读写权限"><a href="#获取-wp-content-读写权限" class="headerlink" title="获取 wp-content 读写权限"></a>获取 wp-content 读写权限</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> 777 /var/www/html/wordpress/wp-content/</span><br></pre></td></tr></table></figure></div>
+<h2 id="获取-wp-content-读写权限"><a href="#获取-wp-content-读写权限" class="headerlink" title="获取 wp-content 读写权限"></a>获取 wp-content 读写权限</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> 777 /var/www/html/wordpress/wp-content/</span><br></pre></td></tr></table></figure></div>
 
 <h2 id="检查-cache-文件"><a href="#检查-cache-文件" class="headerlink" title="检查 cache 文件"></a>检查 cache 文件</h2><p>进入 <code>wp-content</code> 目录</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/html/wordpress/wp-content</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/html/wordpress/wp-content</span><br></pre></td></tr></table></figure></div>
 
 <p>检查 <code>wp-cache-config.php</code> 是否存在, 若不存在则:</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> plugins/wp-super-cache/wp-cache-config-sample.php ./wp-cache-config.php</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> plugins/wp-super-cache/wp-cache-config-sample.php ./wp-cache-config.php</span><br></pre></td></tr></table></figure></div>
 
 <p>检查 <code>advanced-cache.php</code> 是否存在, 若不存在则:</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> plugins/wp-super-cache/advanced-cache.php ./</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> plugins/wp-super-cache/advanced-cache.php ./</span><br></pre></td></tr></table></figure></div>
 <p>并将这两个文件都开启可写入权限</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> 777 wp-cache-config.php advanced-cache.php</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> 777 wp-cache-config.php advanced-cache.php</span><br></pre></td></tr></table></figure></div>
 
 <h2 id="添加配置"><a href="#添加配置" class="headerlink" title="添加配置"></a>添加配置</h2><p>回到 <code>wordpress</code> 根目录, 在 <code>wp-config.php</code> 中 <code>ABSPATH</code> 之前添加两行</p>
-<div class="highlight-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>wp-config.php</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ define(&#x27;WP_CACHE&#x27;, true);</span></span><br><span class="line"><span class="addition">+ define(&#x27;WPCACHEHOME&#x27;,&#x27;/var/www/html/wordpress/wp-content/plugins/wp-super-cache/&#x27;);</span></span><br><span class="line"></span><br><span class="line">/** 设置WordPress变量和包含文件 */</span><br><span class="line">require_once( ABSPATH . &#x27;wp-settings.php&#x27; );</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>wp-config.php</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ define(&#x27;WP_CACHE&#x27;, true);</span></span><br><span class="line"><span class="addition">+ define(&#x27;WPCACHEHOME&#x27;,&#x27;/var/www/html/wordpress/wp-content/plugins/wp-super-cache/&#x27;);</span></span><br><span class="line"></span><br><span class="line">/** 设置WordPress变量和包含文件 */</span><br><span class="line">require_once( ABSPATH . &#x27;wp-settings.php&#x27; );</span><br></pre></td></tr></table></figure></div>
 
 <p>刷新 <code>WordPress</code> 插件页面应该就不会报错了, 但会在 <code>WP Super Cache</code> 设置页面顶部提示 <code>/var/www/html/wordpress/wp-content</code> 权限问题, 此时先不要修改权限, 先 <code>启用缓存功能</code></p>
 <p><figure class="image-caption"><img  
@@ -1047,7 +1047,7 @@
                       alt="缓存功能"
                 ><figcaption>缓存功能</figcaption></figure></p>
 <p>保存更新后再执行</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> 755 /var/www/html/wordpress/wp-content/</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> 755 /var/www/html/wordpress/wp-content/</span><br></pre></td></tr></table></figure></div>
 ]]></content>
       <categories>
         <category>插件</category>
