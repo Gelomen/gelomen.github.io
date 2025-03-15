@@ -1058,4 +1058,110 @@
         <tag>plugin</tag>
       </tags>
   </entry>
+  <entry>
+    <title>使用 XAMPP 和 Filezilla 搭建静态资源和 FTP 服务</title>
+    <url>/posts/xampp-statistics-ftp-server/</url>
+    <content><![CDATA[<p>使用 <code>XAMPP</code> 和 <code>Filezilla</code> 搭建静态资源和 <code>FTP</code> 服务</p>
+<span id="more"></span>
+
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
+<li>系统: Ubuntu 20.04 TLS</li>
+<li>服务: Apache2</li>
+<li>工具: Filezilla</li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
+<li>需要先安装 <code>XAMPP</code>, 即 <code>Apache</code> + <code>MySQL</code> + <code>PHP</code> + <code>PERL</code>, 它是一个功能强大的建站集成软件包, 这个软件包原来的名字是 <code>LAMPP</code>, 但是为了避免误解, 现已改名为 <code>XAMPP</code> 了</li>
+<li>下载地址: <a class="link"   href="https://www.apachefriends.org/download.html" >XAMPP 官网<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 选择 <code>Linux</code> 版本</li>
+</ul>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo chmod +x xampp-linux-x64-7.4.8-0-installer.run*</span><br><span class="line">sudo ./xampp-linux-x64-7.4.8-0-installer.run*</span><br></pre></td></tr></table></figure></div>
+
+<p>然后一路默认安装即可</p>
+<h2 id="静态资源服务"><a href="#静态资源服务" class="headerlink" title="静态资源服务"></a>静态资源服务</h2><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p><code>XAMPP</code> 默认的网站目录都是在 <code>/opt/lampp/htdocs</code> 下的, 所有我们可以直接将静态资源目录链接到该目录下就可以了, 比如自定义的静态资源路径在 <code>/server/static</code> 下, 则</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">ln</span> -s /server/static /opt/lampp/htdocs/static</span><br></pre></td></tr></table></figure></div>
+
+<p>然后浏览器访问 <a class="link"   href="http://www.domain.com/static" >http://www.domain.com/static<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 就能看到静态资源的目录结构了</p>
+<p><figure class="image-caption"><img src="/images/posts/xampp-statistics-ftp-server/img1.png" alt="http://www.domain.com/static"><figcaption>http://www.domain.com/static</figcaption></figure></p>
+<h3 id="升级-HTTPS"><a href="#升级-HTTPS" class="headerlink" title="升级 HTTPS"></a>升级 HTTPS</h3><p>升级 <code>TSL</code> 为 <code>HTTPS</code> 提高安全性, 可以在 阿里云SSL 控制面里生成 <code>CA</code> 证书或者在服务器手动生成也行, 将证书文件放在服务器自定义目录下, 如：<code>/server/cert</code></p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /opt/lampp/etc/extra/httpd-ssl.conf</span><br></pre></td></tr></table></figure></div>
+
+<p>然后修改参数</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>httpd-ssl.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">&lt;VirtualHost *:443&gt;</span><br><span class="line">ServerName www.domain.com</span><br><span class="line"># 跨域</span><br><span class="line">Header set Access-Control-Allow-Origin *</span><br><span class="line"># 并找到下面三个参数修改为自定义证书路径</span><br><span class="line">SSLCertificateFile &quot;/server/cert/cert.crt&quot;</span><br><span class="line">SSLCertificateKeyFile &quot;/server/cert/cert.key&quot;</span><br><span class="line">SSLCertificateChainFile &quot;/server/cert/chain.crt&quot;</span><br></pre></td></tr></table></figure></div>
+
+<p>保存并重启 <code>Apache</code> 服务即可用 <a class="link"   href="https://www.domain.com/" >https://www.domain.com<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 访问</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> /opt/lampp/lampp restartapache</span><br><span class="line"><span class="comment"># 会打印</span></span><br><span class="line">XAMPP: Stopping Apache...ok.</span><br><span class="line">XAMPP: Starting Apache...ok.</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><p>静态资源服务页面里, 如果有中文会默认显示成乱码, 所以可以添加字符编码配置</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /opt/lampp/etc/httpd.conf</span><br></pre></td></tr></table></figure></div>
+
+<p>添加一行</p>
+<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>httpd.conf</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ IndexOptions Charset=UTF-8</span></span><br></pre></td></tr></table></figure></div>
+
+<p>保存并重启 <code>Apache</code> 服务</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> /opt/lampp/lampp restartapache</span><br><span class="line"><span class="comment"># 会打印</span></span><br><span class="line">XAMPP: Stopping Apache...ok.</span><br><span class="line">XAMPP: Starting Apache...ok.</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="FTP-服务"><a href="#FTP-服务" class="headerlink" title="FTP 服务"></a>FTP 服务</h2><p>上面部署了静态资源服务器, 为了方便更新资源, 搭建 <code>FTP</code> 服务器会方便很多</p>
+<h3 id="添加-ftp-用户"><a href="#添加-ftp-用户" class="headerlink" title="添加 ftp 用户"></a>添加 ftp 用户</h3><p>先创建 <code>ftp</code> 专用的用户组, 名字随意, 但为了区分所以带上 <code>ftp</code> 字样</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> groupadd ftpusers</span><br></pre></td></tr></table></figure></div>
+
+<p>然后往该组添加一个用户</p>
+<ul>
+<li><code>-d</code> 表示该用户 <code>home</code> 目录, 这里用上面静态资源服务器目录地址</li>
+<li><code>-g</code> 表示隶属于哪个用户组</li>
+<li><code>-s</code> 表示此用户的 <code>shell</code> 环境, 最后是用户名</li>
+</ul>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> useradd -d /server/static -g ftpusers -s /usr/sbin/nologin userftp</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="设置密码"><a href="#设置密码" class="headerlink" title="设置密码"></a>设置密码</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> passwd userftp</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="权限设置"><a href="#权限设置" class="headerlink" title="权限设置"></a>权限设置</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">chown</span> userftp:ftpusers /server/static</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> 777 /server/static</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="添加-shell-有效登录方式"><a href="#添加-shell-有效登录方式" class="headerlink" title="添加 shell 有效登录方式"></a>添加 shell 有效登录方式</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/shells</span><br></pre></td></tr></table></figure></div>
+
+<p>在最后一行添加</p>
+<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>shells</span></figcaption><table><tr><td class="code"><pre><span class="line">/usr/sbin/nologin</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="配置-ProFTPD"><a href="#配置-ProFTPD" class="headerlink" title="配置 ProFTPD"></a>配置 ProFTPD</h3><p>修改配置文件</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /opt/lampp/etc/proftpd.conf</span><br></pre></td></tr></table></figure></div>
+
+<p>修改下方参数</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><figcaption><span>proftpd.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">ServerName &quot;Your Any Name&quot; # 保留双引号</span><br><span class="line">Port 2121 # 自定义端口安全点</span><br><span class="line">&lt;Directory /server/static/*&gt;</span><br><span class="line">    AllowOverwrite on # 允许重写, 这样才能覆盖更新文件</span><br><span class="line">&lt;/Directory&gt;</span><br><span class="line">DefaultRoot ~ # 只允许在 home 目录下</span><br></pre></td></tr></table></figure></div>
+
+<p>然后重启服务</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> /opt/lampp/lampp restart</span><br><span class="line"><span class="comment"># 会打印</span></span><br><span class="line">Restarting XAMPP <span class="keyword">for</span> Linux 7.4.8-0...</span><br><span class="line">XAMPP: Stopping Apache...ok.</span><br><span class="line">XAMPP: Stopping MySQL...not running.</span><br><span class="line">XAMPP: Stopping ProFTPD...ok.</span><br><span class="line">XAMPP: Starting Apache...ok.</span><br><span class="line">XAMPP: Starting MySQL...ok.</span><br><span class="line">XAMPP: Starting ProFTPD...ok.</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="使用-FileZilla-连接-FTP-服务器"><a href="#使用-FileZilla-连接-FTP-服务器" class="headerlink" title="使用 FileZilla 连接 FTP 服务器"></a>使用 FileZilla 连接 FTP 服务器</h3><p>安装 <code>FileZilla</code> 客户端, 下载地址：<a class="link"   href="https://filezilla-project.org/download.php?type=client" >FileZilla 官网<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>安装完成后, 打开 <code>FileZilla</code>, 点击左上角 “文件” 下方的 <code>打开站点管理器</code> → <code>我的站点</code> → <code>新站点</code> → <code>命名</code> → <code>常规</code> 添加配置</p>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/xampp-statistics-ftp-server/img2.png"
+                      alt="FileZilla 客户端"
+                ><figcaption>FileZilla 客户端</figcaption></figure></p>
+<ul>
+<li>协议: <code>FTP</code> – 文件传输协议</li>
+<li>主机: 你的服务器域名</li>
+<li>端口: 上面 <a href="/posts/xampp-statistics-ftp-server/#%E9%85%8D%E7%BD%AE-ProFTPD">自定义配置的端口</a></li>
+<li>用户和密码: 也是上面添加的 <a href="/posts/xampp-statistics-ftp-server/#%E6%B7%BB%E5%8A%A0-ftp-%E7%94%A8%E6%88%B7">用户和密码</a></li>
+<li>字符集标签页: 勾选 <code>强制 UTF-8</code>, 否则 <code>FTP</code> 服务器中文目录会显示乱码</li>
+</ul>
+<p>然后点击 <code>确定</code> 保存</p>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/xampp-statistics-ftp-server/img3.png"
+                      alt="FileZilla 客户端"
+                ><figcaption>FileZilla 客户端</figcaption></figure></p>
+<p>最后回到主界面 <code>打开站点管理器</code> 旁边的下拉菜单, 点击刚刚添加的配置名字即可连接上 <code>FTP</code> 服务器</p>
+]]></content>
+      <categories>
+        <category>建站</category>
+      </categories>
+      <tags>
+        <tag>apache</tag>
+        <tag>xampp</tag>
+        <tag>Filezilla</tag>
+        <tag>statistics</tag>
+        <tag>ftp</tag>
+      </tags>
+  </entry>
 </search>
