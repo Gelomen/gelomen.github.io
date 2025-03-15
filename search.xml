@@ -534,38 +534,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Rebar3 安装</title>
-    <url>/posts/install-rebar3/</url>
-    <content><![CDATA[<p>安装 rebar3 便于 Erlang 编译、配置管理和发布</p>
-<span id="more"></span>
-
-<h2 id="下载或生成-rebar3"><a href="#下载或生成-rebar3" class="headerlink" title="下载或生成 rebar3"></a>下载或生成 rebar3</h2><h3 id="编译过的稳定版"><a href="#编译过的稳定版" class="headerlink" title="编译过的稳定版"></a>编译过的稳定版</h3><p>下载 <code>rebar3</code> 文件并赋予可执行属性</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://s3.amazonaws.com/rebar3/rebar3 &amp;&amp; <span class="built_in">chmod</span> +x rebar3</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="从源码编译生成"><a href="#从源码编译生成" class="headerlink" title="从源码编译生成"></a>从源码编译生成</h3><p>前提是已经 <a href="/posts/win10-wsl-erlang">安装 Erlang</a>, 然后从仓库将源文件拉取下来并编译生成 <code>rebar3</code></p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/erlang/rebar3.git</span><br><span class="line"><span class="built_in">cd</span> rebar3</span><br><span class="line">./bootstrap</span><br></pre></td></tr></table></figure></div>
-<p>完成后在目录下会出现 <code>rebar3</code> 文件</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">./rebar3 <span class="built_in">local</span> install</span><br></pre></td></tr></table></figure></div>
-
-<p>将会看到</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">===&gt; Extracting rebar3 libs to YourHome/.cache/rebar3/lib...</span><br><span class="line">===&gt; Writing rebar3 run script YourHome/.cache/rebar3/bin/rebar3...</span><br><span class="line">===&gt; Add to <span class="variable">$PATH</span> <span class="keyword">for</span> use: <span class="built_in">export</span> PATH=YourHome/.cache/rebar3/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure></div>
-
-<h2 id="添加全局环境变量"><a href="#添加全局环境变量" class="headerlink" title="添加全局环境变量"></a>添加全局环境变量</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/profile</span><br></pre></td></tr></table></figure></div>
-
-<p>复制安装后提示的 <code>export</code> 语句, 并在 <code>profile</code> 最后加入</p>
-<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>config profile</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ export PATH=~/.cache/rebar3/bin:$PATH</span></span><br></pre></td></tr></table></figure></div>
-
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">rebar3 compile</span><br></pre></td></tr></table></figure></div>
-]]></content>
-      <categories>
-        <category>应用</category>
-      </categories>
-      <tags>
-        <tag>rebar3</tag>
-        <tag>erlang</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用 Ubuntu-18.04 和 WordPress 搭建博客</title>
     <url>/posts/ubuntu-1804-wordpress/</url>
     <content><![CDATA[<p>WordPress 有很优秀的博客文章管理, 也有很多的主题和插件可以制作各种各样的网站, 甚至购物网站, 这篇文章将帮助你基于 Ubuntu-18.04 部署 WordPress 搭建博客</p>
@@ -713,6 +681,131 @@
       </tags>
   </entry>
   <entry>
+    <title>Rebar3 安装</title>
+    <url>/posts/install-rebar3/</url>
+    <content><![CDATA[<p>安装 rebar3 便于 Erlang 编译、配置管理和发布</p>
+<span id="more"></span>
+
+<h2 id="下载或生成-rebar3"><a href="#下载或生成-rebar3" class="headerlink" title="下载或生成 rebar3"></a>下载或生成 rebar3</h2><h3 id="编译过的稳定版"><a href="#编译过的稳定版" class="headerlink" title="编译过的稳定版"></a>编译过的稳定版</h3><p>下载 <code>rebar3</code> 文件并赋予可执行属性</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://s3.amazonaws.com/rebar3/rebar3 &amp;&amp; <span class="built_in">chmod</span> +x rebar3</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="从源码编译生成"><a href="#从源码编译生成" class="headerlink" title="从源码编译生成"></a>从源码编译生成</h3><p>前提是已经 <a href="/posts/win10-wsl-erlang">安装 Erlang</a>, 然后从仓库将源文件拉取下来并编译生成 <code>rebar3</code></p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/erlang/rebar3.git</span><br><span class="line"><span class="built_in">cd</span> rebar3</span><br><span class="line">./bootstrap</span><br></pre></td></tr></table></figure></div>
+<p>完成后在目录下会出现 <code>rebar3</code> 文件</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">./rebar3 <span class="built_in">local</span> install</span><br></pre></td></tr></table></figure></div>
+
+<p>将会看到</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">===&gt; Extracting rebar3 libs to YourHome/.cache/rebar3/lib...</span><br><span class="line">===&gt; Writing rebar3 run script YourHome/.cache/rebar3/bin/rebar3...</span><br><span class="line">===&gt; Add to <span class="variable">$PATH</span> <span class="keyword">for</span> use: <span class="built_in">export</span> PATH=YourHome/.cache/rebar3/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure></div>
+
+<h2 id="添加全局环境变量"><a href="#添加全局环境变量" class="headerlink" title="添加全局环境变量"></a>添加全局环境变量</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/profile</span><br></pre></td></tr></table></figure></div>
+
+<p>复制安装后提示的 <code>export</code> 语句, 并在 <code>profile</code> 最后加入</p>
+<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>config profile</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ export PATH=~/.cache/rebar3/bin:$PATH</span></span><br></pre></td></tr></table></figure></div>
+
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">rebar3 compile</span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>应用</category>
+      </categories>
+      <tags>
+        <tag>rebar3</tag>
+        <tag>erlang</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu 20.04 Apache2 CORS</title>
+    <url>/posts/ubuntu-2004-apache2-cors/</url>
+    <content><![CDATA[<p>解决 Ubuntu 20.04 下 Apache2 CORS 问题</p>
+<span id="more"></span>
+
+<p>修改配置, 开启 <code>Header</code> 功能</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> a2enmod headers</span><br></pre></td></tr></table></figure></div>
+
+<p>修改 <code>Apache</code> 配置, 其他系统是 <code>httpd.conf</code>, 但在 <code>Ubuntu</code> 系统中是 <code>/etc/apache2/apache2.conf</code></p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/apache2/apache2.conf</span><br></pre></td></tr></table></figure></div>
+
+<p>在 <code>&lt;Directory /var/www/&gt;</code> 下添加一行 <code>Access-Control-Allow-Origin</code> 的配置</p>
+<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>apache2.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">  &lt;Directory /var/www/&gt;</span><br><span class="line">      Options FollowSymLinks</span><br><span class="line">      AllowOverride All</span><br><span class="line">      Require all granted</span><br><span class="line"><span class="addition">+     Header set Access-Control-Allow-Origin *</span></span><br><span class="line">  &lt;/Directory&gt;</span><br></pre></td></tr></table></figure></div>
+
+<p>保存退出, 然后检测配置是否有错</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apachectl -t</span><br></pre></td></tr></table></figure></div>
+
+<p>正常情况应该得到</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">Syntax OK</span><br></pre></td></tr></table></figure></div>
+
+<p>重新加载配置并重启服务即可</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> /etc/init.d/apache2 force-reload</span><br><span class="line"><span class="built_in">sudo</span> /etc/init.d/apache2 restart</span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>建站</category>
+      </categories>
+      <tags>
+        <tag>ubuntu</tag>
+        <tag>apache</tag>
+        <tag>cors</tag>
+        <tag>跨域</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu XAMPP PHPMyAdmin 优化</title>
+    <url>/posts/ubuntu-xampp-phpmyadmin-optimize/</url>
+    <content><![CDATA[<p>优化 PHPMyAdmin 提高安全性</p>
+<span id="more"></span>
+
+<p>远程主机 <code>Ubuntu</code> 安装 <code>XAMPP</code> 后, 附带的 <code>phpmyadmin</code> 开启运行远程登录, 并没有提示登录就直接进入 <code>MySQL</code> 管理界面, 很不安全, 修改相关配置可以让其使用 <code>https</code> 访问并登录后才能进入, 提高安全性</p>
+<h2 id="允许外网访问"><a href="#允许外网访问" class="headerlink" title="允许外网访问"></a>允许外网访问</h2><p>配置 <code>httpd-xampp.conf</code> 使其允许外网访问</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /opt/lampp/etc/extra/httpd-xampp.conf</span><br></pre></td></tr></table></figure></div>
+
+<p>找到 <code>&lt;Directory “/opt/lampp/phpmyadmin”&gt;</code> 修改参数</p>
+<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>httpd-xampp.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">&lt;Directory &quot;/opt/lampp/phpmyadmin&quot;&gt;</span><br><span class="line"><span class="deletion">-    Require local 这一行修改为</span></span><br><span class="line"><span class="addition">+    Require all granted</span></span><br></pre></td></tr></table></figure></div>
+
+<p>保存并重启 Apache 服务</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> /opt/lampp/lampp restartapache</span><br></pre></td></tr></table></figure></div>
+
+<p>此时访问 <a class="link"   href="https://www.domain.com/phpmyadmin" >https://www.domain.com/phpmyadmin<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 即可进入 MySQL 管理页面</p>
+<h2 id="账户密码登录"><a href="#账户密码登录" class="headerlink" title="账户密码登录"></a>账户密码登录</h2><p>首先给 <code>localhost</code> 的 <code>root</code> 用户添加密码, 点击 <code>phpmyadmin</code> 的 <code>账户</code> 标签, 在下方找到 用户名 <code>root</code> – 主机名 <code>localhost</code> 一行后面点击 <code>修改权限</code></p>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/ubuntu-xampp-wordpress/img1.png"
+                      alt="phpmyadmin 账户"
+                ><figcaption>phpmyadmin 账户</figcaption></figure></p>
+<p>点击 <code>修改密码</code> 按钮, 在下方输入密码, 点击 <code>执行</code> 按钮保存</p>
+<p><figure class="image-caption"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/posts/ubuntu-xampp-wordpress/img2.png"
+                      alt="修改密码"
+                ><figcaption>修改密码</figcaption></figure></p>
+<p>然后修改 <code>phpmyadmin</code> 配置文件, 使其不能自动登录</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /opt/lampp/phpmyadmin/config.inc.php</span><br></pre></td></tr></table></figure></div>
+
+<p>修改以下参数</p>
+<div class="code-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$cfg</span>[<span class="string">&#x27;blowfish_secret&#x27;</span>] = <span class="string">&#x27;myblowfishsecretmyblowfishsecret&#x27;</span> <span class="comment"># 自定义且尽量长</span></span><br><span class="line"><span class="comment">/* Authentication type */</span></span><br><span class="line"><span class="variable">$cfg</span>[<span class="string">&#x27;Servers&#x27;</span>][<span class="variable">$i</span>][<span class="string">&#x27;auth_type&#x27;</span>] = <span class="string">&#x27;cookie&#x27;</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>修改后保存并重启 <code>XAMPP</code> 服务</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> /opt/lampp/lampp restart</span><br><span class="line">```![img.png](img.png)</span><br><span class="line">重启后访问 https://www.domain.com/phpmyadmin 即可看到需要账号密码登录</span><br><span class="line"></span><br><span class="line">![phpmyadmin 登录](/images/posts/ubuntu-xampp-wordpress/img3.png)</span><br><span class="line"></span><br><span class="line"><span class="comment">## phpmyadmin 强制 HTTPS 访问</span></span><br><span class="line"></span><br><span class="line">默认使用 `http` 访问 `phpmyadmin` 是不会重定向到 `https` 的, 不安全, 所以可以修改配置让其重定向</span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line"><span class="built_in">sudo</span> vi /opt/lampp/etc/extra/httpd-xampp.conf</span><br></pre></td></tr></table></figure></div>
+
+<p>找到 <code>&lt;IfModule mod_perl.c&gt;</code>, 在里面添加</p>
+<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>httpd-xampp.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">&lt;IfModule mod_perl.c&gt;</span><br><span class="line">        ...</span><br><span class="line"><span class="addition">+       PerlSendHeader On</span></span><br><span class="line"> </span><br><span class="line"><span class="addition">+       # 强制 HTTPS 访问</span></span><br><span class="line"><span class="addition">+       RewriteEngine On</span></span><br><span class="line"><span class="addition">+       RewriteCond %&#123;SERVER_PORT&#125; !^443$</span></span><br><span class="line"><span class="addition">+       RewriteRule ^(.*)$ https://%&#123;HTTP_HOST&#125;%&#123;REQUEST_URI&#125; [L,R=301]</span></span><br><span class="line">&lt;/IfModule&gt;</span><br></pre></td></tr></table></figure></div>
+
+<p>然后重启 <code>Apache</code> 服务, 再次用 <code>http</code> 访问 <code>phpmyadmin</code> 就可以自动跳转到 <code>https</code></p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> /opt/lampp/lampp restartapache</span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>优化</category>
+      </categories>
+      <tags>
+        <tag>优化</tag>
+        <tag>ubuntu</tag>
+        <tag>mysql</tag>
+        <tag>php</tag>
+        <tag>xampp</tag>
+        <tag>phpmyadmin</tag>
+        <tag>optimize</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Ubuntu 终端优化</title>
     <url>/posts/ubuntu-bash-opt/</url>
     <content><![CDATA[<p>修改 .bashrc 等配置优化 ubuntu shell </p>
@@ -752,40 +845,6 @@
         <tag>bash</tag>
         <tag>shell</tag>
         <tag>美化</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ubuntu 20.04 Apache2 CORS</title>
-    <url>/posts/ubuntu-2004-apache2-cors/</url>
-    <content><![CDATA[<p>解决 Ubuntu 20.04 下 Apache2 CORS 问题</p>
-<span id="more"></span>
-
-<p>修改配置, 开启 <code>Header</code> 功能</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> a2enmod headers</span><br></pre></td></tr></table></figure></div>
-
-<p>修改 <code>Apache</code> 配置, 其他系统是 <code>httpd.conf</code>, 但在 <code>Ubuntu</code> 系统中是 <code>/etc/apache2/apache2.conf</code></p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/apache2/apache2.conf</span><br></pre></td></tr></table></figure></div>
-
-<p>在 <code>&lt;Directory /var/www/&gt;</code> 下添加一行 <code>Access-Control-Allow-Origin</code> 的配置</p>
-<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>apache2.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">  &lt;Directory /var/www/&gt;</span><br><span class="line">      Options FollowSymLinks</span><br><span class="line">      AllowOverride All</span><br><span class="line">      Require all granted</span><br><span class="line"><span class="addition">+     Header set Access-Control-Allow-Origin *</span></span><br><span class="line">  &lt;/Directory&gt;</span><br></pre></td></tr></table></figure></div>
-
-<p>保存退出, 然后检测配置是否有错</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apachectl -t</span><br></pre></td></tr></table></figure></div>
-
-<p>正常情况应该得到</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">Syntax OK</span><br></pre></td></tr></table></figure></div>
-
-<p>重新加载配置并重启服务即可</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> /etc/init.d/apache2 force-reload</span><br><span class="line"><span class="built_in">sudo</span> /etc/init.d/apache2 restart</span><br></pre></td></tr></table></figure></div>
-]]></content>
-      <categories>
-        <category>建站</category>
-      </categories>
-      <tags>
-        <tag>ubuntu</tag>
-        <tag>apache</tag>
-        <tag>cors</tag>
-        <tag>跨域</tag>
       </tags>
   </entry>
   <entry>
@@ -1047,6 +1106,63 @@
       </tags>
   </entry>
   <entry>
+    <title>Windows 10 子系统安装 Erlang OTP 19</title>
+    <url>/posts/win10-wsl-erlang/</url>
+    <content><![CDATA[<p>在 Windows 10 子系统安装 Erlang OTP 19</p>
+<span id="more"></span>
+
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
+<li>系统: <code>Windows 10 pro ×64</code></li>
+<li>子系统: <code>wsl2 Ubuntu 18.04</code></li>
+</ul>
+<h2 id="添加镜像"><a href="#添加镜像" class="headerlink" title="添加镜像"></a>添加镜像</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/apt/sources.list</span><br></pre></td></tr></table></figure></div>
+<p>最后添加清华 <code>erlang-solutions</code> 源</p>
+<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>sources.list</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ # qing hua erlang-solutions</span></span><br><span class="line"><span class="addition">+ deb https://mirrors.tuna.tsinghua.edu.cn/erlang-solutions/ubuntu/ bionic contrib</span></span><br></pre></td></tr></table></figure></div>
+
+<h2 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt update</span><br></pre></td></tr></table></figure></div>
+
+<p>若失败提示 <code>The following signatures couldn’t be verified because the public key is not available: NO_PUBKEY XXXXXXXXXXXX</code> 则复制最后的 <code>KEY</code>, 执行</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-key adv --keyserver keyserver.ubuntu.com --recv-keys XXXXXXXXXXXX</span><br></pre></td></tr></table></figure></div>
+
+<p>若提示如下错误: </p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">gpg: keyserver receive failed: Server indicated a failure</span><br></pre></td></tr></table></figure></div>
+
+<p>则执行</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv XXXXXXXXXXXX</span><br></pre></td></tr></table></figure></div>
+
+<p>将会看到:</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">Executing: /tmp/apt-key-gpghome.VehtZ71sTw/gpg.1.sh --keyserver hkp://keyserver.ubuntu.com:80 --recv XXXXXXXXXXXX</span><br><span class="line">gpg: key D208507CA14F4FCA: public key <span class="string">&quot;Erlang Solutions Ltd. &lt;packages@erlang-solutions.com&gt;&quot;</span> imported</span><br><span class="line">gpg: Total number processed: 1</span><br><span class="line">gpg:               imported: 1</span><br></pre></td></tr></table></figure></div>
+
+<p>然后再次执行 <code>sudo apt update</code> 即可</p>
+<h2 id="安装-Erlang"><a href="#安装-Erlang" class="headerlink" title="安装 Erlang"></a>安装 Erlang</h2><p>可以选择安装特定版本, 也可以直接安装, 会自动安装最新版</p>
+<h3 id="安装特定版本"><a href="#安装特定版本" class="headerlink" title="安装特定版本"></a>安装特定版本</h3><p>比如选择 <code>OTP 19</code> 安装</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install esl-erlang=1:19.*</span><br></pre></td></tr></table></figure></div>
+
+<p>提示安装成功后, 测试</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">erl</span><br><span class="line">Erlang/OTP 19 [erts-8.3.5.7] [<span class="built_in">source</span>] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:<span class="literal">false</span>]</span><br><span class="line"></span><br><span class="line">Ebash V8.3.5.7  (abort with ^G)</span><br><span class="line">1&gt;</span><br></pre></td></tr></table></figure></div>
+
+<p>安装完成后记得把镜像地址注释掉, 否则下次更新系统会不小心升级版本</p>
+<h3 id="安装最新版"><a href="#安装最新版" class="headerlink" title="安装最新版"></a>安装最新版</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install esl-erlang</span><br></pre></td></tr></table></figure></div>
+
+<p><code>OTP 20</code> 以上自带支持 <code>history</code>, 方便在 shell 运行时记录执行过的命令, 添加环境变量</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi ~/.bashrc</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>.bashrc</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ export ERL_AFLAGS=&quot;-kernel shell_history enabled&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>开启新终端 或 <code>source</code> 下 <code>.bashrc</code></p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>应用</category>
+      </categories>
+      <tags>
+        <tag>ubuntu</tag>
+        <tag>erlang</tag>
+        <tag>win10</tag>
+        <tag>wsl</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Video Of You! 勒索诈骗邮件</title>
     <url>/posts/video-of-you-ransomware-email/</url>
     <content><![CDATA[<p>前几天看邮箱, 清理一些垃圾邮件时, 看到一份好几天前就发给我的邮件, 位置在垃圾箱里, 标题写着 Video Of You! 看到这名字就觉得不对劲, 不像普通的垃圾广告邮件, 这引起了我的注意…</p>
@@ -1129,63 +1245,6 @@
         <tag>勒索</tag>
         <tag>诈骗</tag>
         <tag>邮件</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Windows 10 子系统安装 Erlang OTP 19</title>
-    <url>/posts/win10-wsl-erlang/</url>
-    <content><![CDATA[<p>在 Windows 10 子系统安装 Erlang OTP 19</p>
-<span id="more"></span>
-
-<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
-<li>系统: <code>Windows 10 pro ×64</code></li>
-<li>子系统: <code>wsl2 Ubuntu 18.04</code></li>
-</ul>
-<h2 id="添加镜像"><a href="#添加镜像" class="headerlink" title="添加镜像"></a>添加镜像</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/apt/sources.list</span><br></pre></td></tr></table></figure></div>
-<p>最后添加清华 <code>erlang-solutions</code> 源</p>
-<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>sources.list</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ # qing hua erlang-solutions</span></span><br><span class="line"><span class="addition">+ deb https://mirrors.tuna.tsinghua.edu.cn/erlang-solutions/ubuntu/ bionic contrib</span></span><br></pre></td></tr></table></figure></div>
-
-<h2 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h2><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt update</span><br></pre></td></tr></table></figure></div>
-
-<p>若失败提示 <code>The following signatures couldn’t be verified because the public key is not available: NO_PUBKEY XXXXXXXXXXXX</code> 则复制最后的 <code>KEY</code>, 执行</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-key adv --keyserver keyserver.ubuntu.com --recv-keys XXXXXXXXXXXX</span><br></pre></td></tr></table></figure></div>
-
-<p>若提示如下错误: </p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">gpg: keyserver receive failed: Server indicated a failure</span><br></pre></td></tr></table></figure></div>
-
-<p>则执行</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv XXXXXXXXXXXX</span><br></pre></td></tr></table></figure></div>
-
-<p>将会看到:</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">Executing: /tmp/apt-key-gpghome.VehtZ71sTw/gpg.1.sh --keyserver hkp://keyserver.ubuntu.com:80 --recv XXXXXXXXXXXX</span><br><span class="line">gpg: key D208507CA14F4FCA: public key <span class="string">&quot;Erlang Solutions Ltd. &lt;packages@erlang-solutions.com&gt;&quot;</span> imported</span><br><span class="line">gpg: Total number processed: 1</span><br><span class="line">gpg:               imported: 1</span><br></pre></td></tr></table></figure></div>
-
-<p>然后再次执行 <code>sudo apt update</code> 即可</p>
-<h2 id="安装-Erlang"><a href="#安装-Erlang" class="headerlink" title="安装 Erlang"></a>安装 Erlang</h2><p>可以选择安装特定版本, 也可以直接安装, 会自动安装最新版</p>
-<h3 id="安装特定版本"><a href="#安装特定版本" class="headerlink" title="安装特定版本"></a>安装特定版本</h3><p>比如选择 <code>OTP 19</code> 安装</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install esl-erlang=1:19.*</span><br></pre></td></tr></table></figure></div>
-
-<p>提示安装成功后, 测试</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">erl</span><br><span class="line">Erlang/OTP 19 [erts-8.3.5.7] [<span class="built_in">source</span>] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:<span class="literal">false</span>]</span><br><span class="line"></span><br><span class="line">Ebash V8.3.5.7  (abort with ^G)</span><br><span class="line">1&gt;</span><br></pre></td></tr></table></figure></div>
-
-<p>安装完成后记得把镜像地址注释掉, 否则下次更新系统会不小心升级版本</p>
-<h3 id="安装最新版"><a href="#安装最新版" class="headerlink" title="安装最新版"></a>安装最新版</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install esl-erlang</span><br></pre></td></tr></table></figure></div>
-
-<p><code>OTP 20</code> 以上自带支持 <code>history</code>, 方便在 shell 运行时记录执行过的命令, 添加环境变量</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi ~/.bashrc</span><br></pre></td></tr></table></figure></div>
-
-<div class="code-container" data-rel="Diff"><figure class="iseeu highlight diff"><figcaption><span>.bashrc</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="addition">+ export ERL_AFLAGS=&quot;-kernel shell_history enabled&quot;</span></span><br></pre></td></tr></table></figure></div>
-
-<p>开启新终端 或 <code>source</code> 下 <code>.bashrc</code></p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure></div>
-]]></content>
-      <categories>
-        <category>应用</category>
-      </categories>
-      <tags>
-        <tag>erlang</tag>
-        <tag>ubuntu</tag>
-        <tag>win10</tag>
-        <tag>wsl</tag>
       </tags>
   </entry>
   <entry>
